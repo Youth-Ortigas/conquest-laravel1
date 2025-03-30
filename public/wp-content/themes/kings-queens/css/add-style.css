@@ -1,0 +1,90 @@
+blockquote:before {
+    content: 'â€œ';
+    font-size: 60px;
+    line-height: 1;
+    top: 1.15em;
+    left: 1.3em;
+}
+.sc_testimonials_item_content:before {
+    content: 'â€œ';
+}
+.sidebar[class*="scheme_"] .widget:before {
+    content: url("../images/widget_begin.png");
+    position: absolute;
+    top:-55px;
+    left: 0;
+}
+.sidebar[class*="scheme_"] .widget:after {
+    content: url("../images/widget_end.png");
+    position: absolute;
+    bottom:-63px;
+    left: 0;
+}
+.body_wrap .page_wrap .SmallWhiteTexts,
+.body_wrap .page_wrap .BigWhiteTexts {
+    color: #f2e0c8;
+    -webkit-text-fill-color: transparent;
+    background: -webkit-linear-gradient(transparent, transparent),
+    url("../images/z3.png") repeat!important;
+    background: -o-linear-gradient(transparent, transparent);
+    -webkit-background-clip: text!important;
+}
+.custom.tparrows {
+    z-index: 1000;
+}
+.body_style_fullscreen .chess_wrap,
+.body_style_fullscreen .post_layout_chess {
+    overflow: inherit;
+}
+.body_style_fullscreen .chess_wrap:after,
+.body_style_fullscreen .post_layout_chess:after,
+.body_style_fullscreen .page_content_wrap:after {
+    content: '';
+    clear: both;
+    display: block;
+}
+.esgbox-button.esgbox-button--fullscreen {
+    display: none !important;
+}
+body .esg-grid .mainul li.eg-kingsqueens-wrapper {
+    background: transparent;
+}
+body .esg-grid .mainul li.eg-kingsqueens-wrapper:hover {
+    background: #2d3039;
+}
+@media (min-width: 2000px) {
+    .vc_col-sm-12 .wpb_single_image .vc_figure,
+    .vc_col-sm-12 .wpb_single_image .vc_figure img,
+    .vc_col-sm-12 .wpb_single_image .vc_single_image-wrapper {
+        width: 100%;
+        max-width: none;
+    }
+
+}
+.sidebar[class*="scheme_"] .widget.woocommerce,
+.sidebar[class*="scheme_"] .widget.woocommerce .widget_title,
+.sidebar[class*="scheme_"] .widget.woocommerce ul{
+    text-align: center;
+}
+
+
+
+@media (max-width: 1441px) {
+
+}
+
+@media (max-width: 1279px) {
+
+}
+
+@media (max-width: 1023px) {
+
+}
+
+@media (max-width: 767px) {
+
+}
+
+@media (max-width: 479px) {
+
+}
