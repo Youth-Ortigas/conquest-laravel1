@@ -19,4 +19,19 @@ class PuzzlesController extends Controller
     {
         return view('puzzles');
     }
+
+    /**
+     * [View] Details page
+     * @param Request $request
+     * @param $reference
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|object|void
+     */
+    public function getDetails(Request $request, $reference)
+    {
+        if(view()->exists("puzzles/puzzles-$reference")) {
+            return view("puzzles/puzzles-$reference");
+        }
+
+        abort(404);
+    }
 }
