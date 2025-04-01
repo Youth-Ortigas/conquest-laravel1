@@ -2431,11 +2431,6 @@
 <script type="text/javascript"
         src="{{ asset("wp-content/plugins/trx_addons/js/magnific/jquery.magnific-popup.min.js") }}"
         id="magnific-popup-js"></script>
-<script type="text/javascript" src="{{ asset("wp-content/plugins/trx_addons/js/trx_addons.js") }}"
-        id="trx_addons-js"></script>
-<script type="text/javascript"
-        src="{{ asset("wp-content/plugins/trx_demo/js/trx_demo_panels.js") }}"
-        id="trx_demo_panels-js"></script>
 <script>
     SR7.JSON['SR7_1_1'] = {
         "settings": {
@@ -3470,6 +3465,11 @@
 </script>
 <script></script>
 <script src="https://code.tidio.co/ctybgkiqd4jhsgdvzlgahqx3pjybdwlg.js" async=""></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@section('footer-scripts')
+
+@show
 
 </body>
 </html>
