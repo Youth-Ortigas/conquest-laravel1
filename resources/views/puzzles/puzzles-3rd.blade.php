@@ -16,7 +16,7 @@
                                         <div id="sc_layouts_title_850083845" class="sc_layouts_title with_content without_image without_tint">
                                             <div class="sc_layouts_title_content">
                                                 <div class="sc_layouts_title_title">
-                                                    <h1 class="sc_layouts_title_caption">Third & Last Puzzle</h1>
+                                                    <h1 class="sc_layouts_title_caption">Third Puzzle</h1>
                                                 </div>
                                             </div><!-- .sc_layouts_title_content -->
                                         </div><!-- /.sc_layouts_title -->
