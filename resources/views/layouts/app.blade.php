@@ -3464,7 +3464,7 @@
     SR7.E.v6v7ids = JSON.parse('{\"n\":{\"1\":1,\"2\":2,\"3\":3},\"s\":{\"1\":10}}');
 </script>
 <script></script>
-<script src="https://code.tidio.co/ctybgkiqd4jhsgdvzlgahqx3pjybdwlg.js" async=""></script>
+<!--<script src="https://code.tidio.co/ctybgkiqd4jhsgdvzlgahqx3pjybdwlg.js" async=""></script>-->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 @section('footer-scripts')

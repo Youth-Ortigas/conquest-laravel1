@@ -233,7 +233,7 @@
                                                                         <h3 style="margin: 9.15rem 0 25px 0;"> Vigenere Table </h3>
                                                                         <h4> What Be Thy Answer? </h4>
                                                                         <label style="display: block; margin-top: 25px;">
-                                                                            <input type="text" name="puzzle_1st_code" placeholder="ENTER KEY"/>
+                                                                            <input type="text" name="puzzle_code_1st" placeholder="ENTER KEY"/>
                                                                             <button type="submit" style="margin-left: 15px;" id="btn-puzzle-send"> Deliver Thy Reply </button>
                                                                         </label>
                                                                     </div>

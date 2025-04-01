@@ -3,6 +3,7 @@
 @section('page-class', 'home')
 
 @section('content')
+    {{ csrf_field() }}
     <div class="page_wrap">
         <div class="banner-main">
             <div class="vc_row wpb_row vc_row-fluid shape_divider_top-none shape_divider_bottom-none sc_layouts_row sc_layouts_row_type_normal scheme_dark">
@@ -15,7 +16,7 @@
                                         <div id="sc_layouts_title_850083845" class="sc_layouts_title with_content without_image without_tint">
                                             <div class="sc_layouts_title_content">
                                                 <div class="sc_layouts_title_title">
-                                                    <h1 class="sc_layouts_title_caption">Third Puzzle</h1>
+                                                    <h1 class="sc_layouts_title_caption">Third & Last Puzzle</h1>
                                                 </div>
                                             </div><!-- .sc_layouts_title_content -->
                                         </div><!-- /.sc_layouts_title -->
@@ -183,55 +184,38 @@
                                 <div data-vc-full-width="true" data-vc-full-width-init="true"
                                      class="vc_row wpb_row vc_row-fluid vc_custom_1522153891227 vc_row-has-fill hide_bg_image_on_tablet hide_bg_image_on_mobile shape_divider_top-none shape_divider_bottom-none"
                                      style="width: 1481.75px; left: -86.875px; right: auto; padding-left: 86.875px; padding-right: 86.875px; position: relative; box-sizing: border-box; max-width: 1512px;">
-                                    <div class="wpb_column vc_column_container vc_col-sm-6 vc_col-has-fill sc_layouts_column_icons_position_left">
-                                        <div class="vc_column-inner">
-                                            <div class="wpb_wrapper">
-                                                <div class="wpb_single_image wpb_content_element vc_align_left wpb_content_element">
-                                                    <h3 id="hint">
-                                                        The key is hidden in the city. <br>Take charge young Conqueror!
-                                                    </h3>
-                                                    <div class="tutorial">
-                                                        <p> If you feel stuck, maybe download the image of the clue</p>
-                                                        <!--One other thing, you may want to use what you get from this puzzle to find a hidden page, by adding a .html at the end-->
-                                                        <p>
-                                                            For Extra help, read this:<br>
-                                                        <ul>
-                                                            <li>After downloading the image, look for a word hidden in the picture</li>
-                                                            <li>Once you have found the word, have a look again at the filename of the image you just downloaded.</li>
-                                                            <li>Take a look at the Vigenere Table and try to put 2 and 2 together to solve the puzzle!</li>
-                                                            <li>To "submit" your final answer, go to the address bar of your browser,
-                                                                and at the end of the website URL add another '/' and add your answer with a .html at the end <br><br>
-
-                                                                Example:<br>
-                                                                Format: https://www.test.com[/{puzzle_name}.html]<br>
-                                                                Answer: https://www.test.com/hiddenpage.html<br>
-                                                            </li>
-                                                        </ul>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="wpb_column vc_column_container vc_col-sm-6 vc_col-has-fill sc_layouts_column_icons_position_left">
-                                        <div class="vc_column-inner">
-                                            <div class="wpb_wrapper">
-                                                <div class="wpb_single_image wpb_content_element vc_align_left wpb_content_element">
-                                                    <div class="container" style="margin: 25px 0 0 0;">
-                                                        <img src="{{ asset("images/conquestclue.jpg") }}" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
 
                                     <div class="wpb_column vc_column_container vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left">
                                         <div class="vc_column-inner">
                                             <div class="wpb_wrapper">
                                                 <div class="wpb_single_image wpb_content_element vc_align_left wpb_content_element">
-                                                    <div class="container" style="margin: 25px 0 0 0; text-align: center;">
-                                                        <img src="{{ asset("images/VigenereCipherTable.png") }}" />
+                                                    <div class="container" style="margin: 25px 0 0 0;">
+                                                        <div class="wpb_column vc_column_container vc_col-sm-6 vc_col-has-fill sc_layouts_column_icons_position_left">
+                                                            <div class="vc_column-inner">
+                                                                <div class="wpb_wrapper">
+                                                                    <div class="wpb_content_element vc_align_left wpb_content_element">
+                                                                        <h3 style="margin: 9.15rem 0 25px 0;"> TBA </h3>
+                                                                        <h4> TBA </h4>
+                                                                        <label style="display: block; margin-top: 25px;">
+                                                                            <input type="text" name="puzzle_code_3rd" placeholder="ENTER KEY"/>
+                                                                            <button type="submit" style="margin-left: 15px;" id="btn-puzzle-send"> TBA </button>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="wpb_column vc_column_container vc_col-sm-6 vc_col-has-fill sc_layouts_column_icons_position_left">
+                                                            <div class="vc_column-inner" style="padding-right:0;">
+                                                                <div class="wpb_wrapper">
+                                                                    <div class="wpb_single_image wpb_content_element vc_align_left wpb_content_element">
+                                                                        <div class="container" style="margin: 25px 0 0 0; padding-right:0;">
+                                                                            <img src="{{ asset("images/conquestclue.jpg") }}" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -367,19 +351,16 @@
                                 <div class="vc_row-full-width vc_clearfix"></div>
                                 <div class="vc_row-full-width vc_clearfix"></div>
                             </div>
-                        </div><!-- .entry-content -->
-
-
+                        </div>
                     </article>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+@endsection
 
-                </div><!-- </.content> -->
-            </div><!-- </.content_wrap> -->
-        </div><!-- </.page_content_wrap> -->
-
-    </div><!-- /.page_wrap -->
-
-    </div><!-- /.body_wrap -->
-
-
-    <a href="#" class="trx_addons_scroll_to_top trx_addons_icon-up inited" title="Scroll to top"></a>
+@section('footer-scripts')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="{{ asset("custom/js/puzzles-2nd.js") }}"></script>
 @endsection
