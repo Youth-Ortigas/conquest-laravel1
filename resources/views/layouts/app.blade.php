@@ -3,6 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="format-detection" content="telephone=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Conquest - ENC Campus 2025 Event</title>
     <meta name="robots" content="noindex, nofollow">
     <style>img:is([sizes="auto" i], [sizes^="auto," i]) {
@@ -689,7 +690,8 @@
                 return ++n
             }
         }();</script>
-    <style type="text/css" data-type="vc_shortcodes-custom-css">.vc_custom_1522153891227 {
+    <style type="text/css" data-type="vc_shortcodes-custom-css">
+        /* .vc_custom_1522153891227 {
             background: #f2e0c8 url(wp-content/uploads/2018/01/img92.jpg?id=544) !important;
             background-position: top left !important;
             background-repeat: no-repeat !important;
@@ -699,7 +701,7 @@
             background-image: url(wp-content/uploads/2018/01/img-9.png?id=337) !important;
             background-position: center !important;
             background-repeat: no-repeat !important;
-        }
+        } */
 
         .vc_custom_1516978326411 {
             background-color: #e8d3b6 !important;
@@ -2103,6 +2105,8 @@
         }
 
     </style>
+
+    <link rel="stylesheet" href="{{ asset('custom/css/index.css') }}">
 </head>
 
 <body class="home page-template-default page page-id-367 custom-background wp-custom-logo theme-kings-queens frontpage tribe-js body_tag scheme_default blog_mode_front body_style_boxed is_stream blog_style_excerpt sidebar_hide expand_content remove_margins trx_addons_present header_type_custom header_style_header-custom-592 header_position_over menu_style_top wpb-js-composer js-comp-ver-8.0.1 vc_responsive added_to_cart_inited desktop_layout">
@@ -2114,66 +2118,6 @@
 
 @section('footer')
     <footer class="footer_wrap footer_custom footer_custom_410 footer_custom_footer scheme_dark">
-        <div
-            class="vc_row wpb_row vc_row-fluid vc_custom_1521037551816 shape_divider_top-none shape_divider_bottom-none">
-            <div class="wpb_column vc_column_container vc_col-sm-12 sc_layouts_column_icons_position_left">
-                <div class="vc_column-inner vc_custom_1522139477247">
-                    <div class="wpb_wrapper">
-                        <div class="wpb_single_image wpb_content_element vc_align_left wpb_content_element">
-
-                            <figure class="wpb_wrapper vc_figure">
-                                <div class="vc_single_image-wrapper vc_box_border_grey">
-                                    <img width="1871"
-                                         height="95"
-                                         src=" {{ asset("wp-content/uploads/2018/01/bottom.png") }}"
-                                         class="vc_single_image-img attachment-full"
-                                         alt="" title="bottom"
-                                         decoding="async"
-                                         loading="lazy"
-                                         sizes="auto, (max-width: 1871px) 100vw, 1871px">
-                                </div>
-                            </figure>
-                        </div>
-                        <div class="vc_empty_space" style="height: 4.7rem"><span
-                                class="vc_empty_space_inner"></span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div
-            class="vc_row wpb_row vc_row-fluid shape_divider_top-none shape_divider_bottom-none sc_layouts_row sc_layouts_row_type_normal">
-            <div class="wpb_column vc_column_container vc_col-sm-12 sc_layouts_column_icons_position_left">
-                <div class="vc_column-inner">
-                    <div class="wpb_wrapper">
-                        <div id="sc_content_189066071"
-                             class="sc_content color_style_default sc_content_default sc_content_width_1_1 sc_float_center">
-                            <div class="sc_content_container">
-                                <div class="vc_empty_space" style="height: 3.4rem"><span
-                                        class="vc_empty_space_inner"></span></div>
-                            </div>
-                        </div><!-- /.sc_content --></div>
-                </div>
-            </div>
-        </div>
-        <div class="vc_row wpb_row vc_row-fluid shape_divider_top-none shape_divider_bottom-none">
-            <div class="wpb_column vc_column_container vc_col-sm-12 sc_layouts_column_icons_position_left">
-                <div class="vc_column-inner">
-                    <div class="wpb_wrapper">
-                        <div id="sc_content_719483469"
-                             class="sc_content color_style_default sc_content_default sc_content_width_1_1 sc_float_center">
-                            <div class="sc_content_container">
-                                <div
-                                    class="vc_separator wpb_content_element vc_separator_align_center vc_sep_width_100 vc_sep_border_width_2 vc_sep_pos_align_center vc_separator_no_text vc_custom_1521037301379 wpb_content_element  vc_custom_1521037301379 wpb_content_element">
-                                        <span class="vc_sep_holder vc_sep_holder_l"><span style="border-color:#1e1915;"
-                                                                                          class="vc_sep_line"></span></span><span
-                                        class="vc_sep_holder vc_sep_holder_r"><span style="border-color:#1e1915;"
-                                                                                    class="vc_sep_line"></span></span>
-                                </div>
-                            </div>
-                        </div><!-- /.sc_content --></div>
-                </div>
-            </div>
-        </div>
         <div class="vc_row wpb_row vc_row-fluid shape_divider_top-none shape_divider_bottom-none scheme_dark">
             <div
                 class="wpb_column vc_column_container vc_col-sm-12 sc_layouts_column sc_layouts_column_align_center sc_layouts_column_icons_position_left">
@@ -2184,14 +2128,16 @@
                             <div class="sc_content_container">
                                 <div class="vc_wp_text wpb_content_element">
                                     <div class="widget widget_text">
-                                        <div class="textwidget"><p><a href=" {{ route('home.index') }}"
-                                                                      target="_blank" rel="noopener noreferrer">Conquest Youth Camp </a>
-                                                © {{ date("Y") }}. All rights reserved.</p>
+                                        <div class="textwidget" style="padding: 10px">
+                                            <p>
+                                                <a href=" {{ route('home.index') }}" target="_blank" rel="noopener noreferrer">
+                                                    Conquest Youth Camp
+                                                </a>
+                                                © {{ date("Y") }}. All rights reserved.
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="vc_empty_space" style="height: 2.8rem"><span
-                                        class="vc_empty_space_inner"></span></div>
                             </div>
                         </div><!-- /.sc_content --></div>
                 </div>
@@ -2331,12 +2277,12 @@
     wp.i18n.setLocaleData({'text direction\u0004ltr': ['ltr']});
     /* ]]> */
 </script>
-<script type="text/javascript"
+{{-- <script type="text/javascript"
         src="{{ asset("wp-content/plugins/contact-form-7/includes/swv/js/index.js") }}"
         id="swv-js"></script>
 <script type="text/javascript"
         src="{{ asset("wp-content/plugins/contact-form-7/includes/js/index.js") }}"
-        id="contact-form-7-js"></script>
+        id="contact-form-7-js"></script> --}}
 <script type="text/javascript" id="tp-tools-js-before">
     /* <![CDATA[ */
     window.ESG ??= {};
@@ -2381,11 +2327,6 @@
 <script type="text/javascript"
         src="{{ asset("wp-content/plugins/trx_addons/js/magnific/jquery.magnific-popup.min.js") }}"
         id="magnific-popup-js"></script>
-<script type="text/javascript" src="{{ asset("wp-content/plugins/trx_addons/js/trx_addons.js") }}"
-        id="trx_addons-js"></script>
-<script type="text/javascript"
-        src="{{ asset("wp-content/plugins/trx_demo/js/trx_demo_panels.js") }}"
-        id="trx_demo_panels-js"></script>
 <script>
     SR7.JSON['SR7_1_1'] = {
         "settings": {
@@ -3071,7 +3012,7 @@
                         "fluid": {"tx": true, "tr": true, "sp": true},
                         "id": 10,
                         "alias": "Kings and queens is ...",
-                        "content": {"text": "Conquest! <br> Every Nation Campus 2025 Event"},
+                        "content": {"text": "June 12 - 14, 2025 <br> Rizal Re-Creation Center"},
                         "runtime": {"locked": false, "hidden": false},
                         "size": {
                             "w": ["#a", "auto", "auto", "auto", "auto"],
@@ -3155,7 +3096,7 @@
                         "color": ["#f2e0c8", "#f2e0c8", "#f2e0c8", "#f2e0c8", "#f2e0c8"],
                         "font": {
                             "family": "Montserrat",
-                            "size": ["15px", "15px", "15px", "15px", "15px"],
+                            "size": ["20px", "20px", "20px", "20px", "20px"],
                             "weight": ["600", "600", "600", "600", "600"],
                             "ls": [0, 0, 0, 0, 0]
                         },
@@ -3435,6 +3376,12 @@
     SR7.E.v6v7ids = JSON.parse('{\"n\":{\"1\":1,\"2\":2,\"3\":3},\"s\":{\"1\":10}}');
 </script>
 <script></script>
+<!--<script src="https://code.tidio.co/ctybgkiqd4jhsgdvzlgahqx3pjybdwlg.js" async=""></script>-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@section('footer-scripts')
+
+@show
 
 </body>
 </html>

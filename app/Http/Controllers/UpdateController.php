@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
  * @author Johnvic Dela Cruz <dealcruzjohnvic21@gmail.com>
  * @since Apr 03, 2025
  */
-class UpdatesController extends Controller
+class UpdateController extends Controller
 {
     /**
      * index

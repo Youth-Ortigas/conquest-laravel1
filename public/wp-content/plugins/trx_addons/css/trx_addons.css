@@ -7388,6 +7388,7 @@ textarea.wpcf7-form-control,
     z-index: 2;
     display: inline-block;
     width: auto;
+    border: 1px solid #bd8d4c;
 }
 
 .sc_icon_type_svg {
