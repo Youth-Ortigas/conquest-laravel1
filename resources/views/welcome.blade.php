@@ -21,8 +21,7 @@
                         </div>
                     </div>
                 </div>
-                <div
-                    class="wpb_column vc_column_container vc_col-sm-9 vc_col-lg-6 vc_col-sm-offset-0 vc_col-xs-offset-3 vc_col-xs-2 sc_layouts_column sc_layouts_column_align_center sc_layouts_column_icons_position_left">
+                <div class="wpb_column vc_column_container vc_col-sm-9 vc_col-lg-6 vc_col-sm-offset-0 vc_col-xs-offset-3 vc_col-xs-2 sc_layouts_column sc_layouts_column_align_center sc_layouts_column_icons_position_left">
                     <div class="vc_column-inner">
                         <div class="wpb_wrapper">
                             <div class="sc_layouts_item">
@@ -49,10 +48,6 @@
                                                     class="menu-item menu-item-type-post_type menu-item-object-page menu-item-383">
                                                     <a href="https://kingsqueens.ancorathemes.com/home-3/"><span>Home 3</span></a>
                                                 </li>
-                                                <li id="menu-item-384"
-                                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-384">
-                                                    <a href="https://kingsqueens.ancorathemes.com/home-ecommerce/"><span>Home eCommerce</span></a>
-                                                </li>
                                             </ul>
                                         </li>
                                         <li id="menu-item-272"
@@ -75,63 +70,28 @@
                         </div>
                     </div>
                 </div>
-                <div
-                    class="wpb_column vc_column_container vc_col-sm-3 vc_hidden-md vc_col-sm-offset-0 vc_hidden-sm vc_col-xs-offset-5 vc_col-xs-2 vc_hidden-xs sc_layouts_column sc_layouts_column_align_right sc_layouts_column_icons_position_left">
-                    <div class="vc_column-inner">
-                        <div class="wpb_wrapper">
-                            <div
-                                class="sc_layouts_item sc_layouts_hide_on_mobile sc_layouts_hide_on_tablet sc_layouts_hide_on_notebook">
-                                <div id="sc_layouts_cart_876795221"
-                                     class="sc_layouts_cart hide_on_notebook hide_on_tablet hide_on_mobile vc_custom_1522141681777 inited">
-                                    <span
-                                        class="sc_layouts_item_icon sc_layouts_cart_icon trx_addons_icon-basket"></span>
-                                    <span class="sc_layouts_item_details sc_layouts_cart_details">
-						<span class="sc_layouts_item_details_line2 sc_layouts_cart_totals">
-				<span class="sc_layouts_cart_items">0 items</span>
-				<span class="sc_layouts_cart_summa">$0</span>
-			</span>
-		</span><!-- /.sc_layouts_cart_details -->
-                                    <span class="sc_layouts_cart_items_short">0</span>
-                                    <div class="sc_layouts_cart_widget widget_area">
-                                        <span class="sc_layouts_cart_widget_close trx_addons_icon-cancel"></span>
-                                        <div class="widget woocommerce widget_shopping_cart">
-                                            <div class="widget_shopping_cart_content">
-
-                                                <p class="woocommerce-mini-cart__empty-message">No products in the
-                                                    cart.</p>
-
-
-                                            </div>
-                                        </div>
-                                    </div><!-- /.sc_layouts_cart_widget -->
-                                </div><!-- /.sc_layouts_cart --></div>
-                        </div>
-                    </div>
-                </div>
             </div>
-            <div class="sc_layouts_row_fixed_placeholder"
-                 style="background-color: rgba(0, 0, 0, 0); height: 115.85px;"></div>
+            <div class="sc_layouts_row_fixed_placeholder" style="background-color: rgba(0, 0, 0, 0); height: 115.85px;"></div>
         </header>
         <div class="menu_mobile_overlay" style="display: none;"></div>
         <div class="menu_mobile menu_mobile_fullscreen scheme_dark">
             <div class="menu_mobile_inner">
-                <a class="menu_mobile_close icon-cancel"></a><a class="sc_layouts_logo"
-                                                                href="{{ env("APP_URL") }}"><img
-                        src="{{ asset('images/ConquestLogo.png') }}" alt="Conquest"
-                        width="218" height="58"></a>
+                <a class="menu_mobile_close icon-cancel"></a>
+                <a class="sc_layouts_logo" href="{{ route('home.index') }}">
+                <img src="{{ asset('images/ConquestLogo.png') }}" alt="Conquest" width="218" height="58"></a>
                 <nav class="menu_mobile_nav_area">
                     <ul id="menu_mobile_1082560149" class="prepared">
                         <li id="menu_mobile-item-171"
                             class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-171 current-menu-ancestor current-menu-parent">
-                            <a href=" {{ env("APP_URL") }}/home"><span>Home</span><span class="open_child_menu"></span></a>
+                            <a href=" {{ route('home.index') }}"><span>Home</span><span class="open_child_menu"></span></a>
                             <ul class="sub-menu">
                                 <li id="menu_mobile-item-381"
                                     class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home page_item page-item-367 menu-item-381 current-menu-item current_page_item">
-                                    <a href="#"
-                                       aria-current="page"><span>Home 1</span></a></li>
+                                    <a href="#" aria-current="page"><span>Home 1</span></a></li>
                                 <li id="menu_mobile-item-382"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-382"><a
-                                        href="#"><span>Home 2</span></a></li>
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-382">
+                                    <a href="#"><span>Home 2</span></a>
+                                </li>
                                 <li id="menu_mobile-item-383"
                                     class="menu-item menu-item-type-post_type menu-item-object-page menu-item-383"><a
                                         href="#"><span>Home 3</span></a></li>
@@ -139,11 +99,11 @@
                         </li>
                         <li id="menu_mobile-item-272"
                             class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-272">
-                            <a href="{{ env("APP_URL") }}/puzzles"><span>Puzzles</span><span class="open_child_menu"></span></a>
+                            <a href="{{ route('puzzles.index') }}"><span>Puzzles</span><span class="open_child_menu"></span></a>
                         </li>
                         <li id="menu_mobile-item-258"
                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-258"><a
-                                href="{{ env("APP_URL") }}/updates"><span>Updates</span></a></li>
+                                href="{{ route('updates.index') }}"><span>Updates</span></a></li>
                     </ul>
                 </nav>
                 <div class="search_wrap search_style_normal search_mobile inited">

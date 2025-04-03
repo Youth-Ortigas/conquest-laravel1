@@ -57,7 +57,7 @@
                                         style="touch-action: pan-y;">
                                         <li id="menu-item-171"
                                             class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-171">
-                                            <a href="{{ env("APP_URL") }}/home" class="sf-with-ul"><span>Home</span></a>
+                                            <a href="{{ route('home.index') }}" class="sf-with-ul"><span>Home</span></a>
                                             <ul class="sub-menu fadeOutDownSmall animated fast" style="display: none;">
                                                 <li id="menu-item-381"
                                                     class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-367 current_page_item menu-item-381">
@@ -132,34 +132,34 @@
         <div class="menu_mobile menu_mobile_fullscreen scheme_dark">
             <div class="menu_mobile_inner">
                 <a class="menu_mobile_close icon-cancel"></a><a class="sc_layouts_logo"
-                                                                href="{{ env("APP_URL") }}"><img
+                                                                href="{{ route('home.index') }}"><img
                         src="{{ asset('images/ConquestLogo.png') }}" alt="Conquest"
                         width="218" height="58"></a>
                 <nav class="menu_mobile_nav_area">
                     <ul id="menu_mobile_1082560149" class="prepared">
                         <li id="menu_mobile-item-171"
                             class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-171 current-menu-ancestor current-menu-parent">
-                            <a href="{{ env("APP_URL") }}/home"><span>Home</span><span class="open_child_menu"></span></a>
+                            <a href="{{ route('home.index') }}"><span>Home</span><span class="open_child_menu"></span></a>
                             <ul class="sub-menu">
                                 <li id="menu_mobile-item-381"
                                     class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home page_item page-item-367 menu-item-381 current-menu-item current_page_item">
-                                    <a href="{{ env("APP_URL") }}/home"
+                                    <a href="{{ route('home.index') }}"
                                        aria-current="page"><span>Home 1</span></a></li>
                                 <li id="menu_mobile-item-382"
                                     class="menu-item menu-item-type-post_type menu-item-object-page menu-item-382"><a
-                                        href="{{ env("APP_URL") }}/home"><span>Home 2</span></a></li>
+                                        href="{{ route('home.index') }}"><span>Home 2</span></a></li>
                                 <li id="menu_mobile-item-383"
                                     class="menu-item menu-item-type-post_type menu-item-object-page menu-item-383"><a
-                                        href="{{ env("APP_URL") }}/home"><span>Home 3</span></a></li>
+                                        href="{{ route('home.index') }}"><span>Home 3</span></a></li>
                             </ul>
                         </li>
                         <li id="menu_mobile-item-272"
                             class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-272">
-                            <a href="{{ env("APP_URL") }}/puzzles"><span>Puzzles</span><span class="open_child_menu"></span></a>
+                            <a href="{{ route('puzzles.index') }}"><span>Puzzles</span><span class="open_child_menu"></span></a>
                         </li>
                         <li id="menu_mobile-item-258"
                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-258"><a
-                                href="{{ env("APP_URL") }}/updates"><span>Updates</span></a></li>
+                                href="{{ route('updates.index') }}"><span>Updates</span></a></li>
                     </ul>
                 </nav>
                 <div class="search_wrap search_style_normal search_mobile inited">
