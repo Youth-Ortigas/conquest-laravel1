@@ -7,7 +7,7 @@ use App\Http\Controllers\PuzzleController;
 use App\Http\Controllers\PuzzleGameStateController;
 use App\Http\Controllers\UpdateController;
 
-Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 
 Route::get('/puzzles', [PuzzleController::class, 'index'])->name('puzzles.index');
