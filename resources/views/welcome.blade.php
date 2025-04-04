@@ -373,8 +373,8 @@
                                                         class="vc_empty_space_inner"></span></div>
                                                 <div id="sc_title_855607521"
                                                      class="sc_title color_style_default sc_title_default">
-                                                    <h6 class="sc_item_subtitle sc_title_subtitle sc_align_center sc_item_title_style_default">Programs</h6>
-                                                    <h2 class="sc_item_title sc_title_title sc_align_center sc_item_title_style_default">Flow</h2>
+                                                    <h6 class="sc_item_subtitle sc_title_subtitle sc_align_center sc_item_title_style_default">Day-to-Day</h6>
+                                                    <h2 class="sc_item_title sc_title_title sc_align_center sc_item_title_style_default">Schedule</h2> <!--Added these changes based on the meeting-->
                                                     <div class="sc_item_descr sc_title_descr sc_align_center"><p>
                                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
