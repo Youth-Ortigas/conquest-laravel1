@@ -15,6 +15,7 @@ Route::get('/puzzles/{reference}', [PuzzleController::class, 'getDetails'])->nam
 Route::post('/validate-puzzle-key', [PuzzleController::class, 'validatePuzzleKey'])->name('puzzles.validate');
 Route::post('/puzzle-wordle-get-word', [PuzzleController::class, 'getWordleWord']);
 Route::post('/puzzle-wordle-check-guess', [PuzzleController::class, 'checkWordleGuess']);
+Route::get('/puzzle-wordle-reset', [PuzzleController::class, 'resetWordle']);
 
 Route::post('/puzzle-save-game-state', [PuzzleGameStateController::class, 'saveGameState']);
 Route::get('/puzzle-get-game-state/{user_id}/{puzzle_num}', [PuzzleGameStateController::class, 'getGameState']);

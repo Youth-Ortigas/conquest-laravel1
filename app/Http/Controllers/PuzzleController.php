@@ -186,6 +186,21 @@ class PuzzleController extends Controller
     }
 
     /**
+     * resetWordle
+     *
+     * @return void
+     */
+    public function resetWordle()
+    {
+        Session::forget('current_word');
+        PuzzleGameState::truncate();
+        PuzzleAttempt::truncate();
+
+        return redirect()->back()->with('message', 'Game reset successfully.');
+    }
+
+
+    /**
      * Compare the user's guess with the correct word and generate feedback.
      *
      * @param  string  $word
