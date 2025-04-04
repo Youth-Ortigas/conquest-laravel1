@@ -6,7 +6,7 @@
     {{ csrf_field() }}
     <link rel="stylesheet" href="{{ asset('custom/css/puzzle-2nd.css') }}">
     <div class="page_wrap">
-        @include('includes.puzzle_banner', ['title' => 'Second Puzzle'])
+        @include('includes.puzzle_banner', ['title' => 'Words and Letters: Fill in the Blanks']) <!--Added puzzle title based on documentation-->
 
         @include('includes.header')
 
