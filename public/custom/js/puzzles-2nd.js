@@ -37,7 +37,7 @@ $(document).ready(function () {
             $.get(`/puzzle-get-game-state/${this.userId}/${this.puzzleNum}`, (data) => {
                 if (data && data.game_state) {
                     let savedState = data.game_state;
-
+                    this.savedState = savedState;
                     this.attempts = savedState.attempts;
                     this.currentRow = savedState.currentRow;
                     this.WORD = savedState.word;
@@ -99,6 +99,7 @@ $(document).ready(function () {
          */
         updateGridState: function (guesses) {
             for (let rowIdx = 0; rowIdx < guesses.length; rowIdx++) {
+                console.log(guesses[rowIdx])
                 let guess = guesses[rowIdx];
                 let currentInputs = this.grid.find('.row').eq(rowIdx).find('.letter-box');
 
