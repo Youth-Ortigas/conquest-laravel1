@@ -1,9 +1,45 @@
 /**
  * [Puzzles] Module Class (e.g. puzzles/1st)
  * @author Marylyn Lajato <flippie.cute@gmail.com>
+ * @author Johnvic Dela Cruz <delacruzjohnvic21@gmail.com>
  * @since Apr 1, 2025
  */
 $(document).ready(function () {
+    let zoomLevel = 1;
+
+    $(".zoomable-image").click(function (event) {
+        if (zoomLevel === 1) {
+            zoomLevel = 2;
+        } else if (zoomLevel === 2) {
+            zoomLevel = 4;
+        } else if (zoomLevel === 4) {
+            zoomLevel = 6;
+        } else if (zoomLevel === 6) {
+            zoomLevel = 8;
+        } else {
+            zoomLevel = 1;
+        }
+
+        let rect = this.getBoundingClientRect();
+        let offsetX = event.clientX - rect.left;
+        let offsetY = event.clientY - rect.top;
+
+        let percentX = (offsetX / rect.width) * 100;
+        let percentY = (offsetY / rect.height) * 100;
+
+        $(this).css({
+            "transform": `scale(${zoomLevel})`,
+            "transform-origin": `${percentX}% ${percentY}%`
+        });
+    });
+
+    $(".zoom-reset").click(function () {
+        zoomLevel = 1;
+        $(".zoomable-image").css({
+            "transform": "scale(1)",
+            "transform-origin": "center center"
+        });
+    });
 
     /**
      * [Module] Puzzles Instance
@@ -28,6 +64,7 @@ $(document).ready(function () {
         init: function () {
             this.loadProperties();
             this.enterKey(this.DOMClassKeyButton, this.DOMClassKeyInput);
+            this.generateVigenereTable();
         },
 
         /**
@@ -57,39 +94,32 @@ $(document).ready(function () {
          * [1st Puzzle - General] Validate puzzle key
          * @param enteredKey
          */
-        validatePuzzleKey: function(enteredKey) {
-            fetch("../custom/js/assets/puzzlekey.json")
-                .then(response => response.json())
-                .then(data => {
-                    var validKey = false;
-                    if (Object.keys(data).length > 0) {
-                        validKey = data.find(entry =>
-                            entry.puzzle_key === enteredKey
-                        );
-                    }
-
-                    if (validKey) {
-                        Swal.fire({
-                            title: 'Puzzle unlocked!',
-                            text: 'Click Cool! to go to next puzzle',
-                            icon: 'success',
-                            confirmButtonText: 'Cool!'
-                        }).then((result) => {
-                            window.open(
-                                "/puzzles/2nd",
-                                '_blank'
-                            );
-                        });
-                    } else {
-                        Swal.fire({
-                            title: 'You\'re almost there!',
-                            text: 'You can do it! Try again',
-                            icon: 'error',
-                            confirmButtonText: 'G!'
-                        });
-                    }
-                })
-                .catch(error => console.error("Error loading puzzle keys:", error));
+        validatePuzzleKey: function (enteredKey) {
+            $.post("/validate-puzzle-key", {
+                _token: $('meta[name="csrf-token"]').attr('content'),
+                puzzle_key: enteredKey,
+                puzzle_num: 1
+            }, function(data) {
+                if (data.status === 'success') {
+                    Swal.fire({
+                        title: 'Puzzle unlocked!',
+                        text: 'Click Cool! to go to next puzzle',
+                        icon: 'success',
+                        confirmButtonText: 'Cool!'
+                    }).then(() => {
+                        window.open(data.next_puzzle, '_blank');
+                    });
+                } else {
+                    Swal.fire({
+                        title: 'You\'re almost there!',
+                        text: data.message || 'Try again',
+                        icon: 'error',
+                        confirmButtonText: 'G!'
+                    });
+                }
+            }).fail(function(error) {
+                console.error("Error validating puzzle key:", error);
+            });
         },
 
         callResourceViaAjax: function(sAjaxUrl, oAssignData, sMethod) {
@@ -138,6 +168,43 @@ $(document).ready(function () {
 
                 default:
                     return mValue.trim().length > 0
+            }
+        },
+
+        generateVigenereTable: function () {
+            const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const $table = $("#vigenereTable");
+            const $inputField = $("#puzzle-code-input"); // Medieval input field
+
+            // Create header row
+            let $headerRow = $("<tr>").append("<th class='key-header'></th>"); // Empty top-left corner cell
+            for (let i = 0; i < 26; i++) {
+                $headerRow.append($("<th>").text(alphabet[i]));
+            }
+            $table.append($headerRow);
+
+            // Create table rows
+            for (let i = 0; i < 26; i++) {
+                let $row = $("<tr>");
+
+                // Row header (Key letters)
+                let $th = $("<th>").addClass("key-header").text(alphabet[i]);
+                $row.append($th);
+
+                // Row content
+                let shiftedAlphabet = alphabet.slice(i) + alphabet.slice(0, i);
+                for (let j = 0; j < 26; j++) {
+                    let $td = $("<td>").text(shiftedAlphabet[j]);
+
+                    // Add Click Event to Insert Letter into Input
+                    $td.on("click", function () {
+                        $inputField.val($inputField.val() + $(this).text()); // Append clicked letter
+                    });
+
+                    $row.append($td);
+                }
+
+                $table.append($row);
             }
         }
 

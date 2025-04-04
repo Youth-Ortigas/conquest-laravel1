@@ -1,0 +1,50 @@
+
+.letter-box {
+    width: 60px !important;
+    height: 60px !important;
+    font-size: 20px !important;
+    text-align: center !important;
+    text-transform: uppercase !important;
+    font-weight: bold !important;
+    border: 3px solid #5a3e2b !important;
+    outline: none !important;
+    display: inline-block !important;
+    color: black !important;
+    border-radius: 0 !important;
+    margin: 2px !important;
+    padding: 0 !important;
+}
+
+.correct {
+    background-color: #4caf50 !important;
+    color: white !important;
+}
+
+.present {
+    background-color: #d4a017 !important;
+    color: white !important;
+}
+
+.absent {
+    background-color: #7c7c7c !important;
+    color: white !important;
+}
+
+.box {
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+    border: 1px solid #5a3e2b;
+    background-color: #f7ede1;
+    padding: 2px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.how-to-play ul li, .how-to-play p, .how-to-play b {
+    text-align: left
+}
+
+.how-to-play p {
+    margin-bottom: 10px;
+}

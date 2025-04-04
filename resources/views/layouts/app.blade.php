@@ -3,6 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="format-detection" content="telephone=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Conquest - ENC Campus 2025 Event</title>
     <meta name="robots" content="noindex, nofollow">
     <style>img:is([sizes="auto" i], [sizes^="auto," i]) {
@@ -401,23 +402,6 @@
     <link property="stylesheet" rel="stylesheet" id="trx_demo_panels-css"
           href="{{ asset("wp-content/plugins/trx_demo/css/trx_demo_panels.css") }}"
           type="text/css" media="all">
-    <link property="stylesheet" rel="stylesheet" id="woocommerce-layout-css"
-          href="{{ asset("wp-content/plugins/woocommerce/assets/css/woocommerce-layout.css") }}"
-          type="text/css" media="all">
-    <link property="stylesheet" rel="stylesheet" id="woocommerce-smallscreen-css"
-          href="{{ asset("wp-content/plugins/woocommerce/assets/css/woocommerce-smallscreen.css") }}"
-          type="text/css" media="only screen and (max-width: 768px)">
-    <link property="stylesheet" rel="stylesheet" id="woocommerce-general-css"
-          href="{{ asset("wp-content/plugins/woocommerce/assets/css/woocommerce.css") }}"
-          type="text/css" media="all">
-    <style id="woocommerce-inline-inline-css" type="text/css">
-        .woocommerce form .form-row .required {
-            visibility: visible;
-        }
-    </style>
-    <link property="stylesheet" rel="stylesheet" id="brands-styles-css"
-          href="{{ asset("wp-content/plugins/woocommerce/assets/css/brands.css") }}"
-          type="text/css" media="all">
     <link property="stylesheet" rel="stylesheet" id="js_composer_front-css"
           href="{{ asset("wp-content/plugins/js_composer/assets/css/js_composer.min.css") }}"
           type="text/css" media="all">
@@ -478,11 +462,6 @@
     <script></script>
     <link rel="https://api.w.org/" href="wp-json/">
     <link rel="alternate" href="wp-json/tribe/events/v1/">
-    <noscript>
-        <style>.woocommerce-product-gallery {
-                opacity: 1 !important;
-            }</style>
-    </noscript>
     <style type="text/css">.recentcomments a {
             display: inline !important;
             padding: 0 !important;
@@ -498,24 +477,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
     <meta name="generator"
           content="Powered by Slider Revolution 6.7.23 - responsive, Mobile-Friendly Slider Plugin for WordPress with comfortable drag and drop interface.">
-    <style class="wp-fonts-local" type="text/css">
-        @font-face {
-            font-family: Inter;
-            font-style: normal;
-            font-weight: 300 900;
-            font-display: fallback;
-            src: url('wp-content/plugins/woocommerce/assets/fonts/Inter-VariableFont_slnt,wght.woff2') format('woff2');
-            font-stretch: normal;
-        }
-
-        @font-face {
-            font-family: Cardo;
-            font-style: normal;
-            font-weight: 400;
-            font-display: fallback;
-            src: url('wp-content/plugins/woocommerce/assets/fonts/cardo_normal_400.woff2') format('woff2');
-        }
-    </style>
     <script>
         window._tpt ??= {};
         window.SR7 ??= {};
@@ -729,7 +690,8 @@
                 return ++n
             }
         }();</script>
-    <style type="text/css" data-type="vc_shortcodes-custom-css">.vc_custom_1522153891227 {
+    <style type="text/css" data-type="vc_shortcodes-custom-css">
+        /* .vc_custom_1522153891227 {
             background: #f2e0c8 url(wp-content/uploads/2018/01/img92.jpg?id=544) !important;
             background-position: top left !important;
             background-repeat: no-repeat !important;
@@ -739,7 +701,7 @@
             background-image: url(wp-content/uploads/2018/01/img-9.png?id=337) !important;
             background-position: center !important;
             background-repeat: no-repeat !important;
-        }
+        } */
 
         .vc_custom_1516978326411 {
             background-color: #e8d3b6 !important;
@@ -2143,9 +2105,11 @@
         }
 
     </style>
+
+    <link rel="stylesheet" href="{{ asset('custom/css/index.css') }}">
 </head>
 
-<body class="home page-template-default page page-id-367 custom-background wp-custom-logo theme-kings-queens frontpage woocommerce-js tribe-js body_tag scheme_default blog_mode_front body_style_boxed is_stream blog_style_excerpt sidebar_hide expand_content remove_margins trx_addons_present header_type_custom header_style_header-custom-592 header_position_over menu_style_top wpb-js-composer js-comp-ver-8.0.1 vc_responsive added_to_cart_inited desktop_layout">
+<body class="home page-template-default page page-id-367 custom-background wp-custom-logo theme-kings-queens frontpage tribe-js body_tag scheme_default blog_mode_front body_style_boxed is_stream blog_style_excerpt sidebar_hide expand_content remove_margins trx_addons_present header_type_custom header_style_header-custom-592 header_position_over menu_style_top wpb-js-composer js-comp-ver-8.0.1 vc_responsive added_to_cart_inited desktop_layout">
 @section('main')
     <div class="body_wrap">
         @yield('content')
@@ -2154,66 +2118,6 @@
 
 @section('footer')
     <footer class="footer_wrap footer_custom footer_custom_410 footer_custom_footer scheme_dark">
-        <div
-            class="vc_row wpb_row vc_row-fluid vc_custom_1521037551816 shape_divider_top-none shape_divider_bottom-none">
-            <div class="wpb_column vc_column_container vc_col-sm-12 sc_layouts_column_icons_position_left">
-                <div class="vc_column-inner vc_custom_1522139477247">
-                    <div class="wpb_wrapper">
-                        <div class="wpb_single_image wpb_content_element vc_align_left wpb_content_element">
-
-                            <figure class="wpb_wrapper vc_figure">
-                                <div class="vc_single_image-wrapper vc_box_border_grey">
-                                    <img width="1871"
-                                         height="95"
-                                         src=" {{ asset("wp-content/uploads/2018/01/bottom.png") }}"
-                                         class="vc_single_image-img attachment-full"
-                                         alt="" title="bottom"
-                                         decoding="async"
-                                         loading="lazy"
-                                         sizes="auto, (max-width: 1871px) 100vw, 1871px">
-                                </div>
-                            </figure>
-                        </div>
-                        <div class="vc_empty_space" style="height: 4.7rem"><span
-                                class="vc_empty_space_inner"></span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div
-            class="vc_row wpb_row vc_row-fluid shape_divider_top-none shape_divider_bottom-none sc_layouts_row sc_layouts_row_type_normal">
-            <div class="wpb_column vc_column_container vc_col-sm-12 sc_layouts_column_icons_position_left">
-                <div class="vc_column-inner">
-                    <div class="wpb_wrapper">
-                        <div id="sc_content_189066071"
-                             class="sc_content color_style_default sc_content_default sc_content_width_1_1 sc_float_center">
-                            <div class="sc_content_container">
-                                <div class="vc_empty_space" style="height: 3.4rem"><span
-                                        class="vc_empty_space_inner"></span></div>
-                            </div>
-                        </div><!-- /.sc_content --></div>
-                </div>
-            </div>
-        </div>
-        <div class="vc_row wpb_row vc_row-fluid shape_divider_top-none shape_divider_bottom-none">
-            <div class="wpb_column vc_column_container vc_col-sm-12 sc_layouts_column_icons_position_left">
-                <div class="vc_column-inner">
-                    <div class="wpb_wrapper">
-                        <div id="sc_content_719483469"
-                             class="sc_content color_style_default sc_content_default sc_content_width_1_1 sc_float_center">
-                            <div class="sc_content_container">
-                                <div
-                                    class="vc_separator wpb_content_element vc_separator_align_center vc_sep_width_100 vc_sep_border_width_2 vc_sep_pos_align_center vc_separator_no_text vc_custom_1521037301379 wpb_content_element  vc_custom_1521037301379 wpb_content_element">
-                                        <span class="vc_sep_holder vc_sep_holder_l"><span style="border-color:#1e1915;"
-                                                                                          class="vc_sep_line"></span></span><span
-                                        class="vc_sep_holder vc_sep_holder_r"><span style="border-color:#1e1915;"
-                                                                                    class="vc_sep_line"></span></span>
-                                </div>
-                            </div>
-                        </div><!-- /.sc_content --></div>
-                </div>
-            </div>
-        </div>
         <div class="vc_row wpb_row vc_row-fluid shape_divider_top-none shape_divider_bottom-none scheme_dark">
             <div
                 class="wpb_column vc_column_container vc_col-sm-12 sc_layouts_column sc_layouts_column_align_center sc_layouts_column_icons_position_left">
@@ -2224,14 +2128,16 @@
                             <div class="sc_content_container">
                                 <div class="vc_wp_text wpb_content_element">
                                     <div class="widget widget_text">
-                                        <div class="textwidget"><p><a href=" {{ env("APP_URL") }}"
-                                                                      target="_blank" rel="noopener noreferrer">Conquest Youth Camp </a>
-                                                © {{ date("Y") }}. All rights reserved.</p>
+                                        <div class="textwidget" style="padding: 10px">
+                                            <p>
+                                                <a href=" {{ route('home.index') }}" target="_blank" rel="noopener noreferrer">
+                                                    Conquest Youth Camp
+                                                </a>
+                                                © {{ date("Y") }}. All rights reserved.
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="vc_empty_space" style="height: 2.8rem"><span
-                                        class="vc_empty_space_inner"></span></div>
                             </div>
                         </div><!-- /.sc_content --></div>
                 </div>
@@ -2357,16 +2263,6 @@
         "getTitle": "get_title",
         "getAlias": "get_alias"
     };</script>
-<script type="text/javascript">
-    (function () {
-        var c = document.body.className;
-        c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
-        document.body.className = c;
-    })();
-</script>
-<link property="stylesheet" rel="stylesheet" id="wc-blocks-style-css"
-      href="{{ asset("wp-content/plugins/woocommerce/assets/client/blocks/wc-blocks.css") }}"
-      type="text/css" media="all">
 <link property="stylesheet" rel="stylesheet" id="esg-tp-boxextcss-css"
       href="{{ asset("wp-content/plugins/essential-grid/public/assets/css/jquery.esgbox.min.css") }}"
       type="text/css" media="all">
@@ -2381,12 +2277,12 @@
     wp.i18n.setLocaleData({'text direction\u0004ltr': ['ltr']});
     /* ]]> */
 </script>
-<script type="text/javascript"
+{{-- <script type="text/javascript"
         src="{{ asset("wp-content/plugins/contact-form-7/includes/swv/js/index.js") }}"
         id="swv-js"></script>
 <script type="text/javascript"
         src="{{ asset("wp-content/plugins/contact-form-7/includes/js/index.js") }}"
-        id="contact-form-7-js"></script>
+        id="contact-form-7-js"></script> --}}
 <script type="text/javascript" id="tp-tools-js-before">
     /* <![CDATA[ */
     window.ESG ??= {};
@@ -2607,7 +2503,7 @@
                         "fluid": {"tx": true, "tr": true, "sp": true},
                         "id": 4,
                         "alias": "Glory",
-                        "content": {"text": "Glory"},
+                        "subtype": "image",
                         "runtime": {"locked": false, "hidden": false},
                         "size": {
                             "w": ["#a", "auto", "auto", "auto", "auto"],
@@ -2627,7 +2523,23 @@
                         "style": "BigWhiteTexts",
                         "display": ["block", "block", "block", "block", "block"],
                         "vA": "top",
-                        "bg": {"color": {"orig": "transparent", "type": "solid", "string": "transparent"}},
+                        "bg": {
+                            "color": {"orig": "transparent", "type": "solid", "string": "transparent"},
+                            "image": {
+                                "ratio": 1,
+                                "src": "{{ asset("images/ConquestLogo.png") }}",
+                                "lib": "",
+                                "lib_id": 641,
+                                "lib_size": "full",
+                                "fromStream": false,
+                                "streamType": "gallery",
+                                "pos": {"x": "50%", "y": "50%"},
+                                "repeat": "no-repeat",
+                                "size": "cover",
+                                "sizeVal": "100%",
+                                "seo": false
+                            }
+                        },
                         "attr": {"aO": "ml", "tO": "ml"},
                         "tl": {
                             "in": {
@@ -2697,410 +2609,410 @@
                         "type": "text",
                         "toggle": {"text": ""}
                     },
-                    "6": {
-                        "fluid": {"tx": true, "tr": true, "sp": true},
-                        "id": 6,
-                        "alias": "Grace",
-                        "content": {"text": "Grace"},
-                        "runtime": {"locked": false, "hidden": false},
-                        "size": {
-                            "w": ["#a", "auto", "auto", "auto", "auto"],
-                            "h": ["#a", "auto", "auto", "auto", "auto"],
-                            "minW": ["none", "none", "none", "none", "none"],
-                            "minH": ["none", "none", "none", "none", "none"]
-                        },
-                        "pos": {
-                            "x": ["115px", "115px", "115px", "115px", "115px"],
-                            "y": ["-3px", "-3px", "-3px", "-3px", "-3px"],
-                            "h": ["center", "center", "center", "center", "center"],
-                            "v": ["middle", "middle", "middle", "middle", "middle"],
-                            "pos": "absolute",
-                            "float": ["none", "none", "none", "none", "none"],
-                            "clear": ["none", "none", "none", "none", "none"]
-                        },
-                        "zIndex": 6,
-                        "order": 6,
-                        "style": "BigWhiteTexts",
-                        "display": ["block", "block", "block", "block", "block"],
-                        "vA": "top",
-                        "bg": {"color": {"orig": "transparent", "type": "solid", "string": "transparent"}},
-                        "attr": {"aO": "ml", "tO": "ml"},
-                        "tl": {
-                            "in": {
-                                "content": {
-                                    "pers": "600px",
-                                    "orig": {"x": "50%", "y": "50%", "z": "0"},
-                                    "all": [{
-                                        "t": 400,
-                                        "d": 0,
-                                        "f": 0,
-                                        "e": "power3.inOut",
-                                        "pE": "d",
-                                        "x": ["50px", "50px", "50px", "50px", "50px"],
-                                        "y": ["inherit", "inherit", "inherit", "inherit", "inherit"],
-                                        "o": 0,
-                                        "xRe": 0,
-                                        "yRe": 0,
-                                        "off": 0
-                                    }, {
-                                        "t": 400,
-                                        "d": 1500,
-                                        "f": 1500,
-                                        "e": "power3.inOut",
-                                        "pE": "d",
-                                        "x": [0, 0, 0, 0, 0],
-                                        "y": [0, 0, 0, 0, 0],
-                                        "o": 1,
-                                        "xRe": 0,
-                                        "yRe": 0,
-                                        "off": 0
-                                    }]
-                                }
-                            },
-                            "out": {
-                                "content": {
-                                    "pers": "600px",
-                                    "orig": {"x": "50%", "y": "50%", "z": "0"},
-                                    "all": [{
-                                        "t": 0,
-                                        "d": 300,
-                                        "f": 300,
-                                        "e": "power3.inOut",
-                                        "pE": "n",
-                                        "x": ["inherit", "inherit", "inherit", "inherit", "inherit"],
-                                        "y": ["inherit", "inherit", "inherit", "inherit", "inherit"],
-                                        "o": "0",
-                                        "xRe": 0,
-                                        "yRe": 0,
-                                        "off": 0
-                                    }]
-                                }
-                            }
-                        },
-                        "p": {"t": [0, 0, 0, 0, 0], "b": [0, 0, 0, 0, 0], "l": [0, 0, 0, 0, 0], "r": [0, 0, 0, 0, 0]},
-                        "m": {"t": [0, 0, 0, 0, 0], "b": [0, 0, 0, 0, 0], "l": [0, 0, 0, 0, 0], "r": [0, 0, 0, 0, 0]},
-                        "tA": ["inherit", "inherit", "inherit", "inherit", "inherit"],
-                        "ws": ["nowrap", "nowrap", "nowrap", "nowrap", "nowrap"],
-                        "radius": {"t": "0", "r": "0", "b": "0", "l": "0"},
-                        "color": ["#f2e0c8", "#f2e0c8", "#f2e0c8", "#f2e0c8", "#f2e0c8"],
-                        "font": {
-                            "family": "'Spectral SC'",
-                            "size": ["133px", "133px", "133px", "133px", "133px"],
-                            "weight": ["700", "700", "700", "700", "700"],
-                            "ls": [0, 0, 0, 0, 0]
-                        },
-                        "lh": ["150px", "150px", "150px", "150px", "150px"],
-                        "type": "text",
-                        "toggle": {"text": ""}
-                    },
-                    "7": {
-                        "fluid": {"tx": true, "tr": true, "sp": true},
-                        "id": 7,
-                        "alias": "And",
-                        "content": {"text": "and"},
-                        "runtime": {"locked": false, "hidden": false},
-                        "size": {
-                            "w": ["#a", "auto", "auto", "auto", "auto"],
-                            "h": ["#a", "auto", "auto", "auto", "auto"],
-                            "minW": ["none", "none", "none", "none", "none"],
-                            "minH": ["none", "none", "none", "none", "none"]
-                        },
-                        "pos": {
-                            "x": [0, 0, 0, 0, 0],
-                            "y": ["-70px", "-70px", "-70px", "-70px", "-70px"],
-                            "h": ["center", "center", "center", "center", "center"],
-                            "v": ["middle", "middle", "middle", "middle", "middle"],
-                            "pos": "absolute",
-                            "float": ["none", "none", "none", "none", "none"],
-                            "clear": ["none", "none", "none", "none", "none"]
-                        },
-                        "zIndex": 7,
-                        "order": 7,
-                        "style": "SmallWhiteTexts",
-                        "display": ["block", "block", "block", "block", "block"],
-                        "vA": "top",
-                        "bg": {"color": {"orig": "transparent", "type": "solid", "string": "transparent"}},
-                        "attr": {"aO": "ml", "tO": "ml"},
-                        "tl": {
-                            "in": {
-                                "content": {
-                                    "pers": "600px",
-                                    "orig": {"x": "50%", "y": "50%", "z": "0"},
-                                    "all": [{
-                                        "t": 1000,
-                                        "d": 0,
-                                        "f": 0,
-                                        "e": "power4.out",
-                                        "pE": "d",
-                                        "x": ["inherit", "inherit", "inherit", "inherit", "inherit"],
-                                        "y": ["inherit", "inherit", "inherit", "inherit", "inherit"],
-                                        "sX": "0.8",
-                                        "sY": "0.8",
-                                        "o": 0,
-                                        "xRe": 0,
-                                        "yRe": 0,
-                                        "off": 0
-                                    }, {
-                                        "t": 1000,
-                                        "d": 900,
-                                        "f": 900,
-                                        "e": "power4.out",
-                                        "pE": "d",
-                                        "x": [0, 0, 0, 0, 0],
-                                        "y": [0, 0, 0, 0, 0],
-                                        "sX": 1,
-                                        "sY": 1,
-                                        "o": 1,
-                                        "xRe": 0,
-                                        "yRe": 0,
-                                        "off": 0
-                                    }]
-                                }
-                            },
-                            "out": {
-                                "content": {
-                                    "pers": "600px",
-                                    "orig": {"x": "50%", "y": "50%", "z": "0"},
-                                    "all": [{
-                                        "t": 0,
-                                        "d": 300,
-                                        "f": 300,
-                                        "e": "power3.inOut",
-                                        "pE": "n",
-                                        "x": ["inherit", "inherit", "inherit", "inherit", "inherit"],
-                                        "y": ["inherit", "inherit", "inherit", "inherit", "inherit"],
-                                        "o": "0",
-                                        "xRe": 0,
-                                        "yRe": 0,
-                                        "off": 0
-                                    }]
-                                }
-                            }
-                        },
-                        "p": {"t": [0, 0, 0, 0, 0], "b": [0, 0, 0, 0, 0], "l": [0, 0, 0, 0, 0], "r": [0, 0, 0, 0, 0]},
-                        "m": {"t": [0, 0, 0, 0, 0], "b": [0, 0, 0, 0, 0], "l": [0, 0, 0, 0, 0], "r": [0, 0, 0, 0, 0]},
-                        "tA": ["inherit", "inherit", "inherit", "inherit", "inherit"],
-                        "ws": ["nowrap", "nowrap", "nowrap", "nowrap", "nowrap"],
-                        "radius": {"t": "0", "r": "0", "b": "0", "l": "0"},
-                        "color": ["#f2e0c8", "#f2e0c8", "#f2e0c8", "#f2e0c8", "#f2e0c8"],
-                        "font": {
-                            "family": "'Spectral SC'",
-                            "size": ["38px", "38px", "38px", "38px", "38px"],
-                            "weight": ["700", "700", "700", "700", "700"],
-                            "ls": [0, 0, 0, 0, 0]
-                        },
-                        "lh": ["50px", "50px", "50px", "50px", "50px"],
-                        "type": "text",
-                        "toggle": {"text": ""}
-                    },
-                    "8": {
-                        "fluid": {"tx": true, "tr": true, "sp": true},
-                        "id": 8,
-                        "alias": "Image 4",
-                        "subtype": "image",
-                        "runtime": {"locked": false, "hidden": false},
-                        "size": {
-                            "w": ["375px", "375px", "375px", "375px", "375px"],
-                            "h": ["355px", "355px", "355px", "355px", "355px"],
-                            "minW": ["none", "none", "none", "none", "none"],
-                            "minH": ["none", "none", "none", "none", "none"],
-                            "sProp": true
-                        },
-                        "pos": {
-                            "x": ["-270px", "-270px", "-270px", "-270px", "-270px"],
-                            "y": ["-100px", "-100px", "-100px", "-100px", "-100px"],
-                            "h": ["center", "center", "center", "center", "center"],
-                            "v": ["middle", "middle", "middle", "middle", "middle"],
-                            "pos": "absolute",
-                            "float": ["none", "none", "none", "none", "none"],
-                            "clear": ["none", "none", "none", "none", "none"]
-                        },
-                        "zIndex": 8,
-                        "order": 8,
-                        "style": "im1",
-                        "display": ["block", "block", "block", "block", "block"],
-                        "vA": "top",
-                        "bg": {
-                            "color": {"orig": "transparent", "type": "solid", "string": "transparent"},
-                            "image": {
-                                "ratio": 1,
-                                "src": "{{ asset("wp-content/uploads/2018/03/z1.png") }}",
-                                "lib": "",
-                                "lib_id": 641,
-                                "lib_size": "full",
-                                "fromStream": false,
-                                "streamType": "gallery",
-                                "pos": {"x": "50%", "y": "50%"},
-                                "repeat": "no-repeat",
-                                "size": "cover",
-                                "sizeVal": "100%",
-                                "seo": false
-                            }
-                        },
-                        "attr": {"aO": "ml", "tO": "ml"},
-                        "tl": {
-                            "in": {
-                                "content": {
-                                    "pers": "600px",
-                                    "orig": {"x": "50%", "y": "50%", "z": "0"},
-                                    "all": [{
-                                        "t": 2090,
-                                        "d": 0,
-                                        "f": 0,
-                                        "e": "power3.inOut",
-                                        "pE": "d",
-                                        "x": ["left", "left", "left", "left", "left"],
-                                        "y": ["inherit", "inherit", "inherit", "inherit", "inherit"],
-                                        "o": "1",
-                                        "xRe": 2,
-                                        "yRe": 0,
-                                        "off": 0
-                                    }, {
-                                        "t": 2090,
-                                        "d": 800,
-                                        "f": 800,
-                                        "e": "power3.inOut",
-                                        "pE": "d",
-                                        "x": [0, 0, 0, 0, 0],
-                                        "y": [0, 0, 0, 0, 0],
-                                        "o": 1,
-                                        "xRe": 0,
-                                        "yRe": 0,
-                                        "off": 0
-                                    }]
-                                }
-                            },
-                            "out": {
-                                "content": {
-                                    "pers": "600px",
-                                    "orig": {"x": "50%", "y": "50%", "z": "0"},
-                                    "all": [{
-                                        "t": 0,
-                                        "d": 300,
-                                        "f": 300,
-                                        "e": "power3.inOut",
-                                        "pE": "n",
-                                        "x": ["inherit", "inherit", "inherit", "inherit", "inherit"],
-                                        "y": ["inherit", "inherit", "inherit", "inherit", "inherit"],
-                                        "o": "0",
-                                        "xRe": 0,
-                                        "yRe": 0,
-                                        "off": 0
-                                    }]
-                                }
-                            }
-                        },
-                        "p": {"t": [0, 0, 0, 0, 0], "b": [0, 0, 0, 0, 0], "l": [0, 0, 0, 0, 0], "r": [0, 0, 0, 0, 0]},
-                        "m": {"t": [0, 0, 0, 0, 0], "b": [0, 0, 0, 0, 0], "l": [0, 0, 0, 0, 0], "r": [0, 0, 0, 0, 0]},
-                        "radius": {"t": "0", "r": "0", "b": "0", "l": "0"},
-                        "type": "shape"
-                    },
-                    "9": {
-                        "fluid": {"tx": true, "tr": true, "sp": true},
-                        "id": 9,
-                        "alias": "Image 5",
-                        "subtype": "image",
-                        "runtime": {"locked": false, "hidden": false},
-                        "size": {
-                            "w": ["219px", "219px", "219px", "219px", "219px"],
-                            "h": ["124px", "124px", "124px", "124px", "124px"],
-                            "minW": ["none", "none", "none", "none", "none"],
-                            "minH": ["none", "none", "none", "none", "none"],
-                            "sProp": true
-                        },
-                        "pos": {
-                            "x": ["230px", "230px", "230px", "230px", "230px"],
-                            "y": ["-117px", "-117px", "-117px", "-117px", "-117px"],
-                            "h": ["center", "center", "center", "center", "center"],
-                            "v": ["middle", "middle", "middle", "middle", "middle"],
-                            "pos": "absolute",
-                            "float": ["none", "none", "none", "none", "none"],
-                            "clear": ["none", "none", "none", "none", "none"]
-                        },
-                        "zIndex": 9,
-                        "order": 9,
-                        "display": ["block", "block", "block", "block", "block"],
-                        "vA": "top",
-                        "bg": {
-                            "color": {"orig": "transparent", "type": "solid", "string": "transparent"},
-                            "image": {
-                                "ratio": 1,
-                                "src": "{{ asset("wp-content/uploads/2018/03/z2.png") }}",
-                                "lib": "",
-                                "lib_id": 642,
-                                "lib_size": "full",
-                                "fromStream": false,
-                                "streamType": "gallery",
-                                "pos": {"x": "50%", "y": "50%"},
-                                "repeat": "no-repeat",
-                                "size": "cover",
-                                "sizeVal": "100%",
-                                "seo": false
-                            }
-                        },
-                        "attr": {"aO": "ml", "tO": "ml"},
-                        "tl": {
-                            "in": {
-                                "content": {
-                                    "pers": "600px",
-                                    "orig": {"x": "50%", "y": "50%", "z": "0"},
-                                    "all": [{
-                                        "t": 2090,
-                                        "d": 0,
-                                        "f": 0,
-                                        "e": "power3.inOut",
-                                        "pE": "d",
-                                        "x": ["right", "right", "right", "right", "right"],
-                                        "y": ["inherit", "inherit", "inherit", "inherit", "inherit"],
-                                        "o": "1",
-                                        "xRe": 2,
-                                        "yRe": 0,
-                                        "off": 0
-                                    }, {
-                                        "t": 2090,
-                                        "d": 800,
-                                        "f": 800,
-                                        "e": "power3.inOut",
-                                        "pE": "d",
-                                        "x": [0, 0, 0, 0, 0],
-                                        "y": [0, 0, 0, 0, 0],
-                                        "o": 1,
-                                        "xRe": 0,
-                                        "yRe": 0,
-                                        "off": 0
-                                    }]
-                                }
-                            },
-                            "out": {
-                                "content": {
-                                    "pers": "600px",
-                                    "orig": {"x": "50%", "y": "50%", "z": "0"},
-                                    "all": [{
-                                        "t": 0,
-                                        "d": 300,
-                                        "f": 300,
-                                        "e": "power3.inOut",
-                                        "pE": "n",
-                                        "x": ["inherit", "inherit", "inherit", "inherit", "inherit"],
-                                        "y": ["inherit", "inherit", "inherit", "inherit", "inherit"],
-                                        "o": "0",
-                                        "xRe": 0,
-                                        "yRe": 0,
-                                        "off": 0
-                                    }]
-                                }
-                            }
-                        },
-                        "p": {"t": [0, 0, 0, 0, 0], "b": [0, 0, 0, 0, 0], "l": [0, 0, 0, 0, 0], "r": [0, 0, 0, 0, 0]},
-                        "m": {"t": [0, 0, 0, 0, 0], "b": [0, 0, 0, 0, 0], "l": [0, 0, 0, 0, 0], "r": [0, 0, 0, 0, 0]},
-                        "radius": {"t": "0", "r": "0", "b": "0", "l": "0"},
-                        "type": "shape"
-                    },
+                    // "6": {
+                    //     "fluid": {"tx": true, "tr": true, "sp": true},
+                    //     "id": 6,
+                    //     "alias": "Grace",
+                    //     "content": {"text": "Grace"},
+                    //     "runtime": {"locked": false, "hidden": false},
+                    //     "size": {
+                    //         "w": ["#a", "auto", "auto", "auto", "auto"],
+                    //         "h": ["#a", "auto", "auto", "auto", "auto"],
+                    //         "minW": ["none", "none", "none", "none", "none"],
+                    //         "minH": ["none", "none", "none", "none", "none"]
+                    //     },
+                    //     "pos": {
+                    //         "x": ["115px", "115px", "115px", "115px", "115px"],
+                    //         "y": ["-3px", "-3px", "-3px", "-3px", "-3px"],
+                    //         "h": ["center", "center", "center", "center", "center"],
+                    //         "v": ["middle", "middle", "middle", "middle", "middle"],
+                    //         "pos": "absolute",
+                    //         "float": ["none", "none", "none", "none", "none"],
+                    //         "clear": ["none", "none", "none", "none", "none"]
+                    //     },
+                    //     "zIndex": 6,
+                    //     "order": 6,
+                    //     "style": "BigWhiteTexts",
+                    //     "display": ["block", "block", "block", "block", "block"],
+                    //     "vA": "top",
+                    //     "bg": {"color": {"orig": "transparent", "type": "solid", "string": "transparent"}},
+                    //     "attr": {"aO": "ml", "tO": "ml"},
+                    //     "tl": {
+                    //         "in": {
+                    //             "content": {
+                    //                 "pers": "600px",
+                    //                 "orig": {"x": "50%", "y": "50%", "z": "0"},
+                    //                 "all": [{
+                    //                     "t": 400,
+                    //                     "d": 0,
+                    //                     "f": 0,
+                    //                     "e": "power3.inOut",
+                    //                     "pE": "d",
+                    //                     "x": ["50px", "50px", "50px", "50px", "50px"],
+                    //                     "y": ["inherit", "inherit", "inherit", "inherit", "inherit"],
+                    //                     "o": 0,
+                    //                     "xRe": 0,
+                    //                     "yRe": 0,
+                    //                     "off": 0
+                    //                 }, {
+                    //                     "t": 400,
+                    //                     "d": 1500,
+                    //                     "f": 1500,
+                    //                     "e": "power3.inOut",
+                    //                     "pE": "d",
+                    //                     "x": [0, 0, 0, 0, 0],
+                    //                     "y": [0, 0, 0, 0, 0],
+                    //                     "o": 1,
+                    //                     "xRe": 0,
+                    //                     "yRe": 0,
+                    //                     "off": 0
+                    //                 }]
+                    //             }
+                    //         },
+                    //         "out": {
+                    //             "content": {
+                    //                 "pers": "600px",
+                    //                 "orig": {"x": "50%", "y": "50%", "z": "0"},
+                    //                 "all": [{
+                    //                     "t": 0,
+                    //                     "d": 300,
+                    //                     "f": 300,
+                    //                     "e": "power3.inOut",
+                    //                     "pE": "n",
+                    //                     "x": ["inherit", "inherit", "inherit", "inherit", "inherit"],
+                    //                     "y": ["inherit", "inherit", "inherit", "inherit", "inherit"],
+                    //                     "o": "0",
+                    //                     "xRe": 0,
+                    //                     "yRe": 0,
+                    //                     "off": 0
+                    //                 }]
+                    //             }
+                    //         }
+                    //     },
+                    //     "p": {"t": [0, 0, 0, 0, 0], "b": [0, 0, 0, 0, 0], "l": [0, 0, 0, 0, 0], "r": [0, 0, 0, 0, 0]},
+                    //     "m": {"t": [0, 0, 0, 0, 0], "b": [0, 0, 0, 0, 0], "l": [0, 0, 0, 0, 0], "r": [0, 0, 0, 0, 0]},
+                    //     "tA": ["inherit", "inherit", "inherit", "inherit", "inherit"],
+                    //     "ws": ["nowrap", "nowrap", "nowrap", "nowrap", "nowrap"],
+                    //     "radius": {"t": "0", "r": "0", "b": "0", "l": "0"},
+                    //     "color": ["#f2e0c8", "#f2e0c8", "#f2e0c8", "#f2e0c8", "#f2e0c8"],
+                    //     "font": {
+                    //         "family": "'Spectral SC'",
+                    //         "size": ["133px", "133px", "133px", "133px", "133px"],
+                    //         "weight": ["700", "700", "700", "700", "700"],
+                    //         "ls": [0, 0, 0, 0, 0]
+                    //     },
+                    //     "lh": ["150px", "150px", "150px", "150px", "150px"],
+                    //     "type": "text",
+                    //     "toggle": {"text": ""}
+                    // },
+                    // "7": {
+                    //     "fluid": {"tx": true, "tr": true, "sp": true},
+                    //     "id": 7,
+                    //     "alias": "And",
+                    //     "content": {"text": "and"},
+                    //     "runtime": {"locked": false, "hidden": false},
+                    //     "size": {
+                    //         "w": ["#a", "auto", "auto", "auto", "auto"],
+                    //         "h": ["#a", "auto", "auto", "auto", "auto"],
+                    //         "minW": ["none", "none", "none", "none", "none"],
+                    //         "minH": ["none", "none", "none", "none", "none"]
+                    //     },
+                    //     "pos": {
+                    //         "x": [0, 0, 0, 0, 0],
+                    //         "y": ["-70px", "-70px", "-70px", "-70px", "-70px"],
+                    //         "h": ["center", "center", "center", "center", "center"],
+                    //         "v": ["middle", "middle", "middle", "middle", "middle"],
+                    //         "pos": "absolute",
+                    //         "float": ["none", "none", "none", "none", "none"],
+                    //         "clear": ["none", "none", "none", "none", "none"]
+                    //     },
+                    //     "zIndex": 7,
+                    //     "order": 7,
+                    //     "style": "SmallWhiteTexts",
+                    //     "display": ["block", "block", "block", "block", "block"],
+                    //     "vA": "top",
+                    //     "bg": {"color": {"orig": "transparent", "type": "solid", "string": "transparent"}},
+                    //     "attr": {"aO": "ml", "tO": "ml"},
+                    //     "tl": {
+                    //         "in": {
+                    //             "content": {
+                    //                 "pers": "600px",
+                    //                 "orig": {"x": "50%", "y": "50%", "z": "0"},
+                    //                 "all": [{
+                    //                     "t": 1000,
+                    //                     "d": 0,
+                    //                     "f": 0,
+                    //                     "e": "power4.out",
+                    //                     "pE": "d",
+                    //                     "x": ["inherit", "inherit", "inherit", "inherit", "inherit"],
+                    //                     "y": ["inherit", "inherit", "inherit", "inherit", "inherit"],
+                    //                     "sX": "0.8",
+                    //                     "sY": "0.8",
+                    //                     "o": 0,
+                    //                     "xRe": 0,
+                    //                     "yRe": 0,
+                    //                     "off": 0
+                    //                 }, {
+                    //                     "t": 1000,
+                    //                     "d": 900,
+                    //                     "f": 900,
+                    //                     "e": "power4.out",
+                    //                     "pE": "d",
+                    //                     "x": [0, 0, 0, 0, 0],
+                    //                     "y": [0, 0, 0, 0, 0],
+                    //                     "sX": 1,
+                    //                     "sY": 1,
+                    //                     "o": 1,
+                    //                     "xRe": 0,
+                    //                     "yRe": 0,
+                    //                     "off": 0
+                    //                 }]
+                    //             }
+                    //         },
+                    //         "out": {
+                    //             "content": {
+                    //                 "pers": "600px",
+                    //                 "orig": {"x": "50%", "y": "50%", "z": "0"},
+                    //                 "all": [{
+                    //                     "t": 0,
+                    //                     "d": 300,
+                    //                     "f": 300,
+                    //                     "e": "power3.inOut",
+                    //                     "pE": "n",
+                    //                     "x": ["inherit", "inherit", "inherit", "inherit", "inherit"],
+                    //                     "y": ["inherit", "inherit", "inherit", "inherit", "inherit"],
+                    //                     "o": "0",
+                    //                     "xRe": 0,
+                    //                     "yRe": 0,
+                    //                     "off": 0
+                    //                 }]
+                    //             }
+                    //         }
+                    //     },
+                    //     "p": {"t": [0, 0, 0, 0, 0], "b": [0, 0, 0, 0, 0], "l": [0, 0, 0, 0, 0], "r": [0, 0, 0, 0, 0]},
+                    //     "m": {"t": [0, 0, 0, 0, 0], "b": [0, 0, 0, 0, 0], "l": [0, 0, 0, 0, 0], "r": [0, 0, 0, 0, 0]},
+                    //     "tA": ["inherit", "inherit", "inherit", "inherit", "inherit"],
+                    //     "ws": ["nowrap", "nowrap", "nowrap", "nowrap", "nowrap"],
+                    //     "radius": {"t": "0", "r": "0", "b": "0", "l": "0"},
+                    //     "color": ["#f2e0c8", "#f2e0c8", "#f2e0c8", "#f2e0c8", "#f2e0c8"],
+                    //     "font": {
+                    //         "family": "'Spectral SC'",
+                    //         "size": ["38px", "38px", "38px", "38px", "38px"],
+                    //         "weight": ["700", "700", "700", "700", "700"],
+                    //         "ls": [0, 0, 0, 0, 0]
+                    //     },
+                    //     "lh": ["50px", "50px", "50px", "50px", "50px"],
+                    //     "type": "text",
+                    //     "toggle": {"text": ""}
+                    // },
+                    // "8": {
+                    //     "fluid": {"tx": true, "tr": true, "sp": true},
+                    //     "id": 8,
+                    //     "alias": "Image 4",
+                    //     "subtype": "image",
+                    //     "runtime": {"locked": false, "hidden": false},
+                    //     "size": {
+                    //         "w": ["375px", "375px", "375px", "375px", "375px"],
+                    //         "h": ["355px", "355px", "355px", "355px", "355px"],
+                    //         "minW": ["none", "none", "none", "none", "none"],
+                    //         "minH": ["none", "none", "none", "none", "none"],
+                    //         "sProp": true
+                    //     },
+                    //     "pos": {
+                    //         "x": ["-270px", "-270px", "-270px", "-270px", "-270px"],
+                    //         "y": ["-100px", "-100px", "-100px", "-100px", "-100px"],
+                    //         "h": ["center", "center", "center", "center", "center"],
+                    //         "v": ["middle", "middle", "middle", "middle", "middle"],
+                    //         "pos": "absolute",
+                    //         "float": ["none", "none", "none", "none", "none"],
+                    //         "clear": ["none", "none", "none", "none", "none"]
+                    //     },
+                    //     "zIndex": 8,
+                    //     "order": 8,
+                    //     "style": "im1",
+                    //     "display": ["block", "block", "block", "block", "block"],
+                    //     "vA": "top",
+                    //     "bg": {
+                    //         "color": {"orig": "transparent", "type": "solid", "string": "transparent"},
+                    //         "image": {
+                    //             "ratio": 1,
+                    //             "src": "{{ asset("wp-content/uploads/2018/03/z1.png") }}",
+                    //             "lib": "",
+                    //             "lib_id": 641,
+                    //             "lib_size": "full",
+                    //             "fromStream": false,
+                    //             "streamType": "gallery",
+                    //             "pos": {"x": "50%", "y": "50%"},
+                    //             "repeat": "no-repeat",
+                    //             "size": "cover",
+                    //             "sizeVal": "100%",
+                    //             "seo": false
+                    //         }
+                    //     },
+                    //     "attr": {"aO": "ml", "tO": "ml"},
+                    //     "tl": {
+                    //         "in": {
+                    //             "content": {
+                    //                 "pers": "600px",
+                    //                 "orig": {"x": "50%", "y": "50%", "z": "0"},
+                    //                 "all": [{
+                    //                     "t": 2090,
+                    //                     "d": 0,
+                    //                     "f": 0,
+                    //                     "e": "power3.inOut",
+                    //                     "pE": "d",
+                    //                     "x": ["left", "left", "left", "left", "left"],
+                    //                     "y": ["inherit", "inherit", "inherit", "inherit", "inherit"],
+                    //                     "o": "1",
+                    //                     "xRe": 2,
+                    //                     "yRe": 0,
+                    //                     "off": 0
+                    //                 }, {
+                    //                     "t": 2090,
+                    //                     "d": 800,
+                    //                     "f": 800,
+                    //                     "e": "power3.inOut",
+                    //                     "pE": "d",
+                    //                     "x": [0, 0, 0, 0, 0],
+                    //                     "y": [0, 0, 0, 0, 0],
+                    //                     "o": 1,
+                    //                     "xRe": 0,
+                    //                     "yRe": 0,
+                    //                     "off": 0
+                    //                 }]
+                    //             }
+                    //         },
+                    //         "out": {
+                    //             "content": {
+                    //                 "pers": "600px",
+                    //                 "orig": {"x": "50%", "y": "50%", "z": "0"},
+                    //                 "all": [{
+                    //                     "t": 0,
+                    //                     "d": 300,
+                    //                     "f": 300,
+                    //                     "e": "power3.inOut",
+                    //                     "pE": "n",
+                    //                     "x": ["inherit", "inherit", "inherit", "inherit", "inherit"],
+                    //                     "y": ["inherit", "inherit", "inherit", "inherit", "inherit"],
+                    //                     "o": "0",
+                    //                     "xRe": 0,
+                    //                     "yRe": 0,
+                    //                     "off": 0
+                    //                 }]
+                    //             }
+                    //         }
+                    //     },
+                    //     "p": {"t": [0, 0, 0, 0, 0], "b": [0, 0, 0, 0, 0], "l": [0, 0, 0, 0, 0], "r": [0, 0, 0, 0, 0]},
+                    //     "m": {"t": [0, 0, 0, 0, 0], "b": [0, 0, 0, 0, 0], "l": [0, 0, 0, 0, 0], "r": [0, 0, 0, 0, 0]},
+                    //     "radius": {"t": "0", "r": "0", "b": "0", "l": "0"},
+                    //     "type": "shape"
+                    // },
+                    // "9": {
+                    //     "fluid": {"tx": true, "tr": true, "sp": true},
+                    //     "id": 9,
+                    //     "alias": "Image 5",
+                    //     "subtype": "image",
+                    //     "runtime": {"locked": false, "hidden": false},
+                    //     "size": {
+                    //         "w": ["219px", "219px", "219px", "219px", "219px"],
+                    //         "h": ["124px", "124px", "124px", "124px", "124px"],
+                    //         "minW": ["none", "none", "none", "none", "none"],
+                    //         "minH": ["none", "none", "none", "none", "none"],
+                    //         "sProp": true
+                    //     },
+                    //     "pos": {
+                    //         "x": ["230px", "230px", "230px", "230px", "230px"],
+                    //         "y": ["-117px", "-117px", "-117px", "-117px", "-117px"],
+                    //         "h": ["center", "center", "center", "center", "center"],
+                    //         "v": ["middle", "middle", "middle", "middle", "middle"],
+                    //         "pos": "absolute",
+                    //         "float": ["none", "none", "none", "none", "none"],
+                    //         "clear": ["none", "none", "none", "none", "none"]
+                    //     },
+                    //     "zIndex": 9,
+                    //     "order": 9,
+                    //     "display": ["block", "block", "block", "block", "block"],
+                    //     "vA": "top",
+                    //     "bg": {
+                    //         "color": {"orig": "transparent", "type": "solid", "string": "transparent"},
+                    //         "image": {
+                    //             "ratio": 1,
+                    //             "src": "{{ asset("wp-content/uploads/2018/03/z2.png") }}",
+                    //             "lib": "",
+                    //             "lib_id": 642,
+                    //             "lib_size": "full",
+                    //             "fromStream": false,
+                    //             "streamType": "gallery",
+                    //             "pos": {"x": "50%", "y": "50%"},
+                    //             "repeat": "no-repeat",
+                    //             "size": "cover",
+                    //             "sizeVal": "100%",
+                    //             "seo": false
+                    //         }
+                    //     },
+                    //     "attr": {"aO": "ml", "tO": "ml"},
+                    //     "tl": {
+                    //         "in": {
+                    //             "content": {
+                    //                 "pers": "600px",
+                    //                 "orig": {"x": "50%", "y": "50%", "z": "0"},
+                    //                 "all": [{
+                    //                     "t": 2090,
+                    //                     "d": 0,
+                    //                     "f": 0,
+                    //                     "e": "power3.inOut",
+                    //                     "pE": "d",
+                    //                     "x": ["right", "right", "right", "right", "right"],
+                    //                     "y": ["inherit", "inherit", "inherit", "inherit", "inherit"],
+                    //                     "o": "1",
+                    //                     "xRe": 2,
+                    //                     "yRe": 0,
+                    //                     "off": 0
+                    //                 }, {
+                    //                     "t": 2090,
+                    //                     "d": 800,
+                    //                     "f": 800,
+                    //                     "e": "power3.inOut",
+                    //                     "pE": "d",
+                    //                     "x": [0, 0, 0, 0, 0],
+                    //                     "y": [0, 0, 0, 0, 0],
+                    //                     "o": 1,
+                    //                     "xRe": 0,
+                    //                     "yRe": 0,
+                    //                     "off": 0
+                    //                 }]
+                    //             }
+                    //         },
+                    //         "out": {
+                    //             "content": {
+                    //                 "pers": "600px",
+                    //                 "orig": {"x": "50%", "y": "50%", "z": "0"},
+                    //                 "all": [{
+                    //                     "t": 0,
+                    //                     "d": 300,
+                    //                     "f": 300,
+                    //                     "e": "power3.inOut",
+                    //                     "pE": "n",
+                    //                     "x": ["inherit", "inherit", "inherit", "inherit", "inherit"],
+                    //                     "y": ["inherit", "inherit", "inherit", "inherit", "inherit"],
+                    //                     "o": "0",
+                    //                     "xRe": 0,
+                    //                     "yRe": 0,
+                    //                     "off": 0
+                    //                 }]
+                    //             }
+                    //         }
+                    //     },
+                    //     "p": {"t": [0, 0, 0, 0, 0], "b": [0, 0, 0, 0, 0], "l": [0, 0, 0, 0, 0], "r": [0, 0, 0, 0, 0]},
+                    //     "m": {"t": [0, 0, 0, 0, 0], "b": [0, 0, 0, 0, 0], "l": [0, 0, 0, 0, 0], "r": [0, 0, 0, 0, 0]},
+                    //     "radius": {"t": "0", "r": "0", "b": "0", "l": "0"},
+                    //     "type": "shape"
+                    // },
                     "10": {
                         "fluid": {"tx": true, "tr": true, "sp": true},
                         "id": 10,
                         "alias": "Kings and queens is ...",
-                        "content": {"text": "Conquest! <br> Every Nation Campus 2025 Event"},
+                        "content": {"text": "June 12 - 14, 2025 <br> Rizal Re-Creation Center"},
                         "runtime": {"locked": false, "hidden": false},
                         "size": {
                             "w": ["#a", "auto", "auto", "auto", "auto"],
@@ -3184,7 +3096,7 @@
                         "color": ["#f2e0c8", "#f2e0c8", "#f2e0c8", "#f2e0c8", "#f2e0c8"],
                         "font": {
                             "family": "Montserrat",
-                            "size": ["15px", "15px", "15px", "15px", "15px"],
+                            "size": ["20px", "20px", "20px", "20px", "20px"],
                             "weight": ["600", "600", "600", "600", "600"],
                             "ls": [0, 0, 0, 0, 0]
                         },

@@ -1,0 +1,15 @@
+.current-menu-ancestor {
+    color: #bd8d4c !important;
+}
+
+.text-uppercase {
+    text-transform: uppercase !important;
+}
+
+.d-none {
+    display: none !important;
+}
+
+.d-flex {
+    display: flex !important;
+}
