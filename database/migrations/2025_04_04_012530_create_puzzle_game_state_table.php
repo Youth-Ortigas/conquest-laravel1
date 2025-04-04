@@ -4,8 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
-
+class CreatePuzzleGameStateTable extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -13,13 +13,16 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('puzzles', function (Blueprint $table) {
+        Schema::create('puzzle_game_state', function (Blueprint $table) {
             $table->id();
-            $table->json('puzzle_key'); // This will store an array of keys for each puzzle
+            $table->unsignedBigInteger('user_id');
             $table->float('puzzle_num');
-            $table->string('unlock_puzzle');
-            $table->date('date_unlocked')->nullable(); // Nullable for puzzles that are not yet unlocked
+            $table->json('game_state');
             $table->timestamps();
+
+            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+            // $table->foreign('puzzle_num')->references('id')->on('puzzles')->onDelete('cascade');
         });
     }
 
@@ -30,7 +33,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('puzzles');
+        Schema::dropIfExists('puzzle_game_state');
     }
-};
-
+}

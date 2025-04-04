@@ -30,7 +30,7 @@
                         </a>
                     </div>
                     <div class="trx_addons_column-1_3">
-                        <a href="{{ route('puzzles.getDetails', ['reference' => '2nd']) }}" target="_blank">
+                        <a href="{{ route('puzzles.getDetails', ['reference' => '2nd-stage-1']) }}" target="_blank">
                         <div class="sc_icons_item sc_icons_item_linked">
                             <div id="sc_icons_1100097351_icon-icon-12"
                                  class="sc_icons_icon sc_icon_type_ icon-icon-12">

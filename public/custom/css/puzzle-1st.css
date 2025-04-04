@@ -31,7 +31,7 @@ th {
     font-weight: bold;
     color: #f3e3b2 !important;
     text-shadow: 1px 1px 2px black !important;
-    position: sticky;
+    position: sticky !important;
     top: 0;
     z-index: 2;
 }

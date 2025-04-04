@@ -12,7 +12,7 @@
 
         @include('includes.menu_mobile')
 
-        <div class="page_content_wrap">
+        <div class="page_content_wrap" id="page_content_wrap">
             <div class="content_wrap">
                 <div class="content">
                     <article id="post-367" class="post_item_single post_type_page post-367 page type-page status-publish hentry">
@@ -34,7 +34,7 @@
                                                                         <h1>Medieval Wordle</h1>
                                                                         <div class="word-grid" id="grid"></div>
                                                                         <br>
-                                                                        <button id="btn-key-send">Submit</button>
+                                                                        <button id="btn-key-send" class="d-none">Submit</button>
                                                                         <p id="message"></p>
                                                                     </div>
                                                                 </div>

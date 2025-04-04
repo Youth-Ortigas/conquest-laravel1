@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+
 use App\Models\Puzzle;
 use App\Models\PuzzleAttempt;
-use Illuminate\Support\Facades\Session;
+use App\Models\PuzzleGameState;
 
 use App\Http\Requests\ValidatePuzzleKeyRequest;
 
 /**
  * Class PuzzlesController
  * @author Marylyn Lajato <flippie.cute@gmail.com>
+ * @author Johnvic Dela Cruz <delacruzjohnvic21@gmail.com>
  * @since Mar 30, 2025
  */
 class PuzzleController extends Controller
@@ -51,7 +54,6 @@ class PuzzleController extends Controller
         $enteredKey = strtolower($request->puzzle_key);
         $puzzleNum = $request->puzzle_num;
 
-        // Fetch puzzle from DB
         $puzzle = Puzzle::where('puzzle_num', $puzzleNum)->first();
 
         if (!$puzzle) {
@@ -79,11 +81,10 @@ class PuzzleController extends Controller
         ]);
 
         if ($isCorrect) {
-            $unlockPuzzle = ordinal($puzzle->unlock_puzzle);
             return response()->json([
                 'status' => 'success',
                 'message' => 'Puzzle unlocked!',
-                'next_puzzle' => url("/puzzles/{$unlockPuzzle}")
+                'next_puzzle' => url("/puzzles/{$puzzle->unlock_puzzle}")
             ]);
         }
 
@@ -98,34 +99,42 @@ class PuzzleController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getWordleWord(Request $request)
+    public function getWordleWord()
     {
-        // Fetch the puzzle where puzzle_num is 2
-        $puzzle = Puzzle::where('puzzle_num', 2)->first();
+        $puzzle = Puzzle::where('puzzle_num', 2.1)->first();
 
         if ($puzzle && isset($puzzle->puzzle_key) && is_array(json_decode($puzzle->puzzle_key))) {
-            // Decode the JSON string into an array
-            $puzzleKeys = json_decode($puzzle->puzzle_key, true);
+            $gameState = PuzzleGameState::where('user_id', 1)
+                                    ->where('puzzle_num', 2.1)
+                                    ->first();
 
-            // Get already guessed words from the database (e.g., PuzzleAttempt table)
-            $attemptedWords = PuzzleAttempt::where('user_id', auth()->id())
-                                        ->where('puzzle_num', 2)
-                                        ->pluck('entered_key')
-                                        ->toArray();
+            if ($gameState) {
+                $gameState = json_decode($gameState->game_state, true);
 
-            // Remove attempted words from the available puzzle keys
-            $availableWords = array_diff($puzzleKeys, $attemptedWords);
+                if(!session('current_word'))
+                    Session::put('current_word', $gameState['answer']);
+            } else {
+                $puzzleKeys = json_decode($puzzle->puzzle_key, true);
 
-            // If there are no more words left, return an error
-            if (empty($availableWords)) {
-                return response()->json(['status' => 'error', 'message' => 'No new words available for this round.']);
+                $attemptedWords = PuzzleAttempt::where('user_id', 1)
+                                            ->where('puzzle_num', 2.1)
+                                            ->where('is_correct', 1)
+                                            ->pluck('entered_key')
+                                            ->toArray();
+
+                $availableWords = array_filter($puzzleKeys, fn($word) => !in_array(strtolower($word), array_map('strtolower', $attemptedWords)));
+
+                if (empty($availableWords) || count($attemptedWords) == 3) {
+                    return response()->json([
+                        'status' => empty($attemptedWords) ? 'error' : 'complete',
+                        'message' => empty($attemptedWords) ? 'No words available.' : 'All Wordle words have been attempted.'
+                    ]);
+                }
+
+                $randomWord = $availableWords[array_rand($availableWords)];
+
+                Session::put('current_word', $randomWord);
             }
-
-            // Select a random word from the remaining available words
-            $randomWord = $availableWords[array_rand($availableWords)];
-
-            // Store the word in the session to be used later for validation
-            Session::put('current_word', $randomWord);
 
             return response()->json(['status' => 'success']);
         }
@@ -163,12 +172,18 @@ class PuzzleController extends Controller
             return response()->json(['status' => 'error', 'message' => 'Invalid feedback received.']);
         }
 
+        PuzzleAttempt::create([
+            'user_id' => 1,
+            'puzzle_num' => 2.1,
+            'entered_key' => $guess,
+            'is_correct' => $isCorrect ? 1 : 0,
+        ]);
+
         return response()->json([
             'feedback' => $feedback,
             'correct' => $isCorrect,
         ]);
     }
-
 
     /**
      * Compare the user's guess with the correct word and generate feedback.
@@ -196,30 +211,5 @@ class PuzzleController extends Controller
         }
 
         return $feedback;
-    }
-
-    /**
-     * logPuzzleAttempt
-     *
-     * @param  mixed $request
-     * @return void
-     */
-    public function logPuzzleAttempt(Request $request)
-    {
-        $validated = $request->validate([
-            'guess' => 'required|string',
-            'is_correct' => 'required|boolean',
-        ]);
-
-        \Log::info($request);
-
-        PuzzleAttempt::create([
-            'user_id' => 1,
-            'puzzle_num' => 2,  // Set the correct puzzle number
-            'entered_key' => $validated['guess'],
-            'is_correct' => $validated['is_correct'],
-        ]);
-
-        return response()->json(['status' => 'success']);
     }
 }

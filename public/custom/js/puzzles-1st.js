@@ -1,6 +1,7 @@
 /**
  * [Puzzles] Module Class (e.g. puzzles/1st)
  * @author Marylyn Lajato <flippie.cute@gmail.com>
+ * @author Johnvic Dela Cruz <delacruzjohnvic21@gmail.com>
  * @since Apr 1, 2025
  */
 $(document).ready(function () {
@@ -94,16 +95,11 @@ $(document).ready(function () {
          * @param enteredKey
          */
         validatePuzzleKey: function (enteredKey) {
-            fetch("/validate-puzzle-key", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr('content')
-                },
-                body: JSON.stringify({ puzzle_key: enteredKey, puzzle_num: 1 })
-            })
-            .then(response => response.json())
-            .then(data => {
+            $.post("/validate-puzzle-key", {
+                _token: $('meta[name="csrf-token"]').attr('content'),
+                puzzle_key: enteredKey,
+                puzzle_num: 1
+            }, function(data) {
                 if (data.status === 'success') {
                     Swal.fire({
                         title: 'Puzzle unlocked!',
@@ -121,8 +117,9 @@ $(document).ready(function () {
                         confirmButtonText: 'G!'
                     });
                 }
-            })
-            .catch(error => console.error("Error validating puzzle key:", error));
+            }).fail(function(error) {
+                console.error("Error validating puzzle key:", error);
+            });
         },
 
         callResourceViaAjax: function(sAjaxUrl, oAssignData, sMethod) {
