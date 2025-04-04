@@ -35,8 +35,8 @@
                                 <li id="menu-item-272"
                                     class="menu-item menu-item-type-post_type menu-item-object-page
                                     {{ Request::is('puzzles*') ? 'current-menu-ancestor current-menu-parent' : '' }}">
-                                    <a href="{{ url('/puzzles') }}" class="sf-with-ul"><span>Puzzles</span></a>
-                                </li>
+                                    <a href="{{ url('/puzzles') }}" class="sf-with-ul"><span>Pre-Camp Activities</span></a>
+                                </li> <!-- Changed this to Pre-Camp Activies, as discussed in our meeting-->
 
                                 <li id="menu-item-258"
                                     class="menu-item menu-item-type-post_type menu-item-object-page
