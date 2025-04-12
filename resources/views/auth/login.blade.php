@@ -27,7 +27,7 @@
                                                     {!! csrf_field() !!}
                                                     <div class="form-group" style="margin-bottom: 15px;">
                                                         <div class="label mb-2 text-bold">Sacred Registration Code <span class="required-indicator">*</span></div>
-                                                        <input type="text" class="form-control required mb-1" id="email" name="email" style="width:100%; border-color: #bd8d4c; text-align:center;" autofocus/>
+                                                        <input type="text" class="form-control required mb-1" id="sacred_code" name="sacred_code" style="width:100%; border-color: #bd8d4c; text-align:center;" autofocus/>
                                                     </div>
                                                     <div class="form-group">
                                                         <button type="submit" class="btn btn-primary btn-common"> Login </button>

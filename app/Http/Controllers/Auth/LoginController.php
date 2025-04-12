@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\User;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
@@ -53,35 +54,22 @@ class LoginController extends BaseController
 
     public function login(Request $request)
     {
-    	$email =  $request->input('email');
-    	$password =  $request->input('password');
-    	$assignUserID = -1;
-
-    	if (Auth::attempt(['email' => $email, 'password' => $password, 'status_id' => 1])) {
-    	    $assignUserID = Auth::user()->id;
-    		if (Auth::user()->password_change == 2 || Carbon::now()->subMonths(3) > Auth::user()->password_changed_at) {
-    		    $this->createUserActivityLogin($request, $assignUserID, 'passwor_expired');
-    			$isExpired = true;
-    			Auth::logout();
-    			return view('auth.passwords.changepassword', compact('id','isExpired'));
-    		}
-
+        $assignUserID = -1;
+    	$registrationCode =  $request->input('sacred_code');
+        $checkUser = User::where('reg_code', $registrationCode)->first();
+    	if ($checkUser) {
+            Auth::login($checkUser);
+            $assignUserID = Auth::user()->id;
             $this->createUserActivityLogin($request, $assignUserID, 'active');
-            $assignRedirectURL = url('/dashboard');
+            $assignRedirectURL = url('/puzzles');
             if (config('app.env') === 'production') {
-                $assignRedirectURL = secure_url('/dashboard');
+                $assignRedirectURL = secure_url('/puzzles');
             }
 
             return redirect()->intended($assignRedirectURL);
     	}
 
-        $status = 'The email and password you entered don\'t match.';
-        if (Auth::attempt(['email' => $email, 'password' => $password, 'status_id' => 0])) {
-            $assignUserID = Auth::user()->id;
-            Auth::logout();
-            $status = 'This account has been blocked.';
-        }
-
+        $status = 'You are not registered yet on Conquest Youth Camp! Go to Victory Ortigas Admin Booth to register';
         $this->createUserActivityLogin($request, $assignUserID, $status);
         return view('auth.login', compact('status'));
     }
@@ -96,7 +84,7 @@ class LoginController extends BaseController
     protected function createUserActivityLogin($request, $assignUserID, $status)
     {
         $userActivityLog = new UserActivityLog();
-        $userActivityLog->ual_email = $request->input('email');
+        $userActivityLog->ual_sacred_code = $request->input('sacred_code');
         $userActivityLog->ual_user_id = $assignUserID;
 
         $footprintData = (object)[

@@ -4,6 +4,11 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * Class DB Migration (Users)
+ * @author Marylyn Lajato <flippie.cute@gmail.com>
+ * @since Apr 12, 2025
+ */
 return new class extends Migration
 {
     /**
