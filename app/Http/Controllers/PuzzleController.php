@@ -8,8 +8,10 @@ use Illuminate\Support\Facades\Session;
 use App\Models\Puzzle;
 use App\Models\PuzzleAttempt;
 use App\Models\PuzzleGameState;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests\ValidatePuzzleKeyRequest;
+use Illuminate\Routing\Controller as BaseController;
 
 /**
  * Class PuzzlesController
@@ -17,14 +19,20 @@ use App\Http\Requests\ValidatePuzzleKeyRequest;
  * @author Johnvic Dela Cruz <delacruzjohnvic21@gmail.com>
  * @since Mar 30, 2025
  */
-class PuzzleController extends Controller
+class PuzzleController extends BaseController
 {
+    public function __construct()
+    {
+        $this->middleware('web');
+    }
+
     /**
      * [View] Index page
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|object
      */
     public function index()
     {
+        dd(Auth::user());
         return view('puzzles');
     }
 

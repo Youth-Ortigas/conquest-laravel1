@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
@@ -29,16 +30,15 @@ class LoginController extends BaseController
      *
      * @var string
      */
-    protected $redirectTo = '/dashboard';
+    protected $redirectTo = '/puzzles';
 
     /**
      * Create a new controller instance.
-     *
      * @return void
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('web')->except('logout');
     }
 
     public function showLoginForm()
@@ -49,6 +49,8 @@ class LoginController extends BaseController
     public function logout(Request $request)
     {
     	Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
     	return redirect('/login');
     }
 
