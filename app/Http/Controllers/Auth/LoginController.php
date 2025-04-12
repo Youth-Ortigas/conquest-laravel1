@@ -87,10 +87,10 @@ class LoginController extends BaseController
     }
 
     /**
-     * [Activity Logs] Create <archive.user_activity_logs>
-     * @param $request
-     * @param $assignUserID
-     * @param $status
+     * [Activity Logs] Create <user_activity_logs>
+     * @param mixed $request
+     * @param mixed $assignUserID
+     * @param mixed $status
      * @return void
      */
     protected function createUserActivityLogin($request, $assignUserID, $status)
@@ -99,18 +99,11 @@ class LoginController extends BaseController
         $userActivityLog->ual_email = $request->input('email');
         $userActivityLog->ual_user_id = $assignUserID;
 
-        $ipAddress = HelperFunctions::getRealIpAddr();
         $footprintData = (object)[
             'url'                 => '/login',
             'status'              => $status,
             'ip'                  => HelperFunctions::getRealIpAddr(),
-            'isallowed'           => HelperFunctions::checkIfIPAddrWhiteListed($ipAddress),
-            'browser'             => $request->input('browser'),
-            'full_version'        => $request->input('full_version'),
-            'major_version'       => $request->input('major_version'),
-            'navigator_appName'   => $request->input('navigator_appName'),
-            'navigator_userAgent' => $request->input('navigator_userAgent'),
-            'os'                  => $request->input('os'),
+            'browser'             => $request->header('User-Agent') ?? ""
         ];
 
         $userActivityLog->ual_footprint = serialize($footprintData);

@@ -26,19 +26,11 @@
                                                 <form id="login-form" role="form" action="{{ url('/login') }}" method="post" style="width:50%; background: url('{{ asset('images/login/login_banner.png') }}') no-repeat fixed center; padding: 20px; text-align: center;">
                                                     {!! csrf_field() !!}
                                                     <div class="form-group" style="margin-bottom: 15px;">
-                                                        <div class="label mb-2 text-bold">Sacred Email/Registration Code <span class="required-indicator">*</span></div>
+                                                        <div class="label mb-2 text-bold">Sacred Registration Code <span class="required-indicator">*</span></div>
                                                         <input type="text" class="form-control required mb-1" id="email" name="email" style="width:100%; border-color: #bd8d4c; text-align:center;" autofocus/>
-                                                    </div>
-                                                    <div class="form-group" style="margin-bottom: 15px;">
-                                                        <div class="label mb-2 text-bold">Sacred Passphrase <span class="required-indicator">*</span></div>
-                                                        <input type="password" class="form-control required" id="password" name="password" style="width:100%; border-color: #bd8d4c; text-align:center;">
                                                     </div>
                                                     <div class="form-group">
                                                         <button type="submit" class="btn btn-primary btn-common"> Login </button>
-                                                        <a href="#" class="btn btn-primary btn-common"> Sign Up </a>
-                                                    </div>
-                                                    <div class="form-group" style="margin: 15px 0 0 0;">
-                                                        <p style="margin: 15px 0 0 0;"> To get started, kindly sign up/create account first before login </p>
                                                     </div>
                                                 </form>
                                             </div>
