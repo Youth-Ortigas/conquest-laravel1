@@ -25,6 +25,12 @@
                                             <div class="wpb_wrapper" style="display: flex;justify-content: center;align-items: center;">
                                                 <form id="login-form" role="form" action="{{ url('/login') }}" method="post" style="width:50%; background: url('{{ asset('images/login/login_banner.png') }}') no-repeat fixed center; padding: 20px; text-align: center;">
                                                     {!! csrf_field() !!}
+                                                    @if (!empty($status))
+                                                        <div class="form-group">
+                                                            <div class="error-msg">{{ $status }} </div>
+                                                        </div>
+                                                    @endif
+
                                                     <div class="form-group" style="margin-bottom: 15px;">
                                                         <div class="label mb-2 text-bold">Sacred Registration Code <span class="required-indicator">*</span></div>
                                                         <input type="text" class="form-control required mb-1" id="sacred_code" name="sacred_code" style="width:100%; border-color: #bd8d4c; text-align:center;" autofocus/>
