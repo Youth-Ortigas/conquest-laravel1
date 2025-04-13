@@ -51,6 +51,7 @@
             </div>
         </div>
 
+        @if(Auth::check())
         <div class="wpb_column vc_column_container vc_col-sm-3 vc_col-xs-7 sc_layouts_column sc_layouts_column_align_right sc_layouts_column_icons_position_right">
             <div class="vc_column-inner vc_custom_1523451038926">
                 <div class="wpb_wrapper">
@@ -72,6 +73,7 @@
                 </div>
             </div>
         </div>
+        @endif
 
     </div>
 </header>
