@@ -42,6 +42,6 @@ trait TraitsCommon
      */
     protected function getAuthUserID()
     {
-        return Auth::user()->id;
+        return Auth::user()->id ?? -1;
     }
 }

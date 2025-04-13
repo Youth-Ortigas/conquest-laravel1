@@ -40,7 +40,31 @@ class PuzzleController extends BaseController
      */
     public function index()
     {
-        return view('puzzles');
+        $authUserID = $this->getAuthUserID();
+        $modelPuzzles = Puzzle::select("puzzle_num");
+        $modelPuzzlesList = [];
+        $assignPuzzlesRound = [];
+
+        if ($modelPuzzles->count() > 0) {
+            $modelPuzzlesAssign = $modelPuzzles->pluck("puzzle_num")->toArray();
+            $modelPuzzlesList = array_values(array_unique(array_map('intval', $modelPuzzlesAssign)));
+            $flagIsCorrect = 1;
+
+            foreach ($modelPuzzlesAssign as $puzzleNum) {
+                $modelCheck = PuzzleAttempt::where([
+                    ["user_id", "=", $authUserID],
+                    ["puzzle_num", "=", $puzzleNum],
+                    ["is_correct", "=", $flagIsCorrect]
+                ]);
+
+                if ($modelCheck->count() > 0) {
+                    $assignData = $modelCheck->first()->toArray();
+                    $assignPuzzlesRound[intval($assignData["puzzle_num"])] = $assignData;
+                }
+            }
+        }
+
+        return view('puzzles', compact('modelPuzzlesList', 'assignPuzzlesRound'));
     }
 
     /**
@@ -211,7 +235,6 @@ class PuzzleController extends BaseController
         Session::forget('current_word');
         PuzzleGameState::truncate();
         PuzzleAttempt::truncate();
-
         return redirect()->back()->with('message', 'Game reset successfully.');
     }
 

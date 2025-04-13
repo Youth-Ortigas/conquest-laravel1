@@ -12,8 +12,18 @@
             <div class="vc_empty_space" style="height: 5.1rem">
                 <span class="vc_empty_space_inner"></span>
             </div>
-            <div id="sc_icons_1100097351"
-                 class="sc_icons sc_icons_default sc_icons_size_medium sc_align_center">
+            <div id="sc_icons_1100097351" class="sc_icons sc_icons_default sc_icons_size_medium sc_align_center">
+                @php
+                    $checkPuzzleState2nd = $assignPuzzlesRound[2] ?? [];
+                    $checkPuzzleState3rd = $assignPuzzlesRound[3] ?? [];
+
+                    $flagPuzzleDisableOpacity2nd = \App\Lib\LibUtility::isArray($checkPuzzleState2nd) !== true ? "opacity: 0.5" : "";
+                    $flagPuzzleDisableOpacity3rd = \App\Lib\LibUtility::isArray($checkPuzzleState3rd) !== true ? "opacity: 0.5" : "";
+
+                    $flagPuzzleAllowLink2nd = \App\Lib\LibUtility::isArray($checkPuzzleState2nd);
+                    $flagPuzzleAllowLink3rd = \App\Lib\LibUtility::isArray($checkPuzzleState3rd);
+                @endphp
+
                 <div class="sc_icons_columns_wrap sc_item_columns trx_addons_columns_wrap columns_padding_bottom">
                     <div class="trx_addons_column-1_3">
                         <a href="{{ route('puzzles.getDetails', ['reference' => '1st']) }}">
@@ -29,8 +39,10 @@
                             </div>
                         </a>
                     </div>
-                    <div class="trx_addons_column-1_3">
-                        <a href="{{ route('puzzles.getDetails', ['reference' => '2nd-stage-1']) }}">
+                    <div class="trx_addons_column-1_3" style="{{ $flagPuzzleDisableOpacity2nd }}">
+                        @if($flagPuzzleAllowLink2nd)
+                            <a href="{{ route('puzzles.getDetails', ['reference' => '2nd-stage-1']) }}">
+                        @endif
                         <div class="sc_icons_item sc_icons_item_linked">
                             <div id="sc_icons_1100097351_icon-icon-12"
                                  class="sc_icons_icon sc_icon_type_ icon-icon-12">
@@ -43,8 +55,10 @@
                         </div>
                         </a>
                     </div>
-                    <div class="trx_addons_column-1_3">
-                        <a href="{{ route('puzzles.getDetails', ['reference' => '3rd']) }}">
+                    <div class="trx_addons_column-1_3" style="{{ $flagPuzzleDisableOpacity3rd }}">
+                        @if($flagPuzzleAllowLink3rd)
+                            <a href="{{ route('puzzles.getDetails', ['reference' => '3rd']) }}">
+                        @endif
                         <div class="sc_icons_item sc_icons_item_linked">
                             <div id="sc_icons_1100097351_icon-icon-13"
                                  class="sc_icons_icon sc_icon_type_ icon-icon-13">
