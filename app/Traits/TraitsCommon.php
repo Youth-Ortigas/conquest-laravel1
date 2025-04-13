@@ -3,6 +3,7 @@
 namespace App\Traits;
 use App\HelperFunctions;
 use App\Models\UserActivityLog;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class TraitsCommon
@@ -22,7 +23,6 @@ trait TraitsCommon
     {
         $currentURL = url()->current();
         $userActivityLog = new UserActivityLog();
-        $userActivityLog->ual_sacred_code = $request->input('sacred_code') ?? "";
         $userActivityLog->ual_user_id = $assignUserID;
 
         $footprintData = (object)[
@@ -34,5 +34,14 @@ trait TraitsCommon
 
         $userActivityLog->ual_footprint = serialize($footprintData);
         $userActivityLog->save();
+    }
+
+    /**
+     * [Users] Get <users.id>
+     * @return mixed
+     */
+    protected function getAuthUserID()
+    {
+        return Auth::user()->id;
     }
 }

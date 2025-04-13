@@ -18,7 +18,6 @@ return new class extends Migration
     {
         Schema::create('user_activity_logs', function (Blueprint $table) {
             $table->increments('ual_id');
-            $table->string('ual_sacred_code')->nullable();
             $table->integer('ual_user_id')->nullable()->default(0);
             $table->string('ual_footprint',1000);
             $table->timestamps();

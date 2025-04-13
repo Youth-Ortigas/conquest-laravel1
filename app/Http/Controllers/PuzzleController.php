@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Traits\TraitsCommon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -21,9 +22,16 @@ use Illuminate\Routing\Controller as BaseController;
  */
 class PuzzleController extends BaseController
 {
+
+    /**
+     * [Traits] TraitsCommon class
+     * @var object
+     */
+    use TraitsCommon;
+
     public function __construct()
     {
-        
+
     }
 
     /**
@@ -80,11 +88,9 @@ class PuzzleController extends BaseController
             $isCorrect = true;
         }
 
-        $authUserID = Auth::user()->id ?? -1;
-
         // Store attempt
         PuzzleAttempt::create([
-            'user_id'     => $authUserID,
+            'user_id'     => $this->getAuthUserID(),
             'puzzle_num'  => $puzzleNum,
             'entered_key' => $enteredKey,
             'is_correct'  => $isCorrect,
@@ -114,7 +120,7 @@ class PuzzleController extends BaseController
         $puzzle = Puzzle::where('puzzle_num', 2.1)->first();
 
         if ($puzzle && isset($puzzle->puzzle_key) && is_array(json_decode($puzzle->puzzle_key))) {
-            $gameState = PuzzleGameState::where('user_id', 1)
+            $gameState = PuzzleGameState::where('user_id', $this->getAuthUserID())
                                     ->where('puzzle_num', 2.1)
                                     ->first();
 
@@ -126,7 +132,7 @@ class PuzzleController extends BaseController
             } else {
                 $puzzleKeys = json_decode($puzzle->puzzle_key, true);
 
-                $attemptedWords = PuzzleAttempt::where('user_id', 1)
+                $attemptedWords = PuzzleAttempt::where('user_id', $this->getAuthUserID())
                                             ->where('puzzle_num', 2.1)
                                             ->where('is_correct', 1)
                                             ->pluck('entered_key')
@@ -183,7 +189,7 @@ class PuzzleController extends BaseController
         }
 
         PuzzleAttempt::create([
-            'user_id' => 1,
+            'user_id' => $this->getAuthUserID(),
             'puzzle_num' => 2.1,
             'entered_key' => $guess,
             'is_correct' => $isCorrect ? 1 : 0,
