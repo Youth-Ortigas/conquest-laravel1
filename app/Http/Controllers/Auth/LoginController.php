@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use App\Traits\TraitsCommon;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
@@ -14,6 +15,12 @@ use Carbon\Carbon;
 
 class LoginController extends BaseController
 {
+
+    /**
+     * [Traits] Common class
+     * @var object
+     */
+    use TraitsCommon;
     /*
     |--------------------------------------------------------------------------
     | Login Controller
@@ -72,29 +79,5 @@ class LoginController extends BaseController
         $status = 'You are not registered yet on Conquest Youth Camp! Go to Victory Ortigas Admin Booth to register';
         $this->createUserActivityLogin($request, $assignUserID, $status);
         return view('auth.login', compact('status'));
-    }
-
-    /**
-     * [Activity Logs] Create <user_activity_logs>
-     * @param mixed $request
-     * @param mixed $assignUserID
-     * @param mixed $status
-     * @return void
-     */
-    protected function createUserActivityLogin($request, $assignUserID, $status)
-    {
-        $userActivityLog = new UserActivityLog();
-        $userActivityLog->ual_sacred_code = $request->input('sacred_code');
-        $userActivityLog->ual_user_id = $assignUserID;
-
-        $footprintData = (object)[
-            'url'                 => '/login',
-            'status'              => $status,
-            'ip'                  => HelperFunctions::getRealIpAddr(),
-            'browser'             => $request->header('User-Agent') ?? ""
-        ];
-
-        $userActivityLog->ual_footprint = serialize($footprintData);
-        $userActivityLog->save();
     }
 }

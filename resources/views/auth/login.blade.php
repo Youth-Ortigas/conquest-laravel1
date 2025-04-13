@@ -23,7 +23,7 @@
                                     <div class="wpb_column vc_column_container vc_col-sm-12">
                                         <div class="vc_column-inner">
                                             <div class="wpb_wrapper" style="display: flex;justify-content: center;align-items: center;">
-                                                <form id="login-form" role="form" action="{{ url('/login') }}" method="post" style="width:50%; background: url('{{ asset('images/login/login_banner.png') }}') no-repeat fixed center; padding: 20px; text-align: center;">
+                                                <form id="frm-login" role="form" action="{{ url('/login') }}" method="post">
                                                     {!! csrf_field() !!}
                                                     @if (!empty($status))
                                                         <div class="form-group">

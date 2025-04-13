@@ -1,11 +1,20 @@
 <?php
 
 namespace App\Http\Middleware;
+
+use App\Traits\TraitsCommon;
 use Closure;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class RedirectIfAuthenticated
+class ActivityLogCustom
 {
+    /**
+     * [Traits] Common class
+     * @var object
+     */
+    use TraitsCommon;
+
     /**
      * Handle an incoming request.
      *
@@ -16,10 +25,8 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect('/home');
-        }
-
+        $assignUserID = Auth::user()->id ?? -1;
+        $this->createUserActivityLogin($request, $assignUserID);
         return $next($request);
     }
 }

@@ -23,7 +23,7 @@ class PuzzleController extends BaseController
 {
     public function __construct()
     {
-        $this->middleware('web');
+        
     }
 
     /**
@@ -32,7 +32,6 @@ class PuzzleController extends BaseController
      */
     public function index()
     {
-        dd(Auth::user());
         return view('puzzles');
     }
 
@@ -44,7 +43,7 @@ class PuzzleController extends BaseController
      */
     public function getDetails(Request $request, $reference)
     {
-        if(view()->exists("puzzles/puzzles-$reference")) {
+        if (view()->exists("puzzles/puzzles-$reference")) {
             return view("puzzles/puzzles-$reference");
         }
 
@@ -52,6 +51,7 @@ class PuzzleController extends BaseController
     }
 
     /**
+     * []
      * validatePuzzleKey
      *
      * @param  mixed $request
@@ -80,12 +80,14 @@ class PuzzleController extends BaseController
             $isCorrect = true;
         }
 
+        $authUserID = Auth::user()->id ?? -1;
+
         // Store attempt
         PuzzleAttempt::create([
-            'user_id' => 1, //test only; Replace with auth()->id()
-            'puzzle_num' => $puzzleNum,
+            'user_id'     => $authUserID,
+            'puzzle_num'  => $puzzleNum,
             'entered_key' => $enteredKey,
-            'is_correct' => $isCorrect,
+            'is_correct'  => $isCorrect,
         ]);
 
         if ($isCorrect) {
@@ -99,7 +101,7 @@ class PuzzleController extends BaseController
         return response()->json([
             'status' => 'error',
             'message' => "You're almost there! Try again."
-        ], 400);
+        ]);
     }
 
     /**
