@@ -51,21 +51,23 @@
             </div>
         </div>
 
-        @if(Auth::check())
         <div class="wpb_column vc_column_container vc_col-sm-3 vc_col-xs-7 sc_layouts_column sc_layouts_column_align_right sc_layouts_column_icons_position_right">
             <div class="vc_column-inner vc_custom_1523451038926">
                 <div class="wpb_wrapper">
                     <div class="sc_layouts_item">
-                        <a href="#" class="sc_button color_style_default sc_button_bordered sc_button_size_normal sc_button_with_icon sc_button_icon_left">
+                        @php
+                            $checkLoggedStatus = Auth::check();
+                            $loggedInName = Auth::user()->name ?? "";
+                            $buttonText = $checkLoggedStatus ? "Hail $loggedInName!" : "Step To Thy Conquest!";
+                            $buttonLink = $checkLoggedStatus ? "/dashboard" : "/login";
+                        @endphp
+                        <a href="{{ $buttonLink }}" class="sc_button color_style_default sc_button_bordered sc_button_size_normal sc_button_with_icon sc_button_icon_left">
                             <span class="sc_button_icon">
                                 <span class="icon-icon-2"></span>
                             </span>
                             <span class="sc_button_text">
                                 <span class="sc_button_title">
-                                    @php
-                                        $loggedInName = Auth::user()->name ?? "";
-                                    @endphp
-                                    Hail {{$loggedInName}}!
+                                    {{ $buttonText }}
                                 </span>
                             </span>
                         </a>
@@ -73,7 +75,6 @@
                 </div>
             </div>
         </div>
-        @endif
 
     </div>
 </header>
