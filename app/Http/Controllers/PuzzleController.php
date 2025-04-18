@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Traits\TraitsCommon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 use App\Models\Puzzle;
 use App\Models\PuzzleAttempt;
 use App\Models\PuzzleGameState;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests\ValidatePuzzleKeyRequest;
+use Illuminate\Routing\Controller as BaseController;
 
 /**
  * Class PuzzlesController
@@ -17,15 +20,51 @@ use App\Http\Requests\ValidatePuzzleKeyRequest;
  * @author Johnvic Dela Cruz <delacruzjohnvic21@gmail.com>
  * @since Mar 30, 2025
  */
-class PuzzleController extends Controller
+class PuzzleController extends BaseController
 {
+
+    /**
+     * [Traits] TraitsCommon class
+     * @var object
+     */
+    use TraitsCommon;
+
+    public function __construct()
+    {
+
+    }
+
     /**
      * [View] Index page
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|object
      */
     public function index()
     {
-        return view('puzzles');
+        $authUserID = $this->getAuthUserID();
+        $modelPuzzles = Puzzle::select("puzzle_num");
+        $modelPuzzlesList = [];
+        $assignPuzzlesRound = [];
+
+        if ($modelPuzzles->count() > 0) {
+            $modelPuzzlesAssign = $modelPuzzles->pluck("puzzle_num")->toArray();
+            $modelPuzzlesList = array_values(array_unique(array_map('intval', $modelPuzzlesAssign)));
+            $flagIsCorrect = 1;
+
+            foreach ($modelPuzzlesAssign as $puzzleNum) {
+                $modelCheck = PuzzleAttempt::where([
+                    ["user_id", "=", $authUserID],
+                    ["puzzle_num", "=", $puzzleNum],
+                    ["is_correct", "=", $flagIsCorrect]
+                ]);
+
+                if ($modelCheck->count() > 0) {
+                    $assignData = $modelCheck->first()->toArray();
+                    $assignPuzzlesRound[intval($assignData["puzzle_num"])] = $assignData;
+                }
+            }
+        }
+
+        return view('puzzles', compact('modelPuzzlesList', 'assignPuzzlesRound'));
     }
 
     /**
@@ -36,7 +75,7 @@ class PuzzleController extends Controller
      */
     public function getDetails(Request $request, $reference)
     {
-        if(view()->exists("puzzles/puzzles-$reference")) {
+        if (view()->exists("puzzles/puzzles-$reference")) {
             return view("puzzles/puzzles-$reference");
         }
 
@@ -44,6 +83,7 @@ class PuzzleController extends Controller
     }
 
     /**
+     * []
      * validatePuzzleKey
      *
      * @param  mixed $request
@@ -74,10 +114,10 @@ class PuzzleController extends Controller
 
         // Store attempt
         PuzzleAttempt::create([
-            'user_id' => 1, //test only; Replace with auth()->id()
-            'puzzle_num' => $puzzleNum,
+            'user_id'     => $this->getAuthUserID(),
+            'puzzle_num'  => $puzzleNum,
             'entered_key' => $enteredKey,
-            'is_correct' => $isCorrect,
+            'is_correct'  => $isCorrect,
         ]);
 
         if ($isCorrect) {
@@ -91,7 +131,7 @@ class PuzzleController extends Controller
         return response()->json([
             'status' => 'error',
             'message' => "You're almost there! Try again."
-        ], 400);
+        ]);
     }
 
     /**
@@ -104,7 +144,7 @@ class PuzzleController extends Controller
         $puzzle = Puzzle::where('puzzle_num', 2.1)->first();
 
         if ($puzzle && isset($puzzle->puzzle_key) && is_array(json_decode($puzzle->puzzle_key))) {
-            $gameState = PuzzleGameState::where('user_id', 1)
+            $gameState = PuzzleGameState::where('user_id', $this->getAuthUserID())
                                     ->where('puzzle_num', 2.1)
                                     ->first();
 
@@ -116,7 +156,7 @@ class PuzzleController extends Controller
             } else {
                 $puzzleKeys = json_decode($puzzle->puzzle_key, true);
 
-                $attemptedWords = PuzzleAttempt::where('user_id', 1)
+                $attemptedWords = PuzzleAttempt::where('user_id', $this->getAuthUserID())
                                             ->where('puzzle_num', 2.1)
                                             ->where('is_correct', 1)
                                             ->pluck('entered_key')
@@ -173,7 +213,7 @@ class PuzzleController extends Controller
         }
 
         PuzzleAttempt::create([
-            'user_id' => 1,
+            'user_id' => $this->getAuthUserID(),
             'puzzle_num' => 2.1,
             'entered_key' => $guess,
             'is_correct' => $isCorrect ? 1 : 0,
@@ -195,7 +235,6 @@ class PuzzleController extends Controller
         Session::forget('current_word');
         PuzzleGameState::truncate();
         PuzzleAttempt::truncate();
-
         return redirect()->back()->with('message', 'Game reset successfully.');
     }
 

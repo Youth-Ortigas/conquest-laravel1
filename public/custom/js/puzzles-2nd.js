@@ -1,5 +1,7 @@
 $(document).ready(function () {
+
     var oModulePuzzles = {
+
         /**
          * Initializes the game by loading properties, fetching words,
          * setting up input navigation, and handling submission.
