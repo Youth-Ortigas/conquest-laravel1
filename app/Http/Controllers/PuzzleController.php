@@ -226,16 +226,16 @@ class PuzzleController extends BaseController
     }
 
     /**
-     * resetWordle
+     * resetPuzzles
      *
      * @return void
      */
-    public function resetWordle()
+    public function resetPuzzles()
     {
         Session::forget('current_word');
-        PuzzleGameState::truncate();
-        PuzzleAttempt::truncate();
-        return redirect()->back()->with('message', 'Game reset successfully.');
+        PuzzleGameState::where('user_id', $this->getAuthUserID())->delete();
+        PuzzleAttempt::where('user_id', $this->getAuthUserID())->delete();
+        return redirect()->route('puzzles.index')->with('message', 'Game reset successfully.');
     }
 
 
