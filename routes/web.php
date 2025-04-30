@@ -20,7 +20,7 @@ Route::middleware(['web'])->group(function () {
     Route::get('/puzzle-wordle-reset', [PuzzleController::class, 'resetPuzzles'])->middleware(ActivityLogCustom::class);
 
     Route::post('/puzzle-save-game-state', [PuzzleGameStateController::class, 'saveGameState'])->middleware(ActivityLogCustom::class);
-    Route::get('/puzzle-get-game-state/{user_id}/{puzzle_num}', [PuzzleGameStateController::class, 'getGameState'])->middleware(ActivityLogCustom::class);
+    Route::get('/puzzle-get-game-state/{puzzle_num}', [PuzzleGameStateController::class, 'getGameState'])->middleware(ActivityLogCustom::class);
 
     Route::get('/updates', [UpdateController::class, 'index'])->name('updates.index')->middleware(ActivityLogCustom::class);
 });

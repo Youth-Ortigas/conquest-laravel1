@@ -102,19 +102,19 @@ $(document).ready(function () {
             }, function(data) {
                 if (data.status === 'success') {
                     Swal.fire({
-                        title: 'Puzzle unlocked!',
-                        text: 'Click Cool! to go to next puzzle',
+                        title: 'Puzzle Unlocked!',
+                        html: '<p>Thou hast conquered the Vigenère puzzle!</p><p>Click <strong>Go Forth!</strong> to journey to the first stage of the second puzzle.</p>',
                         icon: 'success',
-                        confirmButtonText: 'Cool!'
+                        confirmButtonText: 'Go Forth!'
                     }).then(() => {
-                        window.open(data.next_puzzle, '_blank');
+                        window.location.href = data.next_puzzle;
                     });
                 } else {
                     Swal.fire({
-                        title: 'You\'re almost there!',
-                        text: data.message || 'Try again',
+                        title: 'Thou art near!',
+                        text: data.message,
                         icon: 'error',
-                        confirmButtonText: 'G!'
+                        confirmButtonText: 'Persevere!'
                     });
                 }
             }).fail(function(error) {

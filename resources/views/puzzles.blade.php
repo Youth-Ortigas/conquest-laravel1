@@ -14,7 +14,7 @@
             </div>
             <div id="sc_icons_1100097351" class="sc_icons sc_icons_default sc_icons_size_medium sc_align_center">
                 @php
-                    $checkPuzzleState2nd = $assignPuzzlesRound[2] ?? [];
+                    $checkPuzzleState2nd = $assignPuzzlesRound[1] ?? [];
                     $checkPuzzleState3rd = $assignPuzzlesRound[3] ?? [];
 
                     $flagPuzzleDisableOpacity1st = Auth::check() !== true ? "opacity: 0.5" : "";

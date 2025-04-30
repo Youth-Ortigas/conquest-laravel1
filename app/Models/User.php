@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use App\Models\PuzzleAttempt;
+
 class User extends Authenticatable
 {
     use HasFactory, Notifiable, SoftDeletes;
@@ -30,4 +32,8 @@ class User extends Authenticatable
     protected $hidden = [
         'remember_token',
     ];
+
+    public function puzzleAttempts() {
+        return $this->hasMany(PuzzleAttempt::class);
+    }
 }

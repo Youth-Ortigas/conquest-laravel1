@@ -1,4 +1,3 @@
-
 .letter-box {
     width: 60px !important;
     height: 60px !important;
@@ -6,39 +5,51 @@
     text-align: center !important;
     text-transform: uppercase !important;
     font-weight: bold !important;
-    border: 3px solid #5a3e2b !important;
+    border: 3px solid #d4af37 !important;
     outline: none !important;
     display: inline-block !important;
-    color: black !important;
-    border-radius: 0 !important;
+    color: #3e2723 !important;
+    border-radius: 5px !important;
     margin: 2px !important;
     padding: 0 !important;
+    background-color: #f0e5d8 !important;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+    font-family: 'Garamond', serif !important;
 }
 
 .correct {
     background-color: #4caf50 !important;
     color: white !important;
+    border: 3px solid #3e2723 !important;
+    box-shadow: inset 0 0 5px #7c4d27 !important;
 }
 
 .present {
     background-color: #d4a017 !important;
     color: white !important;
+    border: 3px solid #3e2723 !important;
+    box-shadow: inset 0 0 5px #7c4d27 !important;
 }
 
 .absent {
     background-color: #7c7c7c !important;
     color: white !important;
+    border: 3px solid #3e2723 !important;
+    box-shadow: inset 0 0 5px #7c4d27 !important;
 }
 
 .box {
     width: 25px;
     height: 25px;
     margin-right: 5px;
-    border: 1px solid #5a3e2b;
-    background-color: #f7ede1;
+    border: 1px solid #d4af37;
+    background-color: #f0e5d8;
     padding: 2px;
     font-size: 20px;
     font-weight: bold;
+    font-family: 'Garamond', serif;
+    color: #3e2723;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .how-to-play ul li, .how-to-play p, .how-to-play b {
@@ -47,4 +58,83 @@
 
 .how-to-play p {
     margin-bottom: 10px;
+}
+
+.custom-puzzle-container {
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+    margin-bottom: 5rem;
+    text-align: center;
+}
+
+.verse-header {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2C3E50;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.verse-text {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.puzzle-input {
+    width: 100%;
+    max-width: 200px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    text-transform: uppercase;
+    box-sizing: border-box;
+    color: black !important;
+}
+
+.puzzle-input::placeholder {
+    color: #888;
+    font-style: italic;
+}
+
+#message {
+    font-size: 16px;
+    color: #333;
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .custom-puzzle-container {
+        padding: 15px;
+    }
+
+    .puzzle-input {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .custom-puzzle-container {
+        padding: 10px;
+    }
+
+    .puzzle-input {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
+.caesar-cipher {
+    border: 2px solid #a38b6b;
+    padding: 1em;
+    background-color: #fffef7;
+    margin-top: 1em;
 }
