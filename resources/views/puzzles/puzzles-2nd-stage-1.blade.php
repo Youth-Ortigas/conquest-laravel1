@@ -6,7 +6,7 @@
     {{ csrf_field() }}
     <link rel="stylesheet" href="{{ asset('custom/css/puzzle-2nd.css') }}">
     <div class="page_wrap">
-        @include('includes.puzzle_banner', ['title' => 'Words and Letters: Wordle']) <!--added puzzle title based on documentation-->
+        @include('includes.puzzle_banner', ['title' => 'Words and Letters (Stage 1): Wordle']) <!--added puzzle title based on documentation-->
 
         @include('includes.header')
 
@@ -31,7 +31,7 @@
                                                             <div class="vc_column-inner">
                                                                 <div class="wpb_wrapper">
                                                                     <div class="wpb_content_element vc_align_center wpb_content_element">
-                                                                        <h1>Medieval Wordle</h1>
+                                                                        <h5 style="margin: 0">Words left: <span id="remaining-words-to-guess">{{ $remainingWordsToGuess }}</span></h5>
                                                                         <div class="word-grid" id="grid"></div>
                                                                         <br>
                                                                         <button id="btn-key-send" class="d-none">Submit</button>
@@ -58,5 +58,5 @@
 
 @section('footer-scripts')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    {!! asset_versioned('/custom/js/puzzles-2nd.js', 'js', 'type="text/javascript"') !!}
+    {!! asset_versioned('/custom/js/puzzles-2nd-stage-1.js', 'js', 'type="text/javascript"') !!}
 @endsection

@@ -112,6 +112,10 @@ td:hover {
     background: #704214;
 }
 
+#puzzle-code-input {
+    color: black;
+}
+
 /* Mobile adjustments */
 @media (max-width: 768px) {
     .table-container {

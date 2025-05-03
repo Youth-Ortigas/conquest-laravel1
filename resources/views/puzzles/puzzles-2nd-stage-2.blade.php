@@ -6,7 +6,7 @@
     {{ csrf_field() }}
     <link rel="stylesheet" href="{{ asset('custom/css/puzzle-2nd.css') }}">
     <div class="page_wrap">
-        @include('includes.puzzle_banner', ['title' => 'Words and Letters: Fill in the Blanks']) <!--Added puzzle title based on documentation-->
+        @include('includes.puzzle_banner', ['title' => 'Words and Letters (Stage 2): Fill in the Blanks']) <!--Added puzzle title based on documentation-->
 
         @include('includes.header')
 
@@ -26,16 +26,30 @@
                                         <div class="vc_column-inner">
                                             <div class="wpb_wrapper">
                                                 <div class="wpb_single_image wpb_content_element vc_align_center wpb_content_element">
-                                                    <div class="container" style="margin: 25px 0 0 0;">
+                                                    <div class="container">
                                                         <div class="wpb_column vc_column_container vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left">
                                                             <div class="vc_column-inner">
                                                                 <div class="wpb_wrapper">
                                                                     <div class="wpb_content_element vc_align_center wpb_content_element">
-                                                                        <h1>Medieval Wordle</h1>
-                                                                        <div class="word-grid" id="grid"></div>
-                                                                        <br>
-                                                                        <button id="btn-key-send" class="d-none">Submit</button>
-                                                                        <p id="message"></p>
+                                                                        <div class="custom-puzzle-container">
+                                                                            <b class="verse-header">Philippians 4:13</b>
+                                                                            <p class="verse-text">"I can do all things through Christ who strengthens me."</p>
+
+                                                                            <input type="text" name="word_1" id="puzzle-code-input-1" class="puzzle-input"
+                                                                                   placeholder="WORD 1" value="{{ $correctAttempt[0] }}"/>
+                                                                            <input type="text" name="word_2" id="puzzle-code-input-2" class="puzzle-input"
+                                                                                   placeholder="WORD 2"/>
+                                                                            <input type="text" name="word_3" id="puzzle-code-input-3" class="puzzle-input"
+                                                                                   placeholder="WORD 3"/>
+                                                                            <input type="text" name="word_4" id="puzzle-code-input-4" class="puzzle-input"
+                                                                                   placeholder="WORD 4"/>
+                                                                            <input type="text" name="word_5" id="puzzle-code-input-5" class="puzzle-input"
+                                                                                   placeholder="WORD 5"/>
+                                                                            <br>
+                                                                            <button id="btn-key-send" class="mt-2">Submit</button>
+                                                                            <p id="message"></p>
+                                                                        </div>
+
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -57,5 +71,5 @@
 
 @section('footer-scripts')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    {!! asset_versioned('/custom/js/puzzles-2nd.js', 'js', 'type="text/javascript"') !!}
+    {!! asset_versioned('/custom/js/puzzles-2nd-stage-2.js', 'js', 'type="text/javascript"') !!}
 @endsection

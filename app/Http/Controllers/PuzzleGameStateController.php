@@ -2,22 +2,34 @@
 
 namespace App\Http\Controllers;
 
+use App\Traits\TraitsCommon;
 use Illuminate\Http\Request;
 use App\Models\PuzzleGameState;
 
 class PuzzleGameStateController extends Controller
 {
     /**
+     * [Traits] TraitsCommon class
+     * @var object
+     */
+    use TraitsCommon;
+
+    public function __construct()
+    {
+
+    }
+
+    /**
      * Save the current game state to the database.
      */
     public function saveGameState(Request $request)
     {
         $request->validate([
-            'user_id' => 'required|integer',
             'puzzle_num' => 'required|numeric',
             'game_state' => 'required|json',
         ]);
 
+        $user_id = $this->getAuthUserID();
         $gameStateData = $request->input('game_state');
         $gameStateArray = json_decode($gameStateData, true);
         $gameStateArray['answer'] = session('current_word');
@@ -27,14 +39,14 @@ class PuzzleGameStateController extends Controller
         }
 
         if ($gameStateArray['attempts'] == 6 || $gameStateArray['isCorrect'] == 1) {
-            PuzzleGameState::where('user_id', $request->user_id)
+            PuzzleGameState::where('user_id', $user_id)
                 ->where('puzzle_num', $request->puzzle_num)
                 ->delete();
 
             return response()->json(['status' => 'success', 'message' => 'Game state removed because attempts reached 6 or the word was correct.']);
         }
 
-        $existingGameState = PuzzleGameState::where('user_id', $request->user_id)
+        $existingGameState = PuzzleGameState::where('user_id', $user_id)
                                             ->where('puzzle_num', $request->puzzle_num)
                                             ->first();
 
@@ -43,7 +55,7 @@ class PuzzleGameStateController extends Controller
             $existingGameState->save();
         } else {
             PuzzleGameState::create([
-                'user_id' => $request->user_id,
+                'user_id' => $user_id,
                 'puzzle_num' => $request->puzzle_num,
                 'game_state' => json_encode($gameStateArray),
             ]);
@@ -55,9 +67,9 @@ class PuzzleGameStateController extends Controller
     /**
      * Retrieve the saved game state from the database.
      */
-    public function getGameState($userId, $puzzleNum)
+    public function getGameState($puzzleNum)
     {
-        $gameState = PuzzleGameState::where('user_id', $userId)
+        $gameState = PuzzleGameState::where('user_id', $this->getAuthUserID())
                                     ->where('puzzle_num', $puzzleNum)
                                     ->first();
 
