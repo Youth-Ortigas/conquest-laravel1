@@ -60,10 +60,6 @@ class ServicesAutoOneDB
 
         $fetchURLAPI = "https://onedb.everynation.org.ph/db/module/events2/registration/read?event_id=1918&congregation_id=10012";
         $checkData = file_get_contents($fetchURLAPI, false, $sslContext);
-        if (strtolower(env("APP_ENV")) === "production") {
-            $checkData = file_get_contents($fetchURLAPI);
-        }
-
         return $this->assignReturnResponse(json_decode($checkData, true));
     }
 

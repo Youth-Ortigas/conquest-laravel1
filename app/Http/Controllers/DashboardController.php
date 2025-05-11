@@ -1,0 +1,388 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Traits\TraitsCommon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+
+use App\Models\Puzzle;
+use App\Models\PuzzleAttempt;
+use App\Models\PuzzleGameState;
+use Illuminate\Support\Facades\Auth;
+
+use App\Http\Requests\ValidatePuzzleKeyRequest;
+use Illuminate\Routing\Controller as BaseController;
+
+/**
+ * Class DashboardController
+ * @author Marylyn Lajato <flippie.cute@gmail.com>
+ * @author Johnvic Dela Cruz <delacruzjohnvic21@gmail.com>
+ * @since Mar 30, 2025
+ */
+class DashboardController extends BaseController
+{
+
+    /**
+     * [Traits] TraitsCommon class
+     * @var object
+     */
+    use TraitsCommon;
+
+    public function __construct()
+    {
+
+    }
+
+    /**
+     * [View] Index page
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|object
+     */
+    public function index()
+    {
+        $authUserID = $this->getAuthUserID();
+        $modelPuzzles = Puzzle::select("puzzle_num");
+        $modelPuzzlesList = [];
+        $assignPuzzlesRound = [];
+
+        if ($modelPuzzles->count() > 0) {
+            $modelPuzzlesAssign = $modelPuzzles->pluck("puzzle_num")->toArray();
+            $modelPuzzlesList = array_values(array_unique(array_map('intval', $modelPuzzlesAssign)));
+            $flagIsCorrect = 1;
+
+            foreach ($modelPuzzlesAssign as $puzzleNum) {
+                $modelCheck = PuzzleAttempt::where([
+                    ["user_id", "=", $authUserID],
+                    ["puzzle_num", "=", $puzzleNum],
+                    ["is_correct", "=", $flagIsCorrect]
+                ]);
+
+                if ($modelCheck->count() > 0) {
+                    $assignData = $modelCheck->first()->toArray();
+                    $assignPuzzlesRound[intval($assignData["puzzle_num"])] = $assignData;
+                }
+            }
+        }
+
+
+        return view('dashboard', compact('modelPuzzlesList', 'assignPuzzlesRound', 'authUserID'));
+    }
+
+    /**
+     * [View] Details page
+     * @param Request $request
+     * @param $reference
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|object|void
+     */
+    public function getDetails($reference)
+    {
+        $correctAttemptCount = auth()->user()->puzzleAttempts()->where('is_correct', 1)->count();
+        $remainingWordsToGuess = 0;
+
+        $puzzleOrder = [
+            '1st' => 1,
+            '2nd-stage-1' => 2.1,
+            '2nd-stage-2' => 2.2,
+            '2nd-stage-3' => 2.3,
+            '3rd' => 3
+        ];
+
+        switch ($correctAttemptCount) {
+            case 0:
+                $currentPuzzle = '1st';
+                break;
+            case 1: case 2: case 3:
+                $currentPuzzle = '2nd-stage-1';
+                break;
+            case 4:
+                $currentPuzzle = '2nd-stage-2';
+                break;
+            case 5:
+                $currentPuzzle = '2nd-stage-3';
+                break;
+            default:
+                $currentPuzzle = '3rd';
+                break;
+        }
+
+        $referencePuzzleNum = $puzzleOrder[$reference] ?? null;
+        $currentPuzzleNum = $puzzleOrder[$currentPuzzle] ?? null;
+
+        if($referencePuzzleNum > $currentPuzzleNum) {
+            $reference = $currentPuzzle;
+            return redirect()->route('puzzles.getDetails', ['reference' => $reference]);
+        }
+
+        $availablePuzzle = Puzzle::where('date_unlocked', '<=', now()->format('Y-m-d'))
+                                    ->where('puzzle_num', $puzzleOrder[$reference])
+                                    ->select('puzzle_num')
+                                    ->first();
+
+        if (!$availablePuzzle) {
+            abort(404);
+        }
+
+        if($reference == '2nd-stage-1') {
+            $totalCorrectWords = PuzzleAttempt::select('entered_key')
+                                    ->where('user_id', $this->getAuthUserID())
+                                    ->where('is_correct', 1)
+                                    ->where('puzzle_num', 2.1)
+                                    ->count();
+
+            $remainingWordsToGuess = Puzzle::REQUIRED_WORDLE_WORD_COUNT - $totalCorrectWords;
+        }
+
+        $correctAttempt = PuzzleAttempt::select('entered_key')
+                                        ->where('user_id', $this->getAuthUserID())
+                                        ->where('is_correct', 1)
+                                        ->where('puzzle_num', $puzzleOrder[$reference])
+                                        ->pluck('entered_key')
+                                        ->toArray();
+
+        if (view()->exists("puzzles/puzzles-$reference")) {
+            return view("puzzles/puzzles-$reference", compact('remainingWordsToGuess', 'correctAttempt'));
+        }
+
+        abort(404);
+    }
+
+    /**
+     * []
+     * validatePuzzleKey
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function validatePuzzleKey(ValidatePuzzleKeyRequest $request)
+    {
+        if(!is_array($request->puzzle_key)) {
+            $enteredKey = strtolower($request->puzzle_key);
+        } else {
+            $enteredKey = array_map('strtolower', $request->puzzle_key);
+        }
+
+        $puzzleNum = $request->puzzle_num;
+
+        $puzzle = Puzzle::where('puzzle_num', $puzzleNum)->first();
+
+        if (!$puzzle) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Puzzle not found.'
+            ], 404);
+        }
+
+        $puzzleKeys = json_decode($puzzle->puzzle_key, true);
+        $isCorrect = false;
+
+        if ($puzzleNum == 1) {
+            $isCorrect = $enteredKey === $puzzleKeys;
+        } elseif ($puzzleNum == 2.1) {
+            $isCorrect = is_array($puzzleKeys) && in_array($enteredKey, $puzzleKeys);
+        } elseif ($puzzleNum == 2.2) {
+            $isCorrect = is_array($enteredKey) &&
+                         is_array($puzzleKeys) &&
+                         count($enteredKey) === count($puzzleKeys) &&
+                         empty(array_diff($puzzleKeys, $enteredKey));
+
+            $enteredKey = strtolower(implode(',', $enteredKey));
+        }
+
+        // Store attempt
+        PuzzleAttempt::create([
+            'user_id'     => $this->getAuthUserID(),
+            'puzzle_num'  => $puzzleNum,
+            'entered_key' => $enteredKey,
+            'is_correct'  => $isCorrect,
+        ]);
+
+        if ($isCorrect) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Puzzle unlocked!',
+                'next_puzzle' => url("/puzzles/{$puzzle->unlock_puzzle}")
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'error',
+            'message' => "Try again, brave soul!"
+        ]);
+    }
+
+    /**
+     * Fetch a random word from the puzzle's array and start the game.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getWordleWord()
+    {
+        $puzzle = Puzzle::where('puzzle_num', 2.1)->first();
+        $showHowToPlayGameAlert = true;
+
+        if ($puzzle && isset($puzzle->puzzle_key) && is_array(json_decode($puzzle->puzzle_key))) {
+            $gameState = PuzzleGameState::where('user_id', $this->getAuthUserID())
+                                    ->where('puzzle_num', 2.1)
+                                    ->first();
+
+            if ($gameState) {
+                $gameState = json_decode($gameState->game_state, true);
+
+                if(!session('current_word'))
+                    Session::put('current_word', $gameState['answer']);
+            } else {
+                $puzzleKeys = json_decode($puzzle->puzzle_key, true);
+
+                $attemptedWords = PuzzleAttempt::where('user_id', $this->getAuthUserID())
+                                            ->where('puzzle_num', 2.1)
+                                            ->where('is_correct', 1)
+                                            ->pluck('entered_key')
+                                            ->toArray();
+
+                $availableWords = array_filter($puzzleKeys, fn($word) => !in_array(strtolower($word), array_map('strtolower', $attemptedWords)));
+
+                if (empty($availableWords) || count($attemptedWords) == Puzzle::REQUIRED_WORDLE_WORD_COUNT) {
+                    $nextPuzzleUnlock = false;
+
+                    if(!empty($attemptedWords)) {
+                         $nextPuzzle = Puzzle::where('date_unlocked', '<=', now()->format('Y-m-d'))
+                                                ->where('puzzle_num', 2.2)
+                                                ->exists();
+
+                        if ($nextPuzzle) {
+                            $nextPuzzleUnlock = '2nd-stage-2';
+                        }
+                    }
+
+                    return response()->json([
+                        'status' => empty($attemptedWords) ? 'error' : 'complete',
+                        'next_puzzle' => $nextPuzzleUnlock,
+                        'message' => empty($attemptedWords) ? 'No words available.' : 'All Wordle words have been attempted.'
+                    ]);
+                }
+
+                $randomWord = $availableWords[array_rand($availableWords)];
+
+                Session::put('current_word', $randomWord);
+
+                if(count($attemptedWords) > 0)
+                    $showHowToPlayGameAlert = false;
+            }
+
+            return response()->json([
+                'status' => 'success',
+                'showHowToPlayGameAlert' => $showHowToPlayGameAlert,
+            ]);
+        }
+
+        return response()->json(['status' => 'error', 'message' => 'Puzzle not found or invalid puzzle_key format.']);
+    }
+
+    /**
+     * Check the user's guess against the correct word.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function checkWordleGuess(Request $request)
+    {
+        $word = Session::get('current_word');
+        $guess = strtoupper($request->input('guess'));
+
+        if (!$word) {
+            return response()->json(['status' => 'error', 'message' => 'Game not started.']);
+        }
+
+        $word = strtoupper($word);
+
+        $feedback = $this->getGuessFeedback($word, $guess);
+
+        $isCorrect = ($guess === $word);
+
+        if ($isCorrect) {
+            Session::forget('current_word');
+        }
+
+        if (!is_array($feedback) || count($feedback) !== 5) {
+            return response()->json(['status' => 'error', 'message' => 'Invalid feedback received.']);
+        }
+
+        PuzzleAttempt::create([
+            'user_id' => $this->getAuthUserID(),
+            'puzzle_num' => 2.1,
+            'entered_key' => $guess,
+            'is_correct' => $isCorrect ? 1 : 0,
+        ]);
+
+        return response()->json([
+            'feedback' => $feedback,
+            'correct' => $isCorrect,
+        ]);
+    }
+
+    /**
+     * resetPuzzles
+     *
+     * @return void
+     */
+    public function resetPuzzles()
+    {
+        Session::forget('current_word');
+        PuzzleGameState::where('user_id', $this->getAuthUserID())->delete();
+        PuzzleAttempt::where('user_id', $this->getAuthUserID())->delete();
+        return redirect()->route('puzzles.index')->with('message', 'Game reset successfully.');
+    }
+
+
+    /**
+     * Compare the user's guess with the correct word and generate feedback.
+     *
+     * @param  string  $word
+     * @param  string  $guess
+     * @return array
+     */
+    private function getGuessFeedback($word, $guess)
+    {
+        $feedback = [];
+
+        for ($i = 0; $i < strlen($word); $i++) {
+            if ($guess[$i] === $word[$i]) {
+                $feedback[] = 'correct';
+            } elseif (strpos($word, $guess[$i]) !== false) {
+                $feedback[] = 'present';
+            } else {
+                $feedback[] = 'absent';
+            }
+        }
+
+        if (count($feedback) !== 5) {
+            \Log::debug('Invalid feedback length: ', ['feedback_length' => count($feedback)]);
+        }
+
+        return $feedback;
+    }
+
+    /**
+     * convertReferenceToPuzzleKey
+     *
+     * @param  mixed $reference
+     * @return void
+     */
+    private function convertReferenceToPuzzleKey($reference)
+    {
+        switch ($reference) {
+            case '1st':
+                return 1;
+            case '2nd-stage-1':
+                return 2.1;
+            case '2nd-stage-2':
+                return 2.2;
+            case '2nd-stage-3':
+                return 2.3;
+            case '3rd':
+                return 3;
+            default:
+                return null;
+        }
+    }
+}
