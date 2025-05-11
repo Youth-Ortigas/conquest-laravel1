@@ -17,4 +17,6 @@ class Puzzle extends Model
         'puzzle_key' => 'array',
     ];
 
+    public const REQUIRED_WORDLE_WORD_COUNT = 3;
+
 }

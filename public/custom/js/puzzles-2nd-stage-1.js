@@ -6,10 +6,10 @@ $(document).ready(function () {
          * Initializes the game by loading properties, fetching words,
          * setting up input navigation, and handling submission.
          */
-        init: function () {
+        init: async function () {
             this.loadProperties();
-            this.fetchWords();
             this.loadGameState();
+            this.fetchWords();
             this.handleInputNavigation();
             this.handleSubmission();
         },
@@ -28,7 +28,6 @@ $(document).ready(function () {
             this.DOMClassKeyButton = $(this.classKeyButton);
             this.csrfToken = $('meta[name="csrf-token"]').attr('content');
             this.isCorrect = 0;
-            this.userId = 1;
             this.puzzleNum = 2.1;
         },
 
@@ -36,7 +35,7 @@ $(document).ready(function () {
          * Loads the saved game state from localStorage.
          */
         loadGameState: function () {
-            $.get(`/puzzle-get-game-state/${this.userId}/${this.puzzleNum}`, (data) => {
+            $.get(`/puzzle-get-game-state/${this.puzzleNum}`, (data) => {
                 if (data && data.game_state) {
                     let savedState = data.game_state;
                     this.savedState = savedState;
@@ -51,14 +50,12 @@ $(document).ready(function () {
 
                     if (this.attempts <= 6) {
                         Swal.fire({
-                            title: `Welcome Back`,
-                            text: `You’ve made ${this.attempts} of 6 guesses. Keep it up!`,
+                            title: `Welcome Back, Conqueror!`,
+                            text: `Thou hast made ${this.attempts} of 6 guesses. Continue thy noble quest!`,
                             icon: 'info',
-                            confirmButtonText: 'OK'
-                        })
+                            confirmButtonText: 'Understood'
+                        });
                     }
-                } else {
-                    this.showHowToPlay();
                 }
 
                 $('html, body').animate({
@@ -85,7 +82,6 @@ $(document).ready(function () {
 
             $.post('/puzzle-save-game-state', {
                 _token: this.csrfToken,
-                user_id: this.userId,
                 puzzle_num: this.puzzleNum,
                 game_state: JSON.stringify(gameState)
             }, function (response) {
@@ -133,10 +129,34 @@ $(document).ready(function () {
             $.post('/puzzle-wordle-get-word', {_token: this.csrfToken}, (data) => {
                 if (data.status === 'success') {
                     this.startNewRound();
+
+                    if(this.attempts == 0 && data.showHowToPlayGameAlert)
+                        this.showHowToPlay();
                 } else if(data.status === 'complete') {
-                    Swal.fire('Game Over!', 'You have completed all rounds!', 'info');
+                    Swal.fire({
+                        title: 'Alas, the Game is Over!',
+                        text: 'Thou hast completed all rounds!',
+                        icon: 'info',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        allowEnterKey: false,
+                        showConfirmButton: false,
+                        footer: '<strong>Pray, wait for the next puzzle to be unlocked.</strong>'
+                    });
+
                     this.grid.empty();
                     this.DOMClassKeyButton.addClass('d-none');
+
+                    if(data.next_puzzle) {
+                        Swal.fire({
+                            title: 'Puzzle Unlocked!',
+                            html: '<p>Thou hast triumphed over the first stage of the second puzzle (Wordle)!</p><p>Clicketh <strong>Go Forth!</strong> to embark upon thy next quest in stage 2.</p>',
+                            icon: 'success',
+                            confirmButtonText: 'Go Forth!'
+                        }).then(() => {
+                            window.location.href = data.next_puzzle;
+                        });
+                    }
                 } else {
                     Swal.fire('Error', 'No puzzle words found!', 'error');
                 }
@@ -238,7 +258,13 @@ $(document).ready(function () {
             let guess = currentInputs.map(function () { return $(this).val(); }).get().join('');
 
             if (guess.length !== 5) {
-                Swal.fire('Incomplete Guess!', 'You must fill all 5 letters before submitting.', 'error');
+                Swal.fire({
+                    title: 'Incomplete Guess!',
+                    text: 'Thou must fill all five letters before submitting.',
+                    icon: 'error',
+                    confirmButtonText: 'Understood'
+                });
+
                 return;
             }
 
@@ -247,7 +273,13 @@ $(document).ready(function () {
                 guess: guess
             }, (response) => {
                 if (!response.feedback || response.feedback.length !== 5) {
-                    Swal.fire('Error!', 'Invalid feedback received. Please try again.', 'error');
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Thy feedback is naught valid. Try again.',
+                        icon: 'error',
+                        confirmButtonText: 'Understood'
+                    });
+
                     return;
                 }
 
@@ -267,7 +299,15 @@ $(document).ready(function () {
                 if (correctCount === 5) {
                     this.isCorrect = 1;
 
-                    Swal.fire('🎉 Congratulations!', 'You guessed the word correctly!', 'success').then(() => {
+                    Swal.fire({
+                        title: '🎉 Thou hast Triumphed!',
+                        text: 'Verily, thou hast guessed the word correctly!',
+                        icon: 'success',
+                        confirmButtonText: 'Huzzah!'
+                    }).then(() => {
+                        $("#remaining-words-to-guess").text(
+                            Math.max(0, parseInt($("#remaining-words-to-guess").text(), 10) - 1)
+                        );
                         this.fetchWords();
                     });
                 } else {
@@ -275,7 +315,12 @@ $(document).ready(function () {
                     this.attempts++;
                     this.currentRow++;
                     if (this.attempts >= this.MAX_ATTEMPTS) {
-                        Swal.fire('Game Over!', 'Try again!', 'error').then(() => {
+                        Swal.fire({
+                            title: 'Alas, the Game is Over!',
+                            text: 'Thou must try again, brave soul!',
+                            icon: 'error',
+                            confirmButtonText: 'Persevere!'
+                        }).then(() => {
                             this.fetchWords();
                         });
                     } else {
@@ -287,7 +332,12 @@ $(document).ready(function () {
 
                 this.saveGameState();
             }).fail(() => {
-                Swal.fire('Server Error', 'Could not validate your guess. Please try again.', 'error');
+                Swal.fire({
+                    title: 'Alas, a Server Error!',
+                    text: 'Thy guess could not be validated. Pray, try again.',
+                    icon: 'error',
+                    confirmButtonText: 'Understood'
+                });
             });
         },
 
@@ -296,10 +346,10 @@ $(document).ready(function () {
                 title: 'How to Play',
                 html: `
                     <div class="how-to-play">
-                        <p>Guess the Wordle in 6 tries.</p>
+                        <p>Thou must guess the Wordle in six tries.</p>
                         <ul>
-                            <li>Each guess must be a valid 5-letter word.</li>
-                            <li>The color of the tiles will change to show how close your guess was to the word.</li>
+                            <li>Each guess must be a valid five-letter word.</li>
+                            <li>The color of the tiles shall change to show how near thy guess is to the word.</li>
                         </ul>
                         <p><b>Examples</b></p>
                         <div class="boxes d-flex">
@@ -309,7 +359,7 @@ $(document).ready(function () {
                             <div class="box">E</div>
                             <div class="box">S</div>
                         </div>
-                        <p><b>M</b> is in the word and in the correct spot.</p>
+                        <p><b>M</b> is in the word and in the correct place.</p>
                         <div class="boxes d-flex">
                             <div class="box">D</div>
                             <div class="box present">A</div>
@@ -317,7 +367,7 @@ $(document).ready(function () {
                             <div class="box">I</div>
                             <div class="box">D</div>
                         </div>
-                        <p><b>A</b> is in the word but in the wrong spot.</p>
+                        <p><b>A</b> is in the word but is misplaced.</p>
                         <div class="boxes d-flex">
                             <div class="box">J</div>
                             <div class="box">O</div>
@@ -325,16 +375,16 @@ $(document).ready(function () {
                             <div class="box absent">N</div>
                             <div class="box">S</div>
                         </div>
-                        <p><b>N</b> is not in the word in any spot.</p>
+                        <p><b>N</b> is not in the word in any place.</p>
                     </div>
                 `,
-                confirmButtonText: 'Got it!',
+                confirmButtonText: 'Understood, Brave Soul!',
                 customClass: {
                     popup: 'how-to-popup',
                     title: 'how-to-title',
                     htmlContainer: 'how-to-html',
                 }
-            })
+            });
         }
     };
 

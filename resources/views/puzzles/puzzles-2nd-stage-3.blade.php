@@ -6,7 +6,7 @@
     {{ csrf_field() }}
     <link rel="stylesheet" href="{{ asset('custom/css/puzzle-2nd.css') }}">
     <div class="page_wrap">
-        @include('includes.puzzle_banner', ['title' => 'Words and Letters: Caesar Cipher']) <!--Added puzzle title based on documentation-->
+        @include('includes.puzzle_banner', ['title' => 'Words and Letters (Stage 3): Caesar Cipher (IN PROGRESS)']) <!--Added puzzle title based on documentation-->
 
         @include('includes.header')
 
@@ -31,10 +31,24 @@
                                                             <div class="vc_column-inner">
                                                                 <div class="wpb_wrapper">
                                                                     <div class="wpb_content_element vc_align_center wpb_content_element">
-                                                                        <h1>Medieval Wordle</h1>
-                                                                        <div class="word-grid" id="grid"></div>
+                                                                        <p>Type thy secret scroll and choose thy sacred shift.</p>
+
+                                                                        <input type="text" id="plain-text" placeholder="Enter thy message..." value="Thou art worthy" />
+                                                                        <input type="number" id="shift" placeholder="Shift by..." value="3" />
+                                                                        <button id="btn-translate-scripture">Translate Scripture</button>
+
+                                                                        <div class="caesar-cipher" id="caesar-cipher">
+                                                                            🧾 Thy encrypted scroll shall appear here...
+                                                                        </div>
+
+                                                                        <h2 style="text-align: center; font-family: 'Garamond', serif; margin: 20px 0 0 0">🧭 Cipher Wheel of Caesarion</h2>
+                                                                        <div style="display: flex; justify-content: center; margin: 1em 0;">
+                                                                            <canvas id="cipher-wheel" width="300" height="300" style="background: #fdfaf0; border-radius: 50%; box-shadow: 0 0 8px rgba(0,0,0,0.2);"></canvas>
+                                                                        </div>
+
                                                                         <br>
                                                                         <button id="btn-key-send" class="d-none">Submit</button>
+                                                                        <a id="btn-key-send" href="/puzzle-wordle-reset">Reset</a>
                                                                         <p id="message"></p>
                                                                     </div>
                                                                 </div>
@@ -57,5 +71,5 @@
 
 @section('footer-scripts')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    {!! asset_versioned('/custom/js/puzzles-2nd.js', 'js', 'type="text/javascript"') !!}
+    {!! asset_versioned('/custom/js/puzzles-2nd-stage-3.js', 'js', 'type="text/javascript"') !!}
 @endsection
