@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-use App\Models\PuzzleAttempt;
+use App\Models\Team;
 
 class User extends Authenticatable
 {
@@ -18,11 +18,13 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
+        'team_id',
         'name',
-        'reg_code',
         'email',
+        'reg_code',
         'first_name',
-        'last_name'
+        'last_name',
+        'type_id'
     ];
 
     /**
@@ -33,7 +35,7 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function puzzleAttempts() {
-        return $this->hasMany(PuzzleAttempt::class);
+    public function team() {
+        return $this->belongsTo(Team::class, 'team_id', 'id');
     }
 }

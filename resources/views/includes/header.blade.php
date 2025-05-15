@@ -57,9 +57,10 @@
                     <div class="sc_layouts_item">
                         @php
                             $checkLoggedStatus = Auth::check();
-                            $loggedInName = Auth::user()->name ?? "";
-                            $buttonText = $checkLoggedStatus ? "Hail $loggedInName!" : "Step To Thy Conquest!";
-                            $buttonLink = $checkLoggedStatus ? "/dashboard" : "/login";
+                            $loggedInName = Auth::user()->first_name ?? "";
+                            $loggedInTeamName = Auth::user()->team->team_name ?? "";
+                            $buttonText = $checkLoggedStatus ? "Hail $loggedInName of the $loggedInTeamName!" : "Step To Thy Conquest!";
+                            $buttonLink = $checkLoggedStatus ? "/logout" : "/login";
                         @endphp
                         <a href="{{ $buttonLink }}" class="sc_button color_style_default sc_button_bordered sc_button_size_normal sc_button_with_icon sc_button_icon_left">
                             <span class="sc_button_icon">

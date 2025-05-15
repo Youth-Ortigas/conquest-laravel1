@@ -9,7 +9,7 @@ use App\Http\Controllers\UpdateController;
 use App\Http\Middleware\ActivityLogCustom;
 
 Route::middleware(['web'])->group(function () {
-    Route::get('/', [HomeController::class, 'index'])->middleware(ActivityLogCustom::class);;
+    Route::get('/', [HomeController::class, 'index'])->middleware(ActivityLogCustom::class);
     Route::get('/home', [HomeController::class, 'index'])->name('home.index')->middleware(ActivityLogCustom::class);
 
     Route::get('/puzzles', [PuzzleController::class, 'index'])->name('puzzles.index');

@@ -29,17 +29,7 @@
                                                         The key is hidden in the city. <br>Take charge young Conqueror!
                                                     </h3>
                                                     <div class="tutorial">
-                                                        <p> If you feel stuck, download the image of the clue</p>
-                                                        <p>
-                                                            For Extra help, read this:<br>
-                                                        <ul>
-                                                            <li>After downloading the image, look for a word hidden in the picture</li>
-                                                            <li>Once you have found the word, have a look again at the filename of the image you just downloaded.</li>
-                                                            <li>Take a look at the Vigenere Table and try to put 2 and 2 together to solve the puzzle!</li>
-                                                            <li>To "submit" your final answer, go to the address bar of your browser,
-                                                            </li>
-                                                        </ul>
-                                                        </p>
+
                                                     </div>
                                                 </div>
                                             </div>

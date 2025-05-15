@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PuzzleAttempt;
 use App\Traits\TraitsCommon;
 use Illuminate\Http\Request;
 use App\Models\PuzzleGameState;
@@ -28,37 +29,47 @@ class PuzzleGameStateController extends Controller
             'puzzle_num' => 'required|numeric',
             'game_state' => 'required|json',
         ]);
+        $team_id = $this->getAuthTeamID();
 
-        $user_id = $this->getAuthUserID();
-        $gameStateData = $request->input('game_state');
-        $gameStateArray = json_decode($gameStateData, true);
-        $gameStateArray['answer'] = session('current_word');
+        if($request->puzzle_num == 2) {
+            $gameStateData = $request->input('game_state');
+            $gameStateArray = json_decode($gameStateData, true);
+            $gameStateArray['answer'] = session('current_word');
 
-        if (!isset($gameStateArray['guesses'])) {
-            $gameStateArray['guesses'] = [];
-        }
+            if (!isset($gameStateArray['guesses'])) {
+                $gameStateArray['guesses'] = [];
+            }
 
-        if ($gameStateArray['attempts'] == 6 || $gameStateArray['isCorrect'] == 1) {
-            PuzzleGameState::where('user_id', $user_id)
-                ->where('puzzle_num', $request->puzzle_num)
-                ->delete();
+            if ($gameStateArray['attempts'] == 6 || $gameStateArray['isCorrect'] == 1) {
+                PuzzleGameState::where('team_id', $team_id)
+                    ->where('puzzle_num', $request->puzzle_num)
+                    ->delete();
 
-            return response()->json(['status' => 'success', 'message' => 'Game state removed because attempts reached 6 or the word was correct.']);
-        }
+                return response()->json(['status' => 'success', 'message' => 'Game state removed because attempts reached 6 or the word was correct.']);
+            }
 
-        $existingGameState = PuzzleGameState::where('user_id', $user_id)
-                                            ->where('puzzle_num', $request->puzzle_num)
-                                            ->first();
+            $existingGameState = PuzzleGameState::where('team_id', $team_id)
+                                                ->where('puzzle_num', $request->puzzle_num)
+                                                ->first();
 
-        if ($existingGameState) {
-            $existingGameState->game_state = json_encode($gameStateArray);
-            $existingGameState->save();
-        } else {
-            PuzzleGameState::create([
-                'user_id' => $user_id,
-                'puzzle_num' => $request->puzzle_num,
-                'game_state' => json_encode($gameStateArray),
-            ]);
+            if ($existingGameState) {
+                $existingGameState->game_state = json_encode($gameStateArray);
+                $existingGameState->save();
+            } else {
+                PuzzleGameState::create([
+                    'team_id' => $team_id,
+                    'puzzle_num' => $request->puzzle_num,
+                    'game_state' => json_encode($gameStateArray),
+                ]);
+            }
+        } elseif(in_array($request->puzzle_num, [1,3])) {
+            PuzzleGameState::updateOrCreate(
+                [
+                    'team_id'    => $team_id,
+                    'puzzle_num' => $request->puzzle_num,
+                ],
+                ['game_state' => $request->game_state]
+            );
         }
 
         return response()->json(['status' => 'success', 'message' => 'Game state saved successfully']);
@@ -69,19 +80,32 @@ class PuzzleGameStateController extends Controller
      */
     public function getGameState($puzzleNum)
     {
-        $gameState = PuzzleGameState::where('user_id', $this->getAuthUserID())
+        $gameState = PuzzleGameState::where('team_id', $this->getAuthTeamID())
                                     ->where('puzzle_num', $puzzleNum)
                                     ->first();
 
         if ($gameState) {
              $gameStateArray = json_decode($gameState->game_state, true);
 
-            unset($gameStateArray['answer']);
+            if(isset($gameStateArray['answer']))
+                unset($gameStateArray['answer']);
 
             return response()->json([
                 'status' => 'success',
                 'game_state' => $gameStateArray, // Return the game state as an array
             ]);
+        } else {
+            $puzzleAttempt = PuzzleAttempt::where('team_id', $this->getAuthTeamID())
+                                        ->where('puzzle_num', $puzzleNum)
+                                        ->where('is_correct', 1)
+                                        ->first();
+
+            if($puzzleAttempt) {
+                return response()->json([
+                    'status' => 'complete',
+                    'entered_key' => $puzzleAttempt->entered_key,
+                ]);
+            }
         }
 
         return response()->json(['status' => 'error', 'message' => 'No game state found.']);

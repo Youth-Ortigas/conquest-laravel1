@@ -1,4 +1,15 @@
 $(document).ready(function () {
+    $(document).on('contextmenu', function (e) {
+        e.preventDefault();
+    });
+
+    $(document).on('keydown', function (e) {
+        if (e.keyCode === 123 || // F12
+            (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || // Ctrl+Shift+I/J
+            (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83))) { // Ctrl+U/S
+            e.preventDefault();
+        }
+    });
 
     var oModulePuzzles = {
 
@@ -6,10 +17,18 @@ $(document).ready(function () {
          * Initializes the game by loading properties, fetching words,
          * setting up input navigation, and handling submission.
          */
-        init: async function () {
+        init: function () {
             this.loadProperties();
-            this.loadGameState();
-            this.fetchWords();
+
+            this.loadGameState()
+                .then(() => {
+                    this.fetchWords();
+                })
+                .catch(error => {
+                    console.error(error);
+                    this.fetchWords();
+                });
+
             this.handleInputNavigation();
             this.handleSubmission();
         },
@@ -28,41 +47,51 @@ $(document).ready(function () {
             this.DOMClassKeyButton = $(this.classKeyButton);
             this.csrfToken = $('meta[name="csrf-token"]').attr('content');
             this.isCorrect = 0;
-            this.puzzleNum = 2.1;
+            this.puzzleNum = 2;
+            this.isPuzzleComplete = false;
         },
 
         /**
          * Loads the saved game state from localStorage.
          */
         loadGameState: function () {
-            $.get(`/puzzle-get-game-state/${this.puzzleNum}`, (data) => {
-                if (data && data.game_state) {
-                    let savedState = data.game_state;
-                    this.savedState = savedState;
-                    this.attempts = savedState.attempts;
-                    this.currentRow = savedState.currentRow;
-                    this.WORD = savedState.word;
-                    this.WORDS = savedState.words || [];
-                    this.grid.html(savedState.gridHTML);
+            return new Promise((resolve, reject) => {
+                $.get(`/puzzle-get-game-state/${this.puzzleNum}`, (data) => {
+                    if (data && data.game_state) {
+                        let savedState = data.game_state;
+                        this.savedState = savedState;
+                        this.attempts = savedState.attempts;
+                        this.currentRow = savedState.currentRow;
+                        this.WORD = savedState.word;
+                        this.WORDS = savedState.words || [];
+                        this.grid.html(savedState.gridHTML);
 
-                    this.updateGridState(savedState.guesses || []);
-                    this.applyInputEventListeners();
+                        this.updateGridState(savedState.guesses || []);
+                        this.applyInputEventListeners();
 
-                    if (this.attempts <= 6) {
-                        Swal.fire({
-                            title: `Welcome Back, Conqueror!`,
-                            text: `Thou hast made ${this.attempts} of 6 guesses. Continue thy noble quest!`,
-                            icon: 'info',
-                            confirmButtonText: 'Understood'
-                        });
+                        if (this.attempts <= 6) {
+                            Swal.fire({
+                                title: `Welcome Back, Conqueror!`,
+                                text: `Thou hast made ${this.attempts} of 6 guesses. Continue thy noble quest!`,
+                                icon: 'info',
+                                confirmButtonText: 'Understood'
+                            });
+                        }
+                        resolve(); // Finish successfully
+                    } else if (data && data.status === 'complete') {
+                        this.isPuzzleComplete = true;
+                        resolve(); // Still resolve to continue flow
+                    } else {
+                        reject('Unexpected response structure.');
                     }
-                }
 
-                $('html, body').animate({
-                    scrollTop: $('#page_content_wrap').offset().top
-                }, 500);
-            }).fail(() => {
-                console.error('Failed to load game state.');
+                    $('html, body').animate({
+                        scrollTop: $('#page_content_wrap').offset().top
+                    }, 500);
+                }).fail(() => {
+                    console.error('Failed to load game state.');
+                    reject('Failed to load game state.');
+                });
             });
         },
 
@@ -126,43 +155,48 @@ $(document).ready(function () {
          * Fetch words from the backend and start the first round.
          */
         fetchWords: function () {
-            $.post('/puzzle-wordle-get-word', {_token: this.csrfToken}, (data) => {
-                if (data.status === 'success') {
-                    this.startNewRound();
+            if(!this.isPuzzleComplete) {
+                $.post('/puzzle-wordle-get-word', {_token: this.csrfToken}, (data) => {
+                    if (data.status === 'success') {
+                        this.startNewRound();
 
-                    if(this.attempts == 0 && data.showHowToPlayGameAlert)
-                        this.showHowToPlay();
-                } else if(data.status === 'complete') {
-                    Swal.fire({
-                        title: 'Alas, the Game is Over!',
-                        text: 'Thou hast completed all rounds!',
-                        icon: 'info',
-                        allowOutsideClick: false,
-                        allowEscapeKey: false,
-                        allowEnterKey: false,
-                        showConfirmButton: false,
-                        footer: '<strong>Pray, wait for the next puzzle to be unlocked.</strong>'
-                    });
-
-                    this.grid.empty();
-                    this.DOMClassKeyButton.addClass('d-none');
-
-                    if(data.next_puzzle) {
+                        if(this.attempts == 0 && data.showHowToPlayGameAlert)
+                            this.showHowToPlay();
+                    } else if(data.status === 'complete') {
                         Swal.fire({
-                            title: 'Puzzle Unlocked!',
-                            html: '<p>Thou hast triumphed over the first stage of the second puzzle (Wordle)!</p><p>Clicketh <strong>Go Forth!</strong> to embark upon thy next quest in stage 2.</p>',
-                            icon: 'success',
-                            confirmButtonText: 'Go Forth!'
-                        }).then(() => {
-                            window.location.href = data.next_puzzle;
+                            title: 'Alas, the Game is Over!',
+                            text: 'Thou hast completed all rounds!',
+                            icon: 'info',
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                            allowEnterKey: false,
+                            showConfirmButton: false,
+                            footer: '<strong>Pray, wait for the next puzzle to be unlocked.</strong>'
                         });
+
+                        this.grid.empty();
+                        this.DOMClassKeyButton.addClass('d-none');
+
+                        if(data.next_puzzle) {
+                            Swal.fire({
+                                title: 'Puzzle Unlocked!',
+                                html: '<p>Thou hast triumphed over the second puzzle (Wordle)!</p><p>Clicketh <strong>Go Forth!</strong> to embark upon thy next quest in puzzle 3.</p>',
+                                icon: 'success',
+                                allowOutsideClick: false,
+                                allowEscapeKey: false,
+                                allowEnterKey: false,
+                                confirmButtonText: 'Go Forth!'
+                            }).then(() => {
+                                window.location.href = data.next_puzzle;
+                            });
+                        }
+                    } else {
+                        Swal.fire('Error', 'No puzzle words found!', 'error');
                     }
-                } else {
-                    Swal.fire('Error', 'No puzzle words found!', 'error');
-                }
-            }).fail(() => {
-                Swal.fire('Error', 'Failed to fetch puzzle words!', 'error');
-            });
+                }).fail(() => {
+                    Swal.fire('Error', 'Failed to fetch puzzle words!', 'error');
+                });
+            }
         },
 
         /**

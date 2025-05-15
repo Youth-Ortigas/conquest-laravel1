@@ -86,6 +86,7 @@ class ServicesAutoOneDB
 
                     if ($checkExistingReg->count() < 1) {
                         $modelUsers->name = $dataItem["name_full"] ?? "TBA";
+                        $modelUsers->team_id = rand(1,10);
                         $modelUsers->reg_code = $regCode;
                         $modelUsers->email = $dataItem["email"] ?? "TBA";
                         $modelUsers->first_name = $dataItem["name_first"] ?? "TBA";
