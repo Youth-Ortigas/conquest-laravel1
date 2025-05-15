@@ -10,6 +10,11 @@
                                     <div class="sc_layouts_title_content">
                                         <div class="sc_layouts_title_title">
                                             <h1 class="sc_layouts_title_caption">{{ $title }}</h1>
+                                            <h6 class="sc_layouts_title_caption">
+                                                @if(isset($dateTimeCompleted) && $dateTimeCompleted)
+                                                    Completed on {{ $dateTimeCompleted }} ({{ $numberOfAttempt }} {{ Str::plural('attempt', $numberOfAttempt) }})
+                                                @endif
+                                            </h6>
                                         </div>
                                     </div><!-- .sc_layouts_title_content -->
                                 </div><!-- /.sc_layouts_title -->

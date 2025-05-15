@@ -11,12 +11,13 @@ class Puzzle extends Model
 
     protected $table = 'puzzles';
 
-    protected $fillable = ['puzzle_key', 'puzzle_num', 'unlock_puzzle'];
+    protected $fillable = [
+        'puzzle_key',
+        'puzzle_num',
+        'unlock_puzzle'
+    ];
 
     protected $casts = [
         'puzzle_key' => 'array',
     ];
-
-    public const REQUIRED_WORDLE_WORD_COUNT = 3;
-
 }

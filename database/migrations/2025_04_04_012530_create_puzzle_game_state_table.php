@@ -15,8 +15,8 @@ class CreatePuzzleGameStateTable extends Migration
     {
         Schema::create('puzzle_game_state', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->float('puzzle_num');
+            $table->unsignedBigInteger('team_id');
+            $table->integer('puzzle_num');
             $table->json('game_state');
             $table->timestamps();
 

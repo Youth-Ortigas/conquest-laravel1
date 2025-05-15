@@ -23,7 +23,7 @@ class ValidatePuzzleKeyRequest extends FormRequest
     {
         return [
             'puzzle_key' => 'required',
-            'puzzle_num' => 'required|numeric|in:1,2.1,2.2,2.3,3'
+            'puzzle_num' => 'required|numeric|in:1,2,3,4'
         ];
     }
 
@@ -39,7 +39,7 @@ class ValidatePuzzleKeyRequest extends FormRequest
 
             'puzzle_num.required' => 'The puzzle number is required.',
             'puzzle_num.numeric' => 'The puzzle number must be numeric.',
-            'puzzle_num.in' => 'The puzzle number must be 1, 2.1, 2.2, 2.3, or 3.',
+            'puzzle_num.in' => 'The puzzle number must be 1, 2, 3, or 4.',
         ];
     }
 }
