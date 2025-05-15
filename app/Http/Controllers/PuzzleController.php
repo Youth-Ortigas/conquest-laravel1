@@ -383,11 +383,10 @@ class PuzzleController extends BaseController
             return redirect()->route('puzzles.index')->with('error', 'This challenge is not yet ready to be unveiled, brave soul. Await the herald’s announcement.');
 
         if($puzzleNum > 1) {
-            $isPuzzleUnlocked = false;
             $requiredCorrectAttempts = 1;
             $previousPuzzleNum = $puzzleNum - 1;
 
-            if($puzzleNum == 2)
+            if($previousPuzzleNum == 2) //Multiple answers are required for Puzzle 2 to unlock Puzzle 3.
                 $requiredCorrectAttempts = config('constants.REQUIRED_WORDLE_WORD_COUNT');
 
             $numberOfCorrectAttempt = PuzzleAttempt::where('puzzle_num', $previousPuzzleNum)
