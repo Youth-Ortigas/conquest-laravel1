@@ -16,12 +16,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (Schema::hasTable('teams_members')) {
+        if (Schema::hasTable('teams')) {
             Schema::create('teams_members', function (Blueprint $table) {
                 $table->id();
                 $table->integer('teams_id');
                 $table->integer('teams_user_id');
-                $table->integer('cabin_name');
+                $table->string('cabin_name', 125);
                 $table->timestamps();
                 $table->dateTime('deleted_at')->nullable();
             });
