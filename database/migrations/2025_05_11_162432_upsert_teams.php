@@ -237,9 +237,19 @@ return new class extends Migration
             'updated_at' => now(),
         ];
 
+        $upsertTeamsLeaders = [
+            'team_name' => 'Team Leaders',
+            'team_code' => 'teamleaders',
+            'team_leader_user_id_primary' => 1,
+            'team_leader_user_id_secondary' => 1,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
+
         return [
             $upsertTeams1, $upsertTeams2, $upsertTeams3, $upsertTeams4, $upsertTeams5,
-            $upsertTeams6, $upsertTeams7, $upsertTeams8, $upsertTeams9, $upsertTeams10
+            $upsertTeams6, $upsertTeams7, $upsertTeams8, $upsertTeams9, $upsertTeams10,
+            $upsertTeamsLeaders
         ];
     }
 
