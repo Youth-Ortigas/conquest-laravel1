@@ -80,35 +80,55 @@ class PuzzleGameStateController extends Controller
      */
     public function getGameState($puzzleNum)
     {
-        $gameState = PuzzleGameState::where('team_id', $this->getAuthTeamID())
+        $teamId = $this->getAuthTeamID();
+
+        $gameState = PuzzleGameState::where('team_id', $teamId)
                                     ->where('puzzle_num', $puzzleNum)
                                     ->first();
 
         if ($gameState) {
-             $gameStateArray = json_decode($gameState->game_state, true);
+            $gameStateArray = json_decode($gameState->game_state, true);
 
             if(isset($gameStateArray['answer']))
                 unset($gameStateArray['answer']);
 
             return response()->json([
                 'status' => 'success',
-                'game_state' => $gameStateArray, // Return the game state as an array
+                'game_state' => $gameStateArray,
             ]);
-        } else {
-            $puzzleAttempt = PuzzleAttempt::where('team_id', $this->getAuthTeamID())
+        }
+
+        $puzzleAttempt = null;
+
+        if ($puzzleNum != 2) {
+            $puzzleAttempt = PuzzleAttempt::where('team_id', $teamId)
                                         ->where('puzzle_num', $puzzleNum)
                                         ->where('is_correct', 1)
                                         ->first();
+        } else {
+            $requiredCorrectAttempts = config('constants.REQUIRED_WORDLE_WORD_COUNT');
 
-            if($puzzleAttempt) {
-                return response()->json([
-                    'status' => 'complete',
-                    'entered_key' => $puzzleAttempt->entered_key,
-                ]);
+            $correctAttempts = PuzzleAttempt::where('puzzle_num', $puzzleNum)
+                ->where('team_id', $teamId)
+                ->where('is_correct', 1)
+                ->get();
+
+            if (count($correctAttempts) === $requiredCorrectAttempts) {
+                $puzzleAttempt = $correctAttempts->first();
             }
         }
 
-        return response()->json(['status' => 'error', 'message' => 'No game state found.']);
+        if ($puzzleAttempt) {
+            return response()->json([
+                'status' => 'complete',
+                'entered_key' => $puzzleAttempt->entered_key ?? null,
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'error',
+            'message' => 'No game state found.',
+        ]);
     }
 
 }

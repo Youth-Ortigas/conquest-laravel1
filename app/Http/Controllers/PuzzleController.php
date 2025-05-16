@@ -10,6 +10,7 @@ use App\Models\Puzzle;
 use App\Models\PuzzleAttempt;
 use App\Models\PuzzleGameState;
 use Illuminate\Support\Facades\Auth;
+use App\Lib\LibUtility;
 
 use App\Http\Requests\ValidatePuzzleKeyRequest;
 use Illuminate\Routing\Controller as BaseController;
@@ -60,13 +61,37 @@ class PuzzleController extends BaseController
                 ]);
 
                 if ($modelCheck->count() > 0) {
-                    $assignData = $modelCheck->first()->toArray();
-                    $assignPuzzlesRound[intval($assignData["puzzle_num"])] = $assignData;
+                    $assignData = $modelCheck->get()->toArray();
+                    $assignPuzzlesRound[intval($puzzleNum)] = $assignData;
                 }
             }
         }
 
-        return view('puzzles', compact('modelPuzzlesList', 'assignPuzzlesRound', 'modelPuzzlesDateUnlocked', 'authTeamID'));
+        $REQUIRED_WORDLE_WORD_COUNT = config('constants.REQUIRED_WORDLE_WORD_COUNT');
+        $isArray = [LibUtility::class, 'isArray'];
+
+        $checkPuzzleState['2nd'] = $assignPuzzlesRound[1] ?? [];
+        $checkPuzzleState['3rd'] = $assignPuzzlesRound[2] ?? [];
+        $checkPuzzleState['4th'] = $assignPuzzlesRound[3] ?? [];
+
+        $flagPuzzleDisableOpacity['1st'] = Auth::check() !== true ? "opacity: 0.5" : "";
+        $flagPuzzleDisableOpacity['2nd'] = $isArray($checkPuzzleState['2nd']) !== true ? "opacity: 0.5" : "";
+        $flagPuzzleDisableOpacity['3rd'] = $isArray($checkPuzzleState['3rd']) !== true || count($checkPuzzleState['3rd']) !== $REQUIRED_WORDLE_WORD_COUNT ? "opacity: 0.5" : "";
+        $flagPuzzleDisableOpacity['4th'] = $isArray($checkPuzzleState['4th']) !== true ? "opacity: 0.5" : "";
+
+        $flagPuzzleAllowLink['1st'] = Auth::check();
+        $flagPuzzleAllowLink['2nd'] = $isArray($checkPuzzleState['2nd']);
+        $flagPuzzleAllowLink['3rd'] = $isArray($checkPuzzleState['3rd']) && count($checkPuzzleState['3rd']) === $REQUIRED_WORDLE_WORD_COUNT;
+        $flagPuzzleAllowLink['4th'] = $isArray($checkPuzzleState['4th']);
+
+        $isPuzzleComplete['1st'] = $isArray($checkPuzzleState['2nd']);
+        $isPuzzleComplete['2nd'] = $isArray($checkPuzzleState['3rd']) && count($checkPuzzleState['3rd']) === $REQUIRED_WORDLE_WORD_COUNT;
+        $isPuzzleComplete['3rd'] = $isArray($checkPuzzleState['4th']);
+
+        return view('puzzles', compact(
+            'modelPuzzlesList', 'modelPuzzlesDateUnlocked', 'authTeamID',
+            'checkPuzzleState', 'flagPuzzleDisableOpacity', 'flagPuzzleAllowLink', 'isPuzzleComplete'
+        ));
     }
 
     /**
@@ -130,10 +155,7 @@ class PuzzleController extends BaseController
 
         if($remainingWordsToGuess > 0) {
             $dateTimeCompleted = '';
-            $correctAttempt = [];
         }
-
-
 
         if (view()->exists("puzzles/puzzles-$reference")) {
             return view("puzzles/puzzles-$reference", compact('remainingWordsToGuess', 'correctAttempt', 'dateTimeCompleted', 'numberOfAttempt'));
@@ -383,11 +405,10 @@ class PuzzleController extends BaseController
             return redirect()->route('puzzles.index')->with('error', 'This challenge is not yet ready to be unveiled, brave soul. Await the herald’s announcement.');
 
         if($puzzleNum > 1) {
-            $isPuzzleUnlocked = false;
             $requiredCorrectAttempts = 1;
             $previousPuzzleNum = $puzzleNum - 1;
 
-            if($puzzleNum == 2)
+            if($previousPuzzleNum == 2) //Multiple answers are required for Puzzle 2 to unlock Puzzle 3.
                 $requiredCorrectAttempts = config('constants.REQUIRED_WORDLE_WORD_COUNT');
 
             $numberOfCorrectAttempt = PuzzleAttempt::where('puzzle_num', $previousPuzzleNum)

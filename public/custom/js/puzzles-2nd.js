@@ -1,7 +1,7 @@
 $(document).ready(function () {
-    $(document).on('contextmenu', function (e) {
-        e.preventDefault();
-    });
+    //$(document).on('contextmenu', function (e) {
+      //  e.preventDefault();
+    //});
 
     $(document).on('keydown', function (e) {
         if (e.keyCode === 123 || // F12
@@ -18,6 +18,7 @@ $(document).ready(function () {
          * setting up input navigation, and handling submission.
          */
         init: function () {
+            this.showLoading();
             this.loadProperties();
 
             this.loadGameState()
@@ -45,10 +46,12 @@ $(document).ready(function () {
             this.currentRow = 0;
             this.grid = $('#grid');
             this.DOMClassKeyButton = $(this.classKeyButton);
+            this.DOMShowGuessLoading = $("#guess-loading");
             this.csrfToken = $('meta[name="csrf-token"]').attr('content');
             this.isCorrect = 0;
             this.puzzleNum = 2;
             this.isPuzzleComplete = false;
+            this.isSubmitting = false;
         },
 
         /**
@@ -75,19 +78,19 @@ $(document).ready(function () {
                                 text: `Thou hast made ${this.attempts} of 6 guesses. Continue thy noble quest!`,
                                 icon: 'info',
                                 confirmButtonText: 'Understood'
+                            }).then(() => {
+                                this.focusToNextInput();
                             });
                         }
                         resolve(); // Finish successfully
                     } else if (data && data.status === 'complete') {
+                        Swal.close();
                         this.isPuzzleComplete = true;
                         resolve(); // Still resolve to continue flow
                     } else {
-                        reject('Unexpected response structure.');
+                        this.scrollToGrid();
+                        resolve();
                     }
-
-                    $('html, body').animate({
-                        scrollTop: $('#page_content_wrap').offset().top
-                    }, 500);
                 }).fail(() => {
                     console.error('Failed to load game state.');
                     reject('Failed to load game state.');
@@ -126,7 +129,6 @@ $(document).ready(function () {
          */
         updateGridState: function (guesses) {
             for (let rowIdx = 0; rowIdx < guesses.length; rowIdx++) {
-                console.log(guesses[rowIdx])
                 let guess = guesses[rowIdx];
                 let currentInputs = this.grid.find('.row').eq(rowIdx).find('.letter-box');
 
@@ -163,17 +165,6 @@ $(document).ready(function () {
                         if(this.attempts == 0 && data.showHowToPlayGameAlert)
                             this.showHowToPlay();
                     } else if(data.status === 'complete') {
-                        Swal.fire({
-                            title: 'Alas, the Game is Over!',
-                            text: 'Thou hast completed all rounds!',
-                            icon: 'info',
-                            allowOutsideClick: false,
-                            allowEscapeKey: false,
-                            allowEnterKey: false,
-                            showConfirmButton: false,
-                            footer: '<strong>Pray, wait for the next puzzle to be unlocked.</strong>'
-                        });
-
                         this.grid.empty();
                         this.DOMClassKeyButton.addClass('d-none');
 
@@ -188,6 +179,19 @@ $(document).ready(function () {
                                 confirmButtonText: 'Go Forth!'
                             }).then(() => {
                                 window.location.href = data.next_puzzle;
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Alas, the Game is Over!',
+                                text: 'Thou hast completed all rounds!',
+                                icon: 'info',
+                                allowOutsideClick: false,
+                                allowEscapeKey: false,
+                                allowEnterKey: false,
+                                confirmButtonText: 'View Results',
+                                footer: '<strong>Pray, wait for the next puzzle to be unlocked.</strong>'
+                            }).then(() => {
+                                $("#words-left-h5").addClass('d-none')
                             });
                         }
                     } else {
@@ -208,24 +212,22 @@ $(document).ready(function () {
                 this.attempts = 0;
                 this.currentRow = 0;
                 this.generateGrid();
+                Swal.close();
             } else {
                 // If there's a saved state, restore the saved grid state
                 this.attempts = this.savedState.attempts;
                 this.currentRow = this.savedState.currentRow;
-                this.updateGridState(this.savedState.guesses);  // Restore the guesses on the grid
-
-                // Enable input for the current row
-                let nextRowInputs = this.grid.find('.row').eq(this.currentRow).find('.letter-box');
-                nextRowInputs.prop("disabled", false);
-                nextRowInputs.first().focus();
+                this.updateGridState(this.savedState.guesses);
             }
+
+            this.focusToNextInput();
         },
 
         /**
          * Generates a grid of input fields where the player enters guesses.
          */
         generateGrid: function () {
-            this.grid.empty(); // Clear any existing grid
+            this.grid.empty();
             for (let i = 0; i < this.MAX_ATTEMPTS; i++) {
                 let row = $('<div>', { class: 'row' });
                 for (let j = 0; j < 5; j++) {
@@ -266,10 +268,17 @@ $(document).ready(function () {
          * Handles input navigation and submission using the Enter key.
          */
         handleInputNavigation: function () {
+            let enterPressed = false;
+
             $(document).on('keypress', '.letter-box', function (e) {
-                if (e.which === 13) { // Enter key
+                if (e.which === 13 && !enterPressed) { // Enter key
                     e.preventDefault();
+                    enterPressed = true;
                     oModulePuzzles.validatePuzzleGuess();
+
+                    setTimeout(() => {
+                        enterPressed = false;
+                    }, 1000);
                 }
             });
         },
@@ -288,32 +297,71 @@ $(document).ready(function () {
          * Validates the user's guess by checking against the backend.
          */
         validatePuzzleGuess: function () {
+            if (this.isSubmitting) return;
+            this.isSubmitting = true;
+            this.DOMShowGuessLoading.removeClass('d-none')
+
             let currentInputs = this.grid.find('.row').eq(this.currentRow).find('.letter-box');
-            let guess = currentInputs.map(function () { return $(this).val(); }).get().join('');
+            let guess = currentInputs.map(function () { return $(this).val(); }).get().join('').toLowerCase();
 
             if (guess.length !== 5) {
+                this.DOMShowGuessLoading.addClass('d-none')
+
                 Swal.fire({
                     title: 'Incomplete Guess!',
                     text: 'Thou must fill all five letters before submitting.',
                     icon: 'error',
                     confirmButtonText: 'Understood'
+                }).then(() => {
+                    this.isSubmitting = false;
                 });
-
                 return;
             }
 
+            // Check word validity using Dictionary API
+            fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${guess}`)
+                .then(response => {
+                    if (response.ok) {
+                        // Word is valid, proceed with submission
+                        return this.submitGuess(guess, currentInputs);
+                    } else if (response.status === 404) {
+                        // Word is not found in dictionary
+                        this.DOMShowGuessLoading.addClass('d-none')
+
+                        Swal.fire({
+                            title: 'Invalid Word!',
+                            text: 'Thy word is not known in the common tongue. Try another.',
+                            icon: 'error',
+                            confirmButtonText: 'Understood'
+                        }).then(() => {
+                            this.isSubmitting = false;
+                        });
+                    } else {
+                        return this.submitGuess(guess, currentInputs);
+                    }
+                })
+                .catch(() => {
+                    return this.submitGuess(guess, currentInputs);
+                });
+
+        },
+
+        submitGuess: function (guess, currentInputs) {
             $.post('/puzzle-wordle-check-guess', {
                 _token: this.csrfToken,
                 guess: guess
             }, (response) => {
+                this.DOMShowGuessLoading.addClass('d-none')
+
                 if (!response.feedback || response.feedback.length !== 5) {
                     Swal.fire({
                         title: 'Error!',
                         text: 'Thy feedback is naught valid. Try again.',
                         icon: 'error',
                         confirmButtonText: 'Understood'
+                    }).then(() => {
+                        this.isSubmitting = false;
                     });
-
                     return;
                 }
 
@@ -332,6 +380,7 @@ $(document).ready(function () {
 
                 if (correctCount === 5) {
                     this.isCorrect = 1;
+                    this.savedState = null;
 
                     Swal.fire({
                         title: '🎉 Thou hast Triumphed!',
@@ -342,12 +391,17 @@ $(document).ready(function () {
                         $("#remaining-words-to-guess").text(
                             Math.max(0, parseInt($("#remaining-words-to-guess").text(), 10) - 1)
                         );
+                        $("#guessed-words-header").removeClass('d-none')
+                        $("#guessed-words").append(`<li><b>${guess.toUpperCase()} &#x1F5F8;</b></li>`)
+                        this.showLoading();
                         this.fetchWords();
+                        this.isSubmitting = false;
                     });
                 } else {
                     this.isCorrect = 0;
                     this.attempts++;
                     this.currentRow++;
+
                     if (this.attempts >= this.MAX_ATTEMPTS) {
                         Swal.fire({
                             title: 'Alas, the Game is Over!',
@@ -356,11 +410,12 @@ $(document).ready(function () {
                             confirmButtonText: 'Persevere!'
                         }).then(() => {
                             this.fetchWords();
+                            this.savedState = null;
+                            this.isSubmitting = false;
                         });
                     } else {
-                        let nextRowInputs = this.grid.find('.row').eq(this.currentRow).find('.letter-box');
-                        nextRowInputs.prop("disabled", false);
-                        nextRowInputs.first().focus();
+                        this.isSubmitting = false;
+                        this.focusToNextInput();
                     }
                 }
 
@@ -371,11 +426,14 @@ $(document).ready(function () {
                     text: 'Thy guess could not be validated. Pray, try again.',
                     icon: 'error',
                     confirmButtonText: 'Understood'
+                }).then(() => {
+                    this.isSubmitting = false;
                 });
             });
         },
 
         showHowToPlay: function () {
+            Swal.close();
             Swal.fire({
                 title: 'How to Play',
                 html: `
@@ -418,7 +476,33 @@ $(document).ready(function () {
                     title: 'how-to-title',
                     htmlContainer: 'how-to-html',
                 }
+            }).then(() => {
+                this.scrollToGrid();
+                this.focusToNextInput();
             });
+        },
+
+        showLoading: function () {
+            Swal.fire({
+                title: 'Loading...',
+                text: 'Please wait while we prepare your puzzle.',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+        },
+
+        focusToNextInput: function () {
+            let nextRowInputs = this.grid.find('.row').eq(this.currentRow).find('.letter-box');
+            nextRowInputs.prop("disabled", false);
+            nextRowInputs.first().focus();
+        },
+
+        scrollToGrid: function () {
+            $('html, body').animate({
+                scrollTop: $('#grid').offset().top
+            }, 500);
         }
     };
 

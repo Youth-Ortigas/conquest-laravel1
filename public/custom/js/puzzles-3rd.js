@@ -35,13 +35,13 @@ $(document).ready(function () {
         bindEvents: function () {
             $(document).on('click', '#scrollLabel, #scrollPaper', () => {
                 if (!oScrollModule.isOpen) {
-                    this.openScroll()
+                    oScrollModule.openScroll()
                 }
             });
 
-            this.$submitBtn.on('click', (e) => {
+            $(document).on('click', '#btn-submit-answers', function (e) {
                 e.preventDefault();
-                this.submitAnswers();
+                oScrollModule.submitAnswers(); // call directly
             });
         },
 
@@ -117,30 +117,31 @@ $(document).ready(function () {
                     _token: this.csrfToken,
                     puzzle_key: answers,
                     puzzle_num: this.puzzleNum
-                })
-                .done(function (response) {
+                }, function (response) {
                     if (response.status === 'success') {
-                        Swal.fire({
-                        title: 'Alas, the Game is Over!',
-                        text: `Thou hast completed puzzle ${this.puzzleNum}!`,
-                        icon: 'info',
-                        allowOutsideClick: false,
-                        allowEscapeKey: false,
-                        allowEnterKey: false,
-                        showConfirmButton: false,
-                        footer: '<strong>Pray, wait for the next puzzle to be unlocked.</strong>'
-                    });
-
-                    if(data.next_puzzle) {
-                        Swal.fire({
-                            title: 'Puzzle Unlocked!',
-                            html: '<p>Thou hast conquered the Fill in the blanks puzzle!</p><p>Click <strong>Go Forth!</strong> to journey to the last puzzle.</p>',
-                            icon: 'success',
-                            confirmButtonText: 'Go Forth!'
-                        }).then(() => {
-                            window.location.href = data.next_puzzle;
-                        });
-                    }
+                        if(response.next_puzzle) {
+                            Swal.fire({
+                                title: 'Puzzle Unlocked!',
+                                html: '<p>Thou hast conquered the fill in the blanks puzzle!</p><p>Click <strong>Go Forth!</strong> to journey to the last puzzle.</p>',
+                                icon: 'success',
+                                confirmButtonText: 'Go Forth!'
+                            }).then(() => {
+                                window.location.href = response.next_puzzle;
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Alas, the Game is Over!',
+                                text: `Thou hast completed fill in the blanks puzzle!`,
+                                icon: 'info',
+                                allowOutsideClick: false,
+                                allowEscapeKey: false,
+                                allowEnterKey: false,
+                                confirmButtonText: 'View Results',
+                                footer: '<strong>Pray, wait for the next puzzle to be unlocked.</strong>'
+                            }).then(() => {
+                                location.reload();
+                            });
+                        }
                     } else {
                         Swal.fire({
                             title: 'Try Again',
