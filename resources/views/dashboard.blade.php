@@ -45,25 +45,38 @@
                                         </div>
                                     </div>
 
-                                    <div class="wpb_column vc_column_container vc_col-md-6  vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left">
+                                    <div class="wpb_column vc_column_container vc_col-md-6 vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left">
                                         <div class="vc_column-inner">
                                             <div class="wpb_wrapper">
-                                                <div class="wpb_single_image wpb_content_element vc_align_center wpb_content_element">
-                                                    <div class="container" style="margin: 25px 0 0 0;">
-                                                        <div class="wpb_column vc_column_container vc_col-md-6 vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left">
-                                                            <div class="vc_column-inner">
-                                                                <div class="wpb_wrapper">
-                                                                    <div class="wpb_content_element vc_align_left wpb_content_element">
-                                                                        <h3 style="margin: 9.15rem 0 25px 0;"> TBA </h3>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                <div class="wpb_single_image wpb_content_element vc_align_left wpb_content_element">
+                                                    <h3 style="margin:0 0 15px 0;"> Thy Team & Cabin </h3>
+                                                    <?php
+                                                        $loggedUser = \App\Models\User::find(Auth::user()->id);
+                                                        $loggedUserLeaderMain = \App\Models\User::find($loggedUser->team->team_leader_user_id_primary);
+                                                        $loggedUserLeaderSecondary = \App\Models\User::find($loggedUser->team->team_leader_user_id_secondary);
+                                                    ?>
+                                                    <table class="tbl-info-user">
+                                                        <tr>
+                                                            <th class="th-label">Team Name & Code</th>
+                                                            <td class="td-value"> {{ $loggedUser->team?->team_name ?? "N/A" }} : {{ $loggedUser->team?->team_code ?? "N/A" }} </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="th-label">Cabin Name</th>
+                                                            <td class="td-value"> {{ $loggedUser->teamMember?->cabin_name ?? "N/A" }} </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="th-label">Team Leader/s & Email/s </th>
+                                                            <td class="td-value">
+                                                                <p> <b>Main:</b> {{ $loggedUserLeaderMain->first_name ?? "N/A" }} {{ $loggedUserLeaderMain->last_name ?? "N/A" }} ({{ $loggedUserLeaderMain->email ?? "N/A" }}) </p>
+                                                                <p style="margin: 0;"> <b>Assistant:</b> {{ $loggedUserLeaderSecondary->first_name ?? "N/A" }} {{ $loggedUserLeaderSecondary->last_name ?? "N/A" }} ({{ $loggedUserLeaderSecondary->email ?? "N/A" }}) </p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>

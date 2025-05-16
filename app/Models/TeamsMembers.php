@@ -20,8 +20,19 @@ class TeamsMembers extends Model
      * @var list<string>
      */
     protected $fillable = [
-        'team_id',
+        'teams_id',
         'teams_user_id',
         'cabin_name'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'team_user_id', 'id');
+    }
+
+    public function team()
+    {
+        return $this->belongsTo(Teams::class, 'teams_id', 'id');
+    }
+
 }

@@ -25,4 +25,19 @@ class Teams extends Model
         'team_leader_user_id_primary',
         'team_leader_user_id_secondary'
     ];
+
+    public function teamsMembers()
+    {
+        return $this->hasOne(TeamsMembers::class, 'teams_id', 'id');
+    }
+
+    public function getUserIDLeaderMainAttribute()
+    {
+        dd($this->user, "123");
+    }
+
+    public function getUserIDLeaderAssistantAttribute()
+    {
+        dd("ere");
+    }
 }
