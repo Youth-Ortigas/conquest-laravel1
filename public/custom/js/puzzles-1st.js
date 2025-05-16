@@ -149,23 +149,13 @@ $(document).ready(function () {
          * @param enteredKey
          */
         validatePuzzleKey: function (enteredKey) {
+            let oThis = this
             $.post("/validate-puzzle-key", {
                 _token: $('meta[name="csrf-token"]').attr('content'),
                 puzzle_key: enteredKey,
-                puzzle_num: this.puzzleNum
+                puzzle_num: oThis.puzzleNum
             }, function(data) {
                 if (data.status === 'success') {
-                    Swal.fire({
-                        title: 'Alas, the Game is Over!',
-                        text: `Thou hast completed puzzle ${this.puzzleNum}!`,
-                        icon: 'info',
-                        allowOutsideClick: false,
-                        allowEscapeKey: false,
-                        allowEnterKey: false,
-                        showConfirmButton: false,
-                        footer: '<strong>Pray, wait for the next puzzle to be unlocked.</strong>'
-                    });
-
                     if(data.next_puzzle) {
                         Swal.fire({
                             title: 'Puzzle Unlocked!',
@@ -174,6 +164,20 @@ $(document).ready(function () {
                             confirmButtonText: 'Go Forth!'
                         }).then(() => {
                             window.location.href = data.next_puzzle;
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Alas, the Game is Over!',
+                            text: `Thou hast conquered the Vigenère puzzle!`,
+                            icon: 'info',
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                            allowEnterKey: false,
+                            confirmButtonText: 'View Results',
+                            footer: '<strong>Pray, wait for the next puzzle to be unlocked.</strong>'
+                        }).then(() => {
+                            oThis.DOMClassKeyInput.prop('disabled', true);
+                            oThis.DOMClassKeyButton.remove();
                         });
                     }
                 } else {

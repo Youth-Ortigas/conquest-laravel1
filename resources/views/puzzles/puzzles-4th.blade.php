@@ -26,7 +26,7 @@
                                             <div class="wpb_wrapper">
                                                 <div class="wpb_single_image wpb_content_element vc_align_left wpb_content_element">
                                                     <div class="container" style="margin: 25px 0 0 0; text-align: center">
-                                                        <h1>TBA</h1>
+                                                        <h1>ON-SITE PUZZLE</h1>
                                                     </div>
                                                 </div>
                                             </div>

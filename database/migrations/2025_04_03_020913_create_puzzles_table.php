@@ -16,9 +16,9 @@ return new class extends Migration {
         Schema::create('puzzles', function (Blueprint $table) {
             $table->id();
             $table->json('puzzle_key');
-            $table->integer('puzzle_num');
+            $table->float('puzzle_num');
             $table->string('unlock_puzzle');
-            $table->datetime('date_unlocked')->nullable();
+            $table->date('date_unlocked')->nullable();
             $table->timestamps();
         });
     }

@@ -31,16 +31,20 @@
                                                             <div class="vc_column-inner">
                                                                 <div class="wpb_wrapper">
                                                                     <div class="wpb_content_element vc_align_center wpb_content_element">
-                                                                        @if($correctAttempt)
-                                                                            <h4 style="margin: 0">Guessed Words</h5>
-                                                                            <ul style="text-align: left; width: 100px; margin: 0 auto">
-                                                                                @foreach ($correctAttempt as $attempt)
-                                                                                    <li><b>{{$attempt}} &#x1F5F8;</b></li>
-                                                                                @endforeach
-                                                                            </ul>
-                                                                        @else
-                                                                            <h5 style="margin: 0">Words left: <span id="remaining-words-to-guess">{{ $remainingWordsToGuess }}</span></h5>
+                                                                        <h4 id="guessed-words-header" style="margin: 0" class="{{ $correctAttempt ? '':'d-none' }}">Guessed Words</h5>
+
+                                                                        <ul id="guessed-words" style="text-align: left; width: 100px; margin: 0 auto">
+                                                                            @foreach ($correctAttempt as $attempt)
+                                                                                <li><b>{{$attempt}} &#x1F5F8;</b></li>
+                                                                            @endforeach
+                                                                        </ul>
+
+                                                                        @if($remainingWordsToGuess > 0)
+                                                                            <h5 id="words-left-h5" style="margin: 0">Words left: <span id="remaining-words-to-guess">{{ $remainingWordsToGuess }}</span></h5>
                                                                         @endif
+                                                                        <div id="guess-loading" class="d-none">
+                                                                            <span>🕐 Submitting thy guess...</span>
+                                                                        </div>
                                                                         <div class="word-grid" id="grid"></div>
                                                                         <br>
                                                                         <button id="btn-key-send" class="d-none">Submit</button>

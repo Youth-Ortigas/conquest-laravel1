@@ -15,9 +15,8 @@ return new class extends Migration {
     {
         Schema::create('puzzle_attempts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('team_id');
-            $table->unsignedBigInteger('user_id');
-            $table->integer('puzzle_num');
+            $table->unsignedBigInteger('user_id')->default(1);
+            $table->float('puzzle_num');
             $table->string('entered_key');
             $table->boolean('is_correct')->default(false);
             $table->timestamps();

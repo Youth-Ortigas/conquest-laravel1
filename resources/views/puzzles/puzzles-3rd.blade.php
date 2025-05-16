@@ -112,7 +112,7 @@
                                                                                                 in chains, that I may declare it boldly, as I ought to speak.
                                                                                             </div>
 
-                                                                                            <button id="btn-submit-answers" disabled>Submit</button>
+                                                                                            <button id="btn-submit-answers" type="button" disabled>Submit</button>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
