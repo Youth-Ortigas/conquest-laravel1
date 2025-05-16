@@ -20,6 +20,7 @@ return new class extends Migration
     public function up(): void
     {
         try {
+            date_default_timezone_set('Asia/Manila');
             $assignTeams = $this->assignTeams();
             $assignTeamsModel = [];
             foreach ($assignTeams as $teamIndex => $teamItem) {
@@ -150,70 +151,90 @@ return new class extends Migration
             'team_name' => 'Team 1',
             'team_code' => 'team1',
             'team_leader_user_id_primary' => $userIDPrimaryTeam1->id ?? -1,
-            'team_leader_user_id_secondary' => $userIDSecondaryTeam1->id ?? -1
+            'team_leader_user_id_secondary' => $userIDSecondaryTeam1->id ?? -1,
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
 
         $upsertTeams2 = [
             'team_name' => 'Team 2',
             'team_code' => 'team2',
             'team_leader_user_id_primary' => $userIDPrimaryTeam2->id ?? -1,
-            'team_leader_user_id_secondary' => $userIDSecondaryTeam2->id ?? -1
+            'team_leader_user_id_secondary' => $userIDSecondaryTeam2->id ?? -1,
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
 
         $upsertTeams3 = [
             'team_name' => 'Team 3',
             'team_code' => 'team3',
             'team_leader_user_id_primary' => $userIDPrimaryTeam3->id ?? -1,
-            'team_leader_user_id_secondary' => $userIDSecondaryTeam3->id ?? -1
+            'team_leader_user_id_secondary' => $userIDSecondaryTeam3->id ?? -1,
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
 
         $upsertTeams4 = [
             'team_name' => 'Team 4',
             'team_code' => 'team4',
             'team_leader_user_id_primary' => $userIDPrimaryTeam4->id ?? -1,
-            'team_leader_user_id_secondary' => $userIDSecondaryTeam4->id ?? -1
+            'team_leader_user_id_secondary' => $userIDSecondaryTeam4->id ?? -1,
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
 
         $upsertTeams5 = [
             'team_name' => 'Team 5',
             'team_code' => 'team5',
             'team_leader_user_id_primary' => $userIDPrimaryTeam5->id ?? -1,
-            'team_leader_user_id_secondary' => $userIDSecondaryTeam5->id ?? -1
+            'team_leader_user_id_secondary' => $userIDSecondaryTeam5->id ?? -1,
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
 
         $upsertTeams6 = [
             'team_name' => 'Team 6',
             'team_code' => 'team6',
             'team_leader_user_id_primary' => $userIDPrimaryTeam6->id ?? -1,
-            'team_leader_user_id_secondary' => $userIDSecondaryTeam6->id ?? -1
+            'team_leader_user_id_secondary' => $userIDSecondaryTeam6->id ?? -1,
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
 
         $upsertTeams7 = [
             'team_name' => 'Team 7',
             'team_code' => 'team7',
             'team_leader_user_id_primary' => $userIDPrimaryTeam7->id ?? -1,
-            'team_leader_user_id_secondary' => $userIDSecondaryTeam7->id ?? -1
+            'team_leader_user_id_secondary' => $userIDSecondaryTeam7->id ?? -1,
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
 
         $upsertTeams8 = [
             'team_name' => 'Team 8',
             'team_code' => 'team8',
             'team_leader_user_id_primary' => $userIDPrimaryTeam8->id ?? -1,
-            'team_leader_user_id_secondary' => $userIDSecondaryTeam8->id ?? -1
+            'team_leader_user_id_secondary' => $userIDSecondaryTeam8->id ?? -1,
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
 
         $upsertTeams9 = [
             'team_name' => 'Team 9',
             'team_code' => 'team9',
             'team_leader_user_id_primary' => $userIDPrimaryTeam9->id ?? -1,
-            'team_leader_user_id_secondary' => $userIDSecondaryTeam9->id ?? -1
+            'team_leader_user_id_secondary' => $userIDSecondaryTeam9->id ?? -1,
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
 
         $upsertTeams10 = [
             'team_name' => 'Team 10',
             'team_code' => 'team10',
             'team_leader_user_id_primary' => $userIDPrimaryTeam10->id ?? -1,
-            'team_leader_user_id_secondary' => $userIDSecondaryTeam10->id ?? -1
+            'team_leader_user_id_secondary' => $userIDSecondaryTeam10->id ?? -1,
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
 
         return [
@@ -227,6 +248,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        $assignTeams = $this->assignTeams();
+        $assignTeamsCodeColumns = array_column($assignTeams, "team_code");
+        Teams::whereIn("team_code", $assignTeamsCodeColumns)->delete();
     }
 };
