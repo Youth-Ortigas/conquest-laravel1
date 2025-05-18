@@ -16,7 +16,7 @@
                         <div class="post_content entry-content">
                             <div class="wpb-content-wrapper">
                                 <div data-vc-full-width="true" data-vc-full-width-init="true"
-                                     class="vc_row wpb_row vc_row-fluid vc_custom_1522153891227 vc_row-has-fill hide_bg_image_on_tablet hide_bg_image_on_mobile shape_divider_top-none shape_divider_bottom-none">
+                                     class="vc_row wpb_row vc_row-fluid vc_custom_1522153891227 vc_row-has-fill hide_bg_image_on_tablet hide_bg_image_on_mobile shape_divider_top-none shape_divider_bottom-none" style="margin: 0 0 30px 0 !important;">
                                     <div class="wpb_column vc_column_container vc_col-md-6 vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left">
                                         <div class="vc_column-inner">
                                             <div class="wpb_wrapper">
@@ -76,8 +76,28 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
+
+                                <div data-vc-full-width="true" data-vc-full-width-init="true"
+                                     class="vc_row wpb_row vc_row-fluid vc_custom_1522153891227 vc_row-has-fill hide_bg_image_on_tablet hide_bg_image_on_mobile shape_divider_top-none shape_divider_bottom-none">
+                                    <div class="wpb_column vc_column_container vc_col-md-6 vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left" style="margin: 0 0 30px 0 !important;">
+                                        <div class="vc_column-inner">
+                                            <div class="wpb_wrapper">
+                                                <div class="wpb_single_image wpb_content_element vc_align_left wpb_content_element">
+                                                    <h3 style="margin:0 0 15px 0;"> Thy Decrees </h3>
+                                                    <table class="tbl-info-user">
+                                                        <tr>
+                                                            <th class="th-label">Waiver Form</th>
+                                                            <td class="td-value"><a href="/document-sign/waiver-form"> Click here </a></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             </div>
                         </div>
                     </article>
