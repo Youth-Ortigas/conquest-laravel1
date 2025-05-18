@@ -30,14 +30,4 @@ class Teams extends Model
     {
         return $this->hasOne(TeamsMembers::class, 'teams_id', 'id');
     }
-
-    public function getUserIDLeaderMainAttribute()
-    {
-        dd($this->user, "123");
-    }
-
-    public function getUserIDLeaderAssistantAttribute()
-    {
-        dd("ere");
-    }
 }
