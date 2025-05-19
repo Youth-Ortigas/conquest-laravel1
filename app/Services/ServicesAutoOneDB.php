@@ -60,10 +60,6 @@ class ServicesAutoOneDB
 
         $fetchURLAPI = "https://onedb.everynation.org.ph/db/module/events2/registration/read?event_id=1918&congregation_id=10012";
         $checkData = file_get_contents($fetchURLAPI, false, $sslContext);
-        if (strtolower(env("APP_ENV")) === "production") {
-            $checkData = file_get_contents($fetchURLAPI);
-        }
-
         return $this->assignReturnResponse(json_decode($checkData, true));
     }
 
@@ -86,7 +82,6 @@ class ServicesAutoOneDB
 
                     if ($checkExistingReg->count() < 1) {
                         $modelUsers->name = $dataItem["name_full"] ?? "TBA";
-                        $modelUsers->team_id = rand(1,10);
                         $modelUsers->reg_code = $regCode;
                         $modelUsers->email = $dataItem["email"] ?? "TBA";
                         $modelUsers->first_name = $dataItem["name_first"] ?? "TBA";

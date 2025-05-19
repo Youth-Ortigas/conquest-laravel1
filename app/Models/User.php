@@ -18,7 +18,6 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'team_id',
         'name',
         'email',
         'reg_code',
@@ -35,7 +34,26 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function team() {
-        return $this->belongsTo(Team::class, 'team_id', 'id');
+    public function puzzleAttempts()
+    {
+        return $this->hasMany(PuzzleAttempt::class);
     }
+
+    public function teamMember()
+    {
+        return $this->hasOne(TeamsMembers::class, 'teams_user_id');
+    }
+
+    public function team()
+    {
+        return $this->hasOneThrough(
+            Teams::class,
+            TeamsMembers::class,
+            'teams_user_id',
+            'id',
+            'id',
+            'teams_id'
+        );
+    }
+
 }

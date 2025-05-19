@@ -1,6 +1,12 @@
+.word-grid {
+    width: 280px;
+    display: block;
+    margin-left: -22px;
+}
+
 .letter-box {
-    width: 60px !important;
-    height: 60px !important;
+    width: 50px !important;
+    height: 50px !important;
     font-size: 20px !important;
     text-align: center !important;
     text-transform: uppercase !important;
@@ -10,7 +16,8 @@
     display: inline-block !important;
     color: #3e2723 !important;
     border-radius: 5px !important;
-    margin: 2px !important;
+    margin-right: 4px !important;
+    margin-bottom: 4px !important;
     padding: 0 !important;
     background-color: #f0e5d8 !important;
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
@@ -110,33 +117,10 @@
     margin-top: 20px;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .custom-puzzle-container {
-        padding: 15px;
-    }
-
-    .puzzle-input {
-        font-size: 14px;
-    }
-}
-
 @media (max-width: 480px) {
-    .custom-puzzle-container {
-        padding: 10px;
+    .word-grid {
+        margin-left: 0px;
     }
-
-    .puzzle-input {
-        font-size: 14px;
-        padding: 8px;
-    }
-}
-
-.caesar-cipher {
-    border: 2px solid #a38b6b;
-    padding: 1em;
-    background-color: #fffef7;
-    margin-top: 1em;
 }
 
 #guess-loading {

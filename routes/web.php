@@ -13,14 +13,6 @@ Route::middleware(['web'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home.index')->middleware(ActivityLogCustom::class);
 
     Route::get('/puzzles', [PuzzleController::class, 'index'])->name('puzzles.index');
-    Route::get('/puzzles/{reference}', [PuzzleController::class, 'getDetails'])->name('puzzles.getDetails')->middleware(ActivityLogCustom::class);
-    Route::post('/validate-puzzle-key', [PuzzleController::class, 'validatePuzzleKey'])->name('puzzles.validate')->middleware(ActivityLogCustom::class);
-    Route::post('/puzzle-wordle-get-word', [PuzzleController::class, 'getWordleWord'])->middleware(ActivityLogCustom::class);
-    Route::post('/puzzle-wordle-check-guess', [PuzzleController::class, 'checkWordleGuess'])->middleware(ActivityLogCustom::class);
-    Route::get('/puzzle-wordle-reset', [PuzzleController::class, 'resetPuzzles'])->middleware(ActivityLogCustom::class);
-
-    Route::post('/puzzle-save-game-state', [PuzzleGameStateController::class, 'saveGameState'])->middleware(ActivityLogCustom::class);
-    Route::get('/puzzle-get-game-state/{puzzle_num}', [PuzzleGameStateController::class, 'getGameState'])->middleware(ActivityLogCustom::class);
 
     Route::get('/updates', [UpdateController::class, 'index'])->name('updates.index')->middleware(ActivityLogCustom::class);
 });

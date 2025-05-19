@@ -12,7 +12,7 @@
 }
 
 .scroll-container {
-    width: 90% !important;
+    width: 100% !important;
     max-width: 600px !important;
     text-align: center !important;
     position: relative !important;

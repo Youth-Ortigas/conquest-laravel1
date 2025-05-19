@@ -32,7 +32,7 @@ class PuzzleController extends BaseController
 
     public function __construct()
     {
-
+        $this->middleware('auth');
     }
 
     /**
@@ -376,17 +376,39 @@ class PuzzleController extends BaseController
     private function getGuessFeedback($word, $guess)
     {
         $feedback = [];
+        $length = strlen($word);
 
-        for ($i = 0; $i < strlen($word); $i++) {
+        $usedInWord = array_fill(0, $length, false);
+
+        // First pass: mark correct letters
+        for ($i = 0; $i < $length; $i++) {
             if ($guess[$i] === $word[$i]) {
-                $feedback[] = 'correct';
-            } elseif (strpos($word, $guess[$i]) !== false) {
-                $feedback[] = 'present';
+                $feedback[$i] = 'correct';
+                $usedInWord[$i] = true;
             } else {
-                $feedback[] = 'absent';
+                $feedback[$i] = 'pending';
             }
         }
 
+        // Second pass: mark present (misplaced) letters
+        for ($i = 0; $i < $length; $i++) {
+            if ($feedback[$i] !== 'pending') {
+                continue;
+            }
+
+            $found = false;
+            for ($j = 0; $j < $length; $j++) {
+                if (!$usedInWord[$j] && $guess[$i] === $word[$j]) {
+                    $found = true;
+                    $usedInWord[$j] = true;
+                    break;
+                }
+            }
+
+            $feedback[$i] = $found ? 'present' : 'absent';
+        }
+
+        // Safety check
         if (count($feedback) !== 5) {
             \Log::debug('Invalid feedback length: ', ['feedback_length' => count($feedback)]);
         }
