@@ -57,7 +57,9 @@
                     <div class="sc_layouts_item">
                         @php
                             $checkLoggedStatus = Auth::check();
-                            $loggedInName = explode(' ', Auth::user()->first_name)[0] ?? "";
+                            $loggedInName = Auth::check() && Auth::user()->first_name
+                            ? explode(' ', Auth::user()->first_name)[0]
+                            : '';
                             $loggedInTeamName = Auth::user()->team->team_name ?? "";
                             $buttonText = $checkLoggedStatus ? "Hail $loggedInName of the $loggedInTeamName!" : "Step To Thy Conquest!";
                             $buttonLink = $checkLoggedStatus ? "/logout" : "/login";
