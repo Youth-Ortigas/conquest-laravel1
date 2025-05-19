@@ -47,6 +47,6 @@ trait TraitsCommon
 
     protected function getAuthTeamID()
     {
-        return Auth::user()->team_id ?? -1;
+        return Auth::user()->team->id ?? -1;
     }
 }

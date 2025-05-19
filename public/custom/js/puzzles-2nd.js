@@ -303,6 +303,7 @@ $(document).ready(function () {
 
             let currentInputs = this.grid.find('.row').eq(this.currentRow).find('.letter-box');
             let guess = currentInputs.map(function () { return $(this).val(); }).get().join('').toLowerCase();
+            currentInputs.prop('readonly', true);
 
             if (guess.length !== 5) {
                 this.DOMShowGuessLoading.addClass('d-none')
@@ -313,6 +314,7 @@ $(document).ready(function () {
                     icon: 'error',
                     confirmButtonText: 'Understood'
                 }).then(() => {
+                    currentInputs.prop('readonly', false);
                     this.isSubmitting = false;
                 });
                 return;
@@ -334,6 +336,7 @@ $(document).ready(function () {
                             icon: 'error',
                             confirmButtonText: 'Understood'
                         }).then(() => {
+                            currentInputs.prop('readonly', false);
                             this.isSubmitting = false;
                         });
                     } else {

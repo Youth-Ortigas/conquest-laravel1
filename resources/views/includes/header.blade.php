@@ -13,7 +13,7 @@
                 </div>
             </div>
         </div>
-        <div class="wpb_column vc_column_container vc_col-sm-9 vc_col-lg-6 vc_col-sm-offset-0 vc_col-xs-offset-3 vc_col-xs-2 sc_layouts_column sc_layouts_column_align_center sc_layouts_column_icons_position_left">
+        <div class="wpb_column vc_column_container vc_col-sm-8 vc_col-lg-6 vc_col-sm-offset-0 vc_col-xs-offset-3 vc_col-xs-2 sc_layouts_column sc_layouts_column_align_center">
             <div class="vc_column-inner">
                 <div class="wpb_wrapper">
                     <div class="sc_layouts_item">
@@ -51,13 +51,13 @@
             </div>
         </div>
 
-        <div class="wpb_column vc_column_container vc_col-sm-3 vc_col-xs-7 sc_layouts_column sc_layouts_column_align_right sc_layouts_column_icons_position_right">
+        <div class="wpb_column vc_column_container vc_col-sm-3 vc_col-xs-12 sc_layouts_column sc_layouts_column_align_center ">
             <div class="vc_column-inner vc_custom_1523451038926">
                 <div class="wpb_wrapper">
                     <div class="sc_layouts_item">
                         @php
                             $checkLoggedStatus = Auth::check();
-                            $loggedInName = Auth::user()->first_name ?? "";
+                            $loggedInName = explode(' ', Auth::user()->first_name)[0] ?? "";
                             $loggedInTeamName = Auth::user()->team->team_name ?? "";
                             $buttonText = $checkLoggedStatus ? "Hail $loggedInName of the $loggedInTeamName!" : "Step To Thy Conquest!";
                             $buttonLink = $checkLoggedStatus ? "/logout" : "/login";

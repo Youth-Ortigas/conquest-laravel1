@@ -1,4 +1,4 @@
-<div class="menu_mobile_overlay" style="display: none;"></div>
+<div class="menu_mobile_overlay"></div>
 <div class="menu_mobile menu_mobile_fullscreen scheme_dark">
     <div class="menu_mobile_inner">
         <a class="menu_mobile_close icon-cancel"></a>
