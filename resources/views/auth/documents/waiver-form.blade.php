@@ -29,10 +29,12 @@
                                                     <div id="toolbar" style="width:100%; text-align: right;">
                                                         <button id="prev-page" class="tool-button hide"><i class="fas fa-arrow-left"></i> Previous</button>
                                                         <button id="next-page" class="tool-button hide"><i class="fas fa-arrow-right"></i> Next</button>
-                                                        <button id="draw-button" class="tool-button"><i class="fas fa-pencil-alt"></i> Draw</button>
+                                                        <button id="draw-button" class="tool-button"><i class="fas fa-pencil-alt"></i> Sign</button>
                                                         <button id="erase-button" class="tool-button"><i class="fas fa-eraser"></i> Erase</button>
                                                         <button id="download-button" class="tool-button"><i class="fas fa-download"></i> Download</button>
                                                         <button id="save-button" class="tool-button"><i class="fas fa-save"></i> Save</button>
+                                                        <button id="place-text-button" class="tool-button"><i class="fas fa-save"></i> Place Text</button>
+                                                        <input type="text" id="annotationText" placeholder="Enter text to place">
                                                     </div>
                                                     <div id="pdf-container">
                                                         <canvas id="pdf-canvas"></canvas>
@@ -75,6 +77,7 @@
         let fileName = @json($fileName);
         const saveUrl = @json($saveURL);
         const documentId = @json($documentID);
+        const doc = new jsPDF();
 
         let pdfDoc = null;
         let pageNum = 1;
@@ -218,6 +221,31 @@
             toggleTool('erase');
         });
 
+        let placingText = false;
+
+        document.getElementById('place-text-button').addEventListener('click', () => {
+            placingText = true;
+        });
+
+        annotationCanvas.addEventListener('click', (event) => {
+            placeText(event);
+        });
+
+        function placeText(event) {
+            if (!placingText) return;
+
+            const text = document.getElementById('annotationText').value;
+            const rect = annotationCanvas.getBoundingClientRect();
+            const positionX = event.clientX - rect.left;
+            const positionY = event.clientY - rect.top;
+            annotationCtx.fillStyle = 'black';
+            annotationCtx.font = '20px Arial';
+            annotationCtx.fillText(text, positionX, positionY);
+
+            doc.text(text, positionX * 0.2645, positionY * 0.2645);
+            placingText = false;
+        }
+
         function toggleTool(tool) {
             if (tool === 'draw') {
                 drawing = !drawing;
@@ -346,8 +374,6 @@
                 }
 
                 Promise.all(renderPromises).then(canvases => {
-                    const doc = new jsPDF();
-
                     canvases.forEach((canvas, index) => {
                         if (index > 0) {
                             doc.addPage();
@@ -362,6 +388,7 @@
                     //messagePopup({ message:'Error generating PDF: ' + error });
                     alert({ message:'Error generating PDF: ' + error });
                 });
+
             });
         }
 
