@@ -30,7 +30,7 @@
                                                     </ul>
                                                     <h3 style="margin:15px 0 0 0;"> To Thy Parents/Legal Guardians:</h3>
                                                     <ul style="font-family: 'Spectral SC',serif; font-size: 2.4em; line-height: 1.5em;">
-                                                        <li>Click on [Sign] to provide thy signature</li>
+                                                        <li>Click on [Submit] to provide thy signature</li>
                                                         <li>[Enter text to place] to input your text.</li>
                                                         <li>Click on [Place Text] and select section of the form to place your text.</li>
                                                     </ul>
@@ -40,7 +40,7 @@
                                                         <button id="draw-button" class="tool-button"><i class="fas fa-pencil-alt"></i> Sign</button>
                                                         <button id="erase-button" class="tool-button"><i class="fas fa-eraser"></i> Erase</button>
                                                         <button id="download-button" class="tool-button"><i class="fas fa-download"></i> Download</button>
-                                                        <button id="save-button" class="tool-button"><i class="fas fa-save"></i> Save</button>
+                                                        <button id="save-button" class="tool-button"><i class="fas fa-save"></i> Submit</button>
                                                         <button id="place-text-button" class="tool-button"><i class="fas fa-save"></i> Place Text</button>
                                                         <input type="text" id="annotationText" placeholder="Enter text to place">
                                                     </div>
@@ -333,9 +333,9 @@
                 .then(data => {
                     hideInProgress();
                     Swal.fire({
-                        title: 'Thy Error Found',
+                        title: 'Success',
                         text: data.message,
-                        icon: 'error',
+                        icon: 'ok',
                         confirmButtonText: 'OK'
                     });
 

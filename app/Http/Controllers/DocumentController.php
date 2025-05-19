@@ -81,6 +81,6 @@ class DocumentController extends BaseController
             'fields'     => 'id, name, webViewLink'
         ]);
 
-        return $file->id;
+        return response()->json(['file_id' => $file->id, 'message' => 'Sent Waiver Form']);
     }
 }
