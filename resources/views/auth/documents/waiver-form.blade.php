@@ -34,21 +34,30 @@
                                                         <li>[Enter text to place] to input your text.</li>
                                                         <li>Click on [Place Text] and select section of the form to place your text.</li>
                                                     </ul>
-                                                    <div id="toolbar" style="width:100%; text-align: right;">
-                                                        <button id="prev-page" class="tool-button hide"><i class="fas fa-arrow-left"></i> Previous</button>
-                                                        <button id="next-page" class="tool-button hide"><i class="fas fa-arrow-right"></i> Next</button>
-                                                        <button id="draw-button" class="tool-button"><i class="fas fa-pencil-alt"></i> Sign</button>
-                                                        <button id="erase-button" class="tool-button"><i class="fas fa-eraser"></i> Erase</button>
-                                                        <button id="download-button" class="tool-button"><i class="fas fa-download"></i> Download</button>
-                                                        <button id="save-button" class="tool-button"><i class="fas fa-save"></i> Submit</button>
-                                                        <button id="place-text-button" class="tool-button"><i class="fas fa-save"></i> Place Text</button>
-                                                        <input type="text" id="annotationText" placeholder="Enter text to place">
-                                                    </div>
-                                                    <div id="pdf-container">
-                                                        <canvas id="pdf-canvas"></canvas>
-                                                        <canvas id="annotation-canvas"></canvas>
-                                                    </div>
-                                                    <div id="page-info">Page: <span id="page-num"></span> / <span id="page-count"></span></div>
+
+                                                    @if($modelDocuments->count() > 0)
+                                                        <?php
+                                                            $fileId = $modelDocuments->first()->doc_gdrive_resource_id ?? 0;
+                                                            $embedUrl = "https://drive.google.com/file/d/{$fileId}/preview";
+                                                        ?>
+                                                        <iframe src="{{ $embedUrl }}" width="1224" height="1584" allow="autoplay"></iframe>
+                                                    @else
+                                                        <div id="toolbar" style="width:100%; text-align: right;">
+                                                            <button id="prev-page" class="tool-button hide"><i class="fas fa-arrow-left"></i> Previous</button>
+                                                            <button id="next-page" class="tool-button hide"><i class="fas fa-arrow-right"></i> Next</button>
+                                                            <button id="draw-button" class="tool-button"><i class="fas fa-pencil-alt"></i> Sign</button>
+                                                            <button id="erase-button" class="tool-button"><i class="fas fa-eraser"></i> Erase</button>
+                                                            <button id="download-button" class="tool-button"><i class="fas fa-download"></i> Download</button>
+                                                            <button id="save-button" class="tool-button"><i class="fas fa-save"></i> Submit</button>
+                                                            <button id="place-text-button" class="tool-button"><i class="fas fa-save"></i> Place Text</button>
+                                                            <input type="text" id="annotationText" placeholder="Enter text to place">
+                                                        </div>
+                                                        <div id="pdf-container">
+                                                            <canvas id="pdf-canvas"></canvas>
+                                                            <canvas id="annotation-canvas"></canvas>
+                                                        </div>
+                                                        <div id="page-info">Page: <span id="page-num"></span> / <span id="page-count"></span></div>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -299,7 +308,6 @@
         }
 
         function sendPdf(pdfBlob) {
-            //@marylyn: here1
             showInProgress();
 
             const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -337,13 +345,10 @@
                         text: data.message,
                         icon: 'ok',
                         confirmButtonText: 'OK'
+                    }).then(function() {
+                        window.location.reload();
                     });
 
-                    if (data.success) {
-                        const newAttachment = data.newAttachment;
-                        filePath = newAttachment.att_storage_path;
-                        fileName = newAttachment.att_filename;
-                    }
                 })
                 .catch(error => {
                     hideInProgress();
