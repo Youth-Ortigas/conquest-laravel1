@@ -242,7 +242,10 @@
                                                         Conquest Youth Camp 2025</h2>
                                                     <div class="sc_item_descr sc_title_descr sc_align_left">
                                                         <p>
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
+                                                            For the past years, Youth Camps have created an opportunity for us to raise students who follow God comprehensively, fish lost people consistently, and fellowship cross-generationally. With the recent expansion of our horizon in reaching out to the campuses, this will provide an avenue for us to evangelize, disciple, and raise leaders in our campuses in Ortigas and Cubao.
+                                                        </p>
+                                                        <p>
+                                                            Our goal is to equip the students to become strong and mighty leaders in their fields by being armed with biblical truths in proclaiming and demonstrating the gospel through intentional discipleship and servant leadership.
                                                         </p>
                                                     </div>
                                                 </div><!-- /.sc_title --></div>
