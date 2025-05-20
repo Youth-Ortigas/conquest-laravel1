@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Documents;
 use App\Traits\TraitsCommon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -55,6 +56,7 @@ class DocumentController extends BaseController
      */
     public function saveWaiverForm(Request $request)
     {
+        date_default_timezone_set('Asia/Manila');
         $authUserRegCode = Auth::user()->reg_code ?? "";
         $authUserLastName = trim(str_replace(" ", "_", Auth::user()->last_name)) ?? "";
         $fileName = "Conquest2025_WaiverForm-$authUserRegCode-$authUserLastName.pdf";
@@ -80,6 +82,19 @@ class DocumentController extends BaseController
             'uploadType' => 'multipart',
             'fields'     => 'id, name, webViewLink'
         ]);
+
+        $modelDocuments = Documents::where([
+            ["doc_user_id", "=", Auth::user()->id]
+        ]);
+
+        if ($modelDocuments->count() < 1) {
+            $modelDocumentsCreate = new Documents();
+            $modelDocumentsCreate->doc_type = "waiver_form";
+            $modelDocumentsCreate->doc_user_id = Auth::user()->id;
+            $modelDocumentsCreate->doc_signed_at = now();
+            $modelDocumentsCreate->doc_gdrive_resource_id = $file->id;
+            $modelDocumentsCreate->save();
+        }
 
         return response()->json(['file_id' => $file->id, 'message' => 'Sent Waiver Form']);
     }
