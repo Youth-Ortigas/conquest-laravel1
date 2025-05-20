@@ -43,7 +43,7 @@ class DocumentController extends BaseController
         $saveURL = '/document-sign/save';
 
         $modelDocuments = Documents::where([
-            ["doc_user_id", "=", Auth::user()->id]
+            ["doc_user_id", "=", $authUserID]
         ]);
 
         return view('auth.documents.waiver-form',
