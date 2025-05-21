@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ asset('custom/css/puzzle-1st.css') }}">
     {{ csrf_field() }}
     <div class="page_wrap">
-        @include('includes.puzzle_banner', ['title' => 'Hidden in Plain Sight']) <!-- changed to title of the puzzle based on the documentation-->
+        @include('includes.puzzle_banner', ['title' => 'Hidden in Plain Sight'])
 
         @include('includes.header')
 
@@ -17,11 +17,10 @@
                 <div class="content">
                     <article id="post-367" class="post_item_single post_type_page post-367 page type-page status-publish hentry">
                         <div class="post_content entry-content">
-                            <div class="wpb-content-wrapper">
+                            <div class="wpb-content-wrapper" style="text-align: center">
                                 <div data-vc-full-width="true" data-vc-full-width-init="true"
                                      class="vc_row wpb_row vc_row-fluid vc_custom_1522153891227 vc_row-has-fill hide_bg_image_on_tablet hide_bg_image_on_mobile shape_divider_top-none shape_divider_bottom-none"
-                                     style="width: 1481.75px; left: -86.875px; right: auto; padding-left: 86.875px; padding-right: 86.875px; position: relative; box-sizing: border-box; max-width: 1512px;">
-                                    <div class="wpb_column vc_column_container vc_col-md-6 vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left">
+                                     style="">
                                         <div class="vc_column-inner">
                                             <div class="wpb_wrapper">
                                                 <div class="wpb_single_image wpb_content_element vc_align_left wpb_content_element">
@@ -29,17 +28,7 @@
                                                         The key is hidden in the city. <br>Take charge young Conqueror!
                                                     </h3>
                                                     <div class="tutorial">
-                                                        <p> If you feel stuck, download the image of the clue</p>
-                                                        <p>
-                                                            For Extra help, read this:<br>
-                                                        <ul>
-                                                            <li>After downloading the image, look for a word hidden in the picture</li>
-                                                            <li>Once you have found the word, have a look again at the filename of the image you just downloaded.</li>
-                                                            <li>Take a look at the Vigenere Table and try to put 2 and 2 together to solve the puzzle!</li>
-                                                            <li>To "submit" your final answer, go to the address bar of your browser,
-                                                            </li>
-                                                        </ul>
-                                                        </p>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -75,8 +64,19 @@
                                                                         <h3 style="margin: 9.15rem 0 25px 0;"> Vigenere Table </h3>
                                                                         <h4> What Be Thy Answer? </h4>
                                                                         <label style="display: block; margin-top: 25px;">
-                                                                            <input type="text" name="puzzle_code_1st" id="puzzle-code-input" class="text-uppercase" placeholder="ENTER KEY"/>
-                                                                            <button type="submit" style="margin-left: 15px;" id="btn-puzzle-send"> Deliver Thy Reply </button>
+                                                                            <input
+                                                                                type="text"
+                                                                                name="puzzle_code_1st"
+                                                                                id="puzzle-code-input"
+                                                                                class="text-uppercase"
+                                                                                placeholder="ENTER KEY"
+                                                                                value="{{ $correctAttempt[0] ?? '' }}"
+                                                                                {{ isset($correctAttempt[0]) ? 'disabled' : '' }}
+                                                                            />
+
+                                                                            @unless(isset($correctAttempt[0]))
+                                                                                <button type="submit" style="margin-left: 15px;" id="btn-puzzle-send"> Deliver Thy Reply </button>
+                                                                            @endif
                                                                         </label>
                                                                     </div>
                                                                 </div>

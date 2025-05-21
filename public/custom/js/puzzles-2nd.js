@@ -1,13 +1,35 @@
 $(document).ready(function () {
+    //$(document).on('contextmenu', function (e) {
+      //  e.preventDefault();
+    //});
+
+    $(document).on('keydown', function (e) {
+        if (e.keyCode === 123 || // F12
+            (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || // Ctrl+Shift+I/J
+            (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83))) { // Ctrl+U/S
+            e.preventDefault();
+        }
+    });
+
     var oModulePuzzles = {
+
         /**
          * Initializes the game by loading properties, fetching words,
          * setting up input navigation, and handling submission.
          */
         init: function () {
+            this.showLoading();
             this.loadProperties();
-            this.fetchWords();
-            this.loadGameState();
+
+            this.loadGameState()
+                .then(() => {
+                    this.fetchWords();
+                })
+                .catch(error => {
+                    console.error(error);
+                    this.fetchWords();
+                });
+
             this.handleInputNavigation();
             this.handleSubmission();
         },
@@ -24,46 +46,55 @@ $(document).ready(function () {
             this.currentRow = 0;
             this.grid = $('#grid');
             this.DOMClassKeyButton = $(this.classKeyButton);
+            this.DOMShowGuessLoading = $("#guess-loading");
             this.csrfToken = $('meta[name="csrf-token"]').attr('content');
             this.isCorrect = 0;
-            this.userId = 1;
-            this.puzzleNum = 2.1;
+            this.puzzleNum = 2;
+            this.isPuzzleComplete = false;
+            this.isSubmitting = false;
         },
 
         /**
          * Loads the saved game state from localStorage.
          */
         loadGameState: function () {
-            $.get(`/puzzle-get-game-state/${this.userId}/${this.puzzleNum}`, (data) => {
-                if (data && data.game_state) {
-                    let savedState = data.game_state;
-                    this.savedState = savedState;
-                    this.attempts = savedState.attempts;
-                    this.currentRow = savedState.currentRow;
-                    this.WORD = savedState.word;
-                    this.WORDS = savedState.words || [];
-                    this.grid.html(savedState.gridHTML);
+            return new Promise((resolve, reject) => {
+                $.get(`/puzzle-get-game-state/${this.puzzleNum}`, (data) => {
+                    if (data && data.game_state) {
+                        let savedState = data.game_state;
+                        this.savedState = savedState;
+                        this.attempts = savedState.attempts;
+                        this.currentRow = savedState.currentRow;
+                        this.WORD = savedState.word;
+                        this.WORDS = savedState.words || [];
+                        this.grid.html(savedState.gridHTML);
 
-                    this.updateGridState(savedState.guesses || []);
-                    this.applyInputEventListeners();
+                        this.updateGridState(savedState.guesses || []);
+                        this.applyInputEventListeners();
 
-                    if (this.attempts <= 6) {
-                        Swal.fire({
-                            title: `Welcome Back`,
-                            text: `You’ve made ${this.attempts} of 6 guesses. Keep it up!`,
-                            icon: 'info',
-                            confirmButtonText: 'OK'
-                        })
+                        if (this.attempts <= 6) {
+                            Swal.fire({
+                                title: `Welcome Back, Conqueror!`,
+                                text: `Thou hast made ${this.attempts} of 6 guesses. Continue thy noble quest!`,
+                                icon: 'info',
+                                confirmButtonText: 'Understood'
+                            }).then(() => {
+                                this.focusToNextInput();
+                            });
+                        }
+                        resolve(); // Finish successfully
+                    } else if (data && data.status === 'complete') {
+                        Swal.close();
+                        this.isPuzzleComplete = true;
+                        resolve(); // Still resolve to continue flow
+                    } else {
+                        this.scrollToGrid();
+                        resolve();
                     }
-                } else {
-                    this.showHowToPlay();
-                }
-
-                $('html, body').animate({
-                    scrollTop: $('#page_content_wrap').offset().top
-                }, 500);
-            }).fail(() => {
-                console.error('Failed to load game state.');
+                }).fail(() => {
+                    console.error('Failed to load game state.');
+                    reject('Failed to load game state.');
+                });
             });
         },
 
@@ -83,7 +114,6 @@ $(document).ready(function () {
 
             $.post('/puzzle-save-game-state', {
                 _token: this.csrfToken,
-                user_id: this.userId,
                 puzzle_num: this.puzzleNum,
                 game_state: JSON.stringify(gameState)
             }, function (response) {
@@ -99,7 +129,6 @@ $(document).ready(function () {
          */
         updateGridState: function (guesses) {
             for (let rowIdx = 0; rowIdx < guesses.length; rowIdx++) {
-                console.log(guesses[rowIdx])
                 let guess = guesses[rowIdx];
                 let currentInputs = this.grid.find('.row').eq(rowIdx).find('.letter-box');
 
@@ -128,19 +157,50 @@ $(document).ready(function () {
          * Fetch words from the backend and start the first round.
          */
         fetchWords: function () {
-            $.post('/puzzle-wordle-get-word', {_token: this.csrfToken}, (data) => {
-                if (data.status === 'success') {
-                    this.startNewRound();
-                } else if(data.status === 'complete') {
-                    Swal.fire('Game Over!', 'You have completed all rounds!', 'info');
-                    this.grid.empty();
-                    this.DOMClassKeyButton.addClass('d-none');
-                } else {
-                    Swal.fire('Error', 'No puzzle words found!', 'error');
-                }
-            }).fail(() => {
-                Swal.fire('Error', 'Failed to fetch puzzle words!', 'error');
-            });
+            if(!this.isPuzzleComplete) {
+                $.post('/puzzle-wordle-get-word', {_token: this.csrfToken}, (data) => {
+                    if (data.status === 'success') {
+                        this.startNewRound();
+
+                        if(this.attempts == 0 && data.showHowToPlayGameAlert)
+                            this.showHowToPlay();
+                    } else if(data.status === 'complete') {
+                        this.grid.empty();
+                        this.DOMClassKeyButton.addClass('d-none');
+
+                        if(data.next_puzzle) {
+                            Swal.fire({
+                                title: 'Puzzle Unlocked!',
+                                html: '<p>Thou hast triumphed over the second puzzle (Wordle)!</p><p>Clicketh <strong>Go Forth!</strong> to embark upon thy next quest in puzzle 3.</p>',
+                                icon: 'success',
+                                allowOutsideClick: false,
+                                allowEscapeKey: false,
+                                allowEnterKey: false,
+                                confirmButtonText: 'Go Forth!'
+                            }).then(() => {
+                                window.location.href = data.next_puzzle;
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Alas, the Game is Over!',
+                                text: 'Thou hast completed all rounds!',
+                                icon: 'info',
+                                allowOutsideClick: false,
+                                allowEscapeKey: false,
+                                allowEnterKey: false,
+                                confirmButtonText: 'View Results',
+                                footer: '<strong>Pray, wait for the next puzzle to be unlocked.</strong>'
+                            }).then(() => {
+                                $("#words-left-h5").addClass('d-none')
+                            });
+                        }
+                    } else {
+                        Swal.fire('Error', 'No puzzle words found!', 'error');
+                    }
+                }).fail(() => {
+                    Swal.fire('Error', 'Failed to fetch puzzle words!', 'error');
+                });
+            }
         },
 
         /**
@@ -152,24 +212,22 @@ $(document).ready(function () {
                 this.attempts = 0;
                 this.currentRow = 0;
                 this.generateGrid();
+                Swal.close();
             } else {
                 // If there's a saved state, restore the saved grid state
                 this.attempts = this.savedState.attempts;
                 this.currentRow = this.savedState.currentRow;
-                this.updateGridState(this.savedState.guesses);  // Restore the guesses on the grid
-
-                // Enable input for the current row
-                let nextRowInputs = this.grid.find('.row').eq(this.currentRow).find('.letter-box');
-                nextRowInputs.prop("disabled", false);
-                nextRowInputs.first().focus();
+                this.updateGridState(this.savedState.guesses);
             }
+
+            this.focusToNextInput();
         },
 
         /**
          * Generates a grid of input fields where the player enters guesses.
          */
         generateGrid: function () {
-            this.grid.empty(); // Clear any existing grid
+            this.grid.empty();
             for (let i = 0; i < this.MAX_ATTEMPTS; i++) {
                 let row = $('<div>', { class: 'row' });
                 for (let j = 0; j < 5; j++) {
@@ -210,10 +268,17 @@ $(document).ready(function () {
          * Handles input navigation and submission using the Enter key.
          */
         handleInputNavigation: function () {
+            let enterPressed = false;
+
             $(document).on('keypress', '.letter-box', function (e) {
-                if (e.which === 13) { // Enter key
+                if (e.which === 13 && !enterPressed) { // Enter key
                     e.preventDefault();
+                    enterPressed = true;
                     oModulePuzzles.validatePuzzleGuess();
+
+                    setTimeout(() => {
+                        enterPressed = false;
+                    }, 1000);
                 }
             });
         },
@@ -232,20 +297,74 @@ $(document).ready(function () {
          * Validates the user's guess by checking against the backend.
          */
         validatePuzzleGuess: function () {
+            if (this.isSubmitting) return;
+            this.isSubmitting = true;
+            this.DOMShowGuessLoading.removeClass('d-none')
+
             let currentInputs = this.grid.find('.row').eq(this.currentRow).find('.letter-box');
-            let guess = currentInputs.map(function () { return $(this).val(); }).get().join('');
+            let guess = currentInputs.map(function () { return $(this).val(); }).get().join('').toLowerCase();
+            currentInputs.prop('readonly', true);
 
             if (guess.length !== 5) {
-                Swal.fire('Incomplete Guess!', 'You must fill all 5 letters before submitting.', 'error');
+                this.DOMShowGuessLoading.addClass('d-none')
+
+                Swal.fire({
+                    title: 'Incomplete Guess!',
+                    text: 'Thou must fill all five letters before submitting.',
+                    icon: 'error',
+                    confirmButtonText: 'Understood'
+                }).then(() => {
+                    currentInputs.prop('readonly', false);
+                    this.isSubmitting = false;
+                });
                 return;
             }
 
+            // Check word validity using Dictionary API
+            fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${guess}`)
+                .then(response => {
+                    if (response.ok) {
+                        // Word is valid, proceed with submission
+                        return this.submitGuess(guess, currentInputs);
+                    } else if (response.status === 404) {
+                        // Word is not found in dictionary
+                        this.DOMShowGuessLoading.addClass('d-none')
+
+                        Swal.fire({
+                            title: 'Invalid Word!',
+                            text: 'Thy word is not known in the common tongue. Try another.',
+                            icon: 'error',
+                            confirmButtonText: 'Understood'
+                        }).then(() => {
+                            currentInputs.prop('readonly', false);
+                            this.isSubmitting = false;
+                        });
+                    } else {
+                        return this.submitGuess(guess, currentInputs);
+                    }
+                })
+                .catch(() => {
+                    return this.submitGuess(guess, currentInputs);
+                });
+
+        },
+
+        submitGuess: function (guess, currentInputs) {
             $.post('/puzzle-wordle-check-guess', {
                 _token: this.csrfToken,
                 guess: guess
             }, (response) => {
+                this.DOMShowGuessLoading.addClass('d-none')
+
                 if (!response.feedback || response.feedback.length !== 5) {
-                    Swal.fire('Error!', 'Invalid feedback received. Please try again.', 'error');
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Thy feedback is naught valid. Try again.',
+                        icon: 'error',
+                        confirmButtonText: 'Understood'
+                    }).then(() => {
+                        this.isSubmitting = false;
+                    });
                     return;
                 }
 
@@ -264,40 +383,68 @@ $(document).ready(function () {
 
                 if (correctCount === 5) {
                     this.isCorrect = 1;
+                    this.savedState = null;
 
-                    Swal.fire('🎉 Congratulations!', 'You guessed the word correctly!', 'success').then(() => {
+                    Swal.fire({
+                        title: '🎉 Thou hast Triumphed!',
+                        text: 'Verily, thou hast guessed the word correctly!',
+                        icon: 'success',
+                        confirmButtonText: 'Huzzah!'
+                    }).then(() => {
+                        $("#remaining-words-to-guess").text(
+                            Math.max(0, parseInt($("#remaining-words-to-guess").text(), 10) - 1)
+                        );
+                        $("#guessed-words-header").removeClass('d-none')
+                        $("#guessed-words").append(`<li><b>${guess.toUpperCase()} &#x1F5F8;</b></li>`)
+                        this.showLoading();
                         this.fetchWords();
+                        this.isSubmitting = false;
                     });
                 } else {
                     this.isCorrect = 0;
                     this.attempts++;
                     this.currentRow++;
+
                     if (this.attempts >= this.MAX_ATTEMPTS) {
-                        Swal.fire('Game Over!', 'Try again!', 'error').then(() => {
+                        Swal.fire({
+                            title: 'Alas, the Game is Over!',
+                            text: 'Thou must try again, brave soul!',
+                            icon: 'error',
+                            confirmButtonText: 'Persevere!'
+                        }).then(() => {
                             this.fetchWords();
+                            this.savedState = null;
+                            this.isSubmitting = false;
                         });
                     } else {
-                        let nextRowInputs = this.grid.find('.row').eq(this.currentRow).find('.letter-box');
-                        nextRowInputs.prop("disabled", false);
-                        nextRowInputs.first().focus();
+                        this.isSubmitting = false;
+                        this.focusToNextInput();
                     }
                 }
 
                 this.saveGameState();
             }).fail(() => {
-                Swal.fire('Server Error', 'Could not validate your guess. Please try again.', 'error');
+                Swal.fire({
+                    title: 'Alas, a Server Error!',
+                    text: 'Thy guess could not be validated. Pray, try again.',
+                    icon: 'error',
+                    confirmButtonText: 'Understood'
+                }).then(() => {
+                    this.isSubmitting = false;
+                });
             });
         },
 
         showHowToPlay: function () {
+            Swal.close();
             Swal.fire({
                 title: 'How to Play',
                 html: `
                     <div class="how-to-play">
-                        <p>Guess the Wordle in 6 tries.</p>
+                        <p>Thou must guess the Wordle in six tries.</p>
                         <ul>
-                            <li>Each guess must be a valid 5-letter word.</li>
-                            <li>The color of the tiles will change to show how close your guess was to the word.</li>
+                            <li>Each guess must be a valid five-letter word.</li>
+                            <li>The color of the tiles shall change to show how near thy guess is to the word.</li>
                         </ul>
                         <p><b>Examples</b></p>
                         <div class="boxes d-flex">
@@ -307,7 +454,7 @@ $(document).ready(function () {
                             <div class="box">E</div>
                             <div class="box">S</div>
                         </div>
-                        <p><b>M</b> is in the word and in the correct spot.</p>
+                        <p><b>M</b> is in the word and in the correct place.</p>
                         <div class="boxes d-flex">
                             <div class="box">D</div>
                             <div class="box present">A</div>
@@ -315,7 +462,7 @@ $(document).ready(function () {
                             <div class="box">I</div>
                             <div class="box">D</div>
                         </div>
-                        <p><b>A</b> is in the word but in the wrong spot.</p>
+                        <p><b>A</b> is in the word but is misplaced.</p>
                         <div class="boxes d-flex">
                             <div class="box">J</div>
                             <div class="box">O</div>
@@ -323,16 +470,42 @@ $(document).ready(function () {
                             <div class="box absent">N</div>
                             <div class="box">S</div>
                         </div>
-                        <p><b>N</b> is not in the word in any spot.</p>
+                        <p><b>N</b> is not in the word in any place.</p>
                     </div>
                 `,
-                confirmButtonText: 'Got it!',
+                confirmButtonText: 'Understood, Brave Soul!',
                 customClass: {
                     popup: 'how-to-popup',
                     title: 'how-to-title',
                     htmlContainer: 'how-to-html',
                 }
-            })
+            }).then(() => {
+                this.scrollToGrid();
+                this.focusToNextInput();
+            });
+        },
+
+        showLoading: function () {
+            Swal.fire({
+                title: 'Loading...',
+                text: 'Please wait while we prepare your puzzle.',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+        },
+
+        focusToNextInput: function () {
+            let nextRowInputs = this.grid.find('.row').eq(this.currentRow).find('.letter-box');
+            nextRowInputs.prop("disabled", false);
+            nextRowInputs.first().focus();
+        },
+
+        scrollToGrid: function () {
+            $('html, body').animate({
+                scrollTop: $('#grid').offset().top
+            }, 500);
         }
     };
 

@@ -1,0 +1,130 @@
+#scrollLabel {
+    color: black !important;
+}
+
+.custom-puzzle-container {
+    font-family: 'Cinzel', serif !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-direction: column !important;
+    color: #3e2f1c !important;
+}
+
+.scroll-container {
+    width: 100% !important;
+    max-width: 600px !important;
+    text-align: center !important;
+    position: relative !important;
+}
+
+.scroll-label {
+    color: #f5e6ba !important;
+    font-size: 1.8rem !important;
+    margin-bottom: 20px !important;
+    font-style: italic !important;
+    font-family: 'UnifrakturCook', cursive !important;
+    cursor: pointer !important;
+    transition: opacity 0.5s ease !important;
+}
+
+.scroll-paper {
+    background: url('https://cdn.pixabay.com/photo/2017/01/27/00/54/old-2012064_1280.jpg') no-repeat center center !important;
+    background-size: cover !important;
+    border-radius: 15px ;
+    padding: 20px ;
+    height: 0 ;
+    overflow: hidden;
+    box-shadow: 0 0 25px rgba(0,0,0,0.6) ;
+    transition: height 1s ease ;
+    margin-bottom: 150px !important;
+}
+
+.scroll-content-wrapper {
+    max-height: 520px !important;
+    overflow-y: auto !important;
+    background-color: rgba(250, 244, 230, 0.88) !important;
+    padding: 20px !important;
+    border-radius: 10px !important;
+}
+
+.scroll-content {
+    opacity: 0;
+    transition: opacity 0.8s ease !important;
+    font-size: 1.5rem !important;
+    line-height: 1.8 !important;
+    text-align: left !important;
+    color: #3b2a18 !important;
+}
+
+.scroll-content h1 {
+    font-family: 'UnifrakturCook', cursive !important;
+    font-size: 2rem !important;
+    margin-bottom: 15px !important;
+    text-align: center !important;
+    color: #2a1a0f !important;
+}
+
+.verse {
+    margin-bottom: 10px !important;
+}
+
+.verse-number {
+    font-weight: bold !important;
+    margin-right: 6px !important;
+    color: #6d5635 !important;
+}
+
+.fill-blank {
+    width: 140px !important;
+    font-family: inherit !important;
+    font-size: 1.2rem !important;
+    border: 1px solid #999 !important;
+    background: #fffbe8 !important;
+    padding: 3px 5px !important;
+    margin: 0 4px !important;
+    border-radius: 5px !important;
+    text-align: center !important;
+    height: 25px !important;
+    text-transform: uppercase !important;
+    color: black !important;
+}
+
+.fill-blank.correct {
+    color: green !important;
+    border: 2px solid green !important;
+    background-color: #d4edda !important;
+}
+
+.fill-blank.incorrect {
+    color: red !important;
+    border: 2px solid red !important;
+    background-color: #f8d7da !important;
+}
+
+.fill-blank.longer {
+    width: 170px !important;
+}
+
+.scroll-open .scroll-content {
+    opacity: 1 !important;
+}
+
+.scroll-content-wrapper::-webkit-scrollbar {
+    width: 10px !important;
+}
+
+.scroll-content-wrapper::-webkit-scrollbar-track {
+    background: #f2e4c5 !important;
+    border-radius: 10px !important;
+}
+
+.scroll-content-wrapper::-webkit-scrollbar-thumb {
+    background: #c5a87b !important;
+    border-radius: 10px !important;
+}
+
+#btn-submit-answers {
+    margin: 0 auto !important;
+    display: block;
+}

@@ -4,14 +4,15 @@
 
 @section('content')
     {{ csrf_field() }}
+    <link rel="stylesheet" href="{{ asset('custom/css/puzzle-3rd.css') }}">
     <div class="page_wrap">
-        @include('includes.puzzle_banner', ['title' => 'Third Puzzle'])
+        @include('includes.puzzle_banner', ['title' => 'Words and Letters: Fill in the Blanks']) <!--Added puzzle title based on documentation-->
 
         @include('includes.header')
 
         @include('includes.menu_mobile')
 
-        <div class="page_content_wrap">
+        <div class="page_content_wrap" id="page_content_wrap">
             <div class="content_wrap">
                 <div class="content">
                     <article id="post-367" class="post_item_single post_type_page post-367 page type-page status-publish hentry">
@@ -19,173 +20,102 @@
                             <div class="wpb-content-wrapper">
                                 <div data-vc-full-width="true" data-vc-full-width-init="true"
                                      class="vc_row wpb_row vc_row-fluid vc_custom_1522153891227 vc_row-has-fill hide_bg_image_on_tablet hide_bg_image_on_mobile shape_divider_top-none shape_divider_bottom-none"
-                                     style="width: 1481.75px; left: -86.875px; right: auto; padding-left: 86.875px; padding-right: 86.875px; position: relative; box-sizing: border-box; max-width: 1512px;">
-
+                                >
                                     <div class="wpb_column vc_column_container vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left">
-                                        <div class="vc_column-inner">
+                                        <div class="">
                                             <div class="wpb_wrapper">
-                                                <div class="wpb_single_image wpb_content_element vc_align_left wpb_content_element">
-                                                    <div class="container" style="margin: 25px 0 0 0;">
-                                                        <div class="wpb_column vc_column_container vc_col-sm-6 vc_col-has-fill sc_layouts_column_icons_position_left">
-                                                            <div class="vc_column-inner">
-                                                                <div class="wpb_wrapper">
-                                                                    <div class="wpb_content_element vc_align_left wpb_content_element">
-                                                                        <h3 style="margin: 9.15rem 0 25px 0;"> TBA </h3>
-                                                                        <h4> TBA </h4>
-                                                                        <label style="display: block; margin-top: 25px;">
-                                                                            <input type="text" name="puzzle_code_3rd" placeholder="ENTER KEY"/>
-                                                                            <button type="submit" style="margin-left: 15px;" id="btn-puzzle-send"> TBA </button>
-                                                                        </label>
+                                                <div class="custom-puzzle-container">
+                                                    <div class="scroll-container">
+                                                        <div class="scroll-label" id="scrollLabel">📜 Unfurl the Sacred Scroll</div>
+
+                                                        <div class="scroll-paper" id="scrollPaper">
+                                                            <div class="scroll-content-wrapper">
+                                                                <div class="scroll-content" id="scrollContent">
+                                                                    <h1 style="margin: 0">Ephesians 6:10-20: The Armor of God</h1>
+                                                                    <div class="verse">
+                                                                        <span class="verse-number">10</span>
+                                                                        Finally, be strong in the Lord and in the
+                                                                        <input type="text" class="fill-blank" placeholder="________">
+                                                                        of his might.
                                                                     </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
 
-                                                        <div class="wpb_column vc_column_container vc_col-sm-6 vc_col-has-fill sc_layouts_column_icons_position_left">
-                                                            <div class="vc_column-inner" style="padding-right:0;">
-                                                                <div class="wpb_wrapper">
-                                                                    <div class="wpb_single_image wpb_content_element vc_align_left wpb_content_element">
-                                                                        <div class="container" style="margin: 25px 0 0 0; padding-right:0;">
-                                                                            <img src="{{ asset("images/conquestclue.jpg") }}" />
-                                                                        </div>
+                                                                    <div class="verse">
+                                                                        <span class="verse-number">11</span>
+                                                                        Put on the whole
+                                                                        <input type="text" class="fill-blank" placeholder="________">
+                                                                        of God, that you may be able to stand against the schemes of the devil.
                                                                     </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                </div>
-                                <div class="vc_row-full-width vc_clearfix"></div>
-                                <div
-                                    class="vc_row wpb_row vc_row-fluid vc_custom_1522153958676 vc_row-has-fill hide_bg_image_on_tablet hide_bg_image_on_mobile shape_divider_top-none shape_divider_bottom-none">
-                                    <div
-                                        class="wpb_column vc_column_container vc_col-sm-12 sc_layouts_column_icons_position_left">
-                                        <div class="vc_column-inner">
-                                            <div class="wpb_wrapper">
-                                                <div class="vc_empty_space" style="height: 3.45rem"><span
-                                                        class="vc_empty_space_inner"></span></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div
-                                        class="wpb_column vc_column_container vc_col-sm-12 sc_layouts_column_icons_position_left">
-                                        <div class="vc_column-inner">
-                                            <div class="wpb_wrapper">
-                                                <div class="vc_empty_space" style="height: 9.6rem"><span
-                                                        class="vc_empty_space_inner"></span></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div data-vc-full-width="true" data-vc-full-width-init="true"
-                                     data-vc-stretch-content="true"
-                                     class="vc_row wpb_row vc_row-fluid vc_row-no-padding shape_divider_top-none shape_divider_bottom-none"
-                                     style="width: 1481.75px; left: -86.875px; right: auto; padding-left: 0px; padding-right: 0px; position: relative; box-sizing: border-box; max-width: 1512px;">
-                                    <div
-                                        class="wpb_column vc_column_container vc_col-sm-12 sc_layouts_column_icons_position_left">
-                                        <div class="vc_column-inner vc_custom_1521627361881">
-                                            <div class="wpb_wrapper">
-                                                <div
-                                                    class="wpb_single_image wpb_content_element vc_align_left wpb_content_element">
+                                                                    <div class="verse">
+                                                                        <span class="verse-number">12</span>
+                                                                        For we do not wrestle against flesh and blood, but against the rulers, against the
+                                                                        <input type="text" class="fill-blank" placeholder="________">
+                                                                        , against the cosmic
+                                                                        <input type="text" class="fill-blank" placeholder="________">
+                                                                        over this present darkness, against the spiritual forces of evil in the heavenly places.
+                                                                    </div>
 
-                                                    <figure class="wpb_wrapper vc_figure">
-                                                        <div class="vc_single_image-wrapper   vc_box_border_grey"><img
-                                                                loading="lazy" decoding="async" width="1871" height="95"
-                                                                src="{{ asset("wp-content/uploads/2018/03/top_dark.png") }}"
-                                                                class="vc_single_image-img attachment-full" alt=""
-                                                                title="top_dark"
-                                                                srcset="{{ asset("wp-content/uploads/2018/03/top_dark.png") }}"
-                                                                sizes="auto, (max-width: 1871px) 100vw, 1871px"></div>
-                                                    </figure>
+                                                                    <div class="verse">
+                                                                        <span class="verse-number">13</span>
+                                                                        Therefore take up the whole armor of God, that you may be able to
+                                                                        <input type="text" class="fill-blank" placeholder="________">
+                                                                        in the evil day, and having done all, to stand firm.
+                                                                    </div>
+                                                                    <div class="verse">
+                                                                        <span class="verse-number">14</span>
+                                                                        Stand therefore, having
+                                                                        <input type="text" class="fill-blank" placeholder="________">
+                                                                        on the belt of truth, and having put on the breastplate of
+                                                                        <input type="text" class="fill-blank longer" placeholder="_____________">
+                                                                    </div>
+                                                                    <div class="verse">
+                                                                        <span class="verse-number">15</span>
+                                                                        and, as shoes for your feet, having put on the
+                                                                        <input type="text" class="fill-blank" placeholder="________">
+                                                                        given by the gospel of peace.
+                                                                    </div>
+                                                                    <div class="verse">
+                                                                        <span class="verse-number">16</span>
+                                                                        In all circumstances take up the shield of faith, with which you can
+                                                                        <input type="text" class="fill-blank" placeholder="________">
+                                                                        all the flaming darts of the evil one;
+                                                                    </div>
+                                                                    <div class="verse">
+                                                                        <span class="verse-number">17</span>
+                                                                        and take the helmet of
+                                                                        <input type="text" class="fill-blank" placeholder="________">
+                                                                        , and the sword of the Spirit, which is the word of God,
+                                                                    </div>
+                                                                    <div class="verse">
+                                                                        <span class="verse-number">18</span>
+                                                                        praying at all times in the Spirit, with all prayer and supplication. To that end, keep alert with all
+                                                                        <input type="text" class="fill-blank longer" placeholder="________">,
+                                                                        making supplication for all the saints,
+                                                                    </div>
+                                                                    <div class="verse">
+                                                                        <span class="verse-number">19</span>
+                                                                        and also for me, that words may be given to me in opening my
+                                                                        <input type="text" class="fill-blank" placeholder="________">
+                                                                        boldly to proclaim the mystery of the gospel,
+                                                                    </div>
+                                                                    <div class="verse">
+                                                                        <span class="verse-number">20</span>
+                                                                        for which I am an
+                                                                        <input type="text" class="fill-blank longer" placeholder="________">
+                                                                        in chains, that I may declare it boldly, as I ought to speak.
+                                                                    </div>
+
+                                                                    <button id="btn-submit-answers" type="button" disabled>Submit</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="vc_row-full-width vc_clearfix"></div>
-                                <div data-vc-full-width="true" data-vc-full-width-init="true"
-                                     class="vc_row wpb_row vc_row-fluid vc_custom_1516978326411 vc_row-has-fill shape_divider_top-none shape_divider_bottom-none"
-                                     style="width: 1481.75px; left: -86.875px; right: auto; padding-left: 86.875px; padding-right: 86.875px; position: relative; box-sizing: border-box; max-width: 1512px;">
-                                    <div
-                                        class="wpb_column vc_column_container vc_col-sm-12 vc_col-md-offset-3 vc_col-md-6 sc_layouts_column_icons_position_left scheme_default">
-                                        <div class="vc_column-inner">
-                                            <div class="wpb_wrapper">
-                                                <div class="vc_empty_space" style="height: 8.25rem"><span
-                                                        class="vc_empty_space_inner"></span></div>
-                                                <div id="sc_title_855607521"
-                                                     class="sc_title color_style_default sc_title_default">
-                                                    <h6 class="sc_item_subtitle sc_title_subtitle sc_align_center sc_item_title_style_default">Programs</h6>
-                                                    <h2 class="sc_item_title sc_title_title sc_align_center sc_item_title_style_default">Flow</h2>
-                                                    <div class="sc_item_descr sc_title_descr sc_align_center"><p>
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                                        </p>
-                                                    </div>
-                                                </div><!-- /.sc_title --></div>
-                                        </div>
-                                    </div>
-                                    <div class="wpb_column vc_column_container vc_col-sm-12 sc_layouts_column_icons_position_left scheme_default">
-                                        <div class="vc_column-inner">
-                                            <div class="wpb_wrapper">
-                                                <div class="vc_empty_space" style="height: 3.1rem"><span
-                                                        class="vc_empty_space_inner"></span></div>
-                                                <div id="sc_icons_1100097351"
-                                                     class="sc_icons sc_icons_default sc_icons_size_medium sc_align_center">
-                                                    <div class="sc_icons_columns_wrap sc_item_columns trx_addons_columns_wrap columns_padding_bottom">
-                                                        <div class="trx_addons_column-1_3">
-                                                            <div class="sc_icons_item sc_icons_item_linked">
-                                                                <div id="sc_icons_1100097351_icon-icon-11"
-                                                                     class="sc_icons_icon sc_icon_type_ icon-icon-11">
-                                                                    <span class="sc_icon_type_ icon-icon-11"></span>
-                                                                </div>
-                                                                <h4 class="sc_icons_item_title">
-                                                                    <span>Day 1</span></h4>
-                                                                <div class="sc_icons_item_description"><span>Calling as an Individual</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="trx_addons_column-1_3">
-                                                            <div class="sc_icons_item sc_icons_item_linked">
-                                                                <div id="sc_icons_1100097351_icon-icon-12"
-                                                                     class="sc_icons_icon sc_icon_type_ icon-icon-12">
-                                                                    <span class="sc_icon_type_ icon-icon-12"></span>
-                                                                </div>
-                                                                <h4 class="sc_icons_item_title">
-                                                                    <span>Day 2</span></h4>
-                                                                <div class="sc_icons_item_description"><span>Calling with the Church Community</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="trx_addons_column-1_3">
-                                                            <div class="sc_icons_item sc_icons_item_linked">
-                                                                <div id="sc_icons_1100097351_icon-icon-13"
-                                                                     class="sc_icons_icon sc_icon_type_ icon-icon-13">
-                                                                    <span class="sc_icon_type_ icon-icon-13"></span>
-                                                                </div>
-                                                                <h4 class="sc_icons_item_title"><span>Day 3</span>
-                                                                </h4>
-                                                                <div class="sc_icons_item_description"><span>Calling to the Mission Field</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- /.sc_icons -->
-                                                <div class="vc_empty_space" style="height: 1.2em">
-                                                    <span class="vc_empty_space_inner"></span>
-                                                </div>
-                                                <div class="vc_empty_space" style="height: 7.8rem">
-                                                    <span class="vc_empty_space_inner"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="vc_row-full-width vc_clearfix"></div>
-                                <div class="vc_row-full-width vc_clearfix"></div>
                             </div>
                         </div>
                     </article>
@@ -193,10 +123,10 @@
             </div>
         </div>
     </div>
-    </div>
 @endsection
 
 @section('footer-scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" src="{{ asset("custom/js/puzzles-2nd.js") }}"></script>
+    {!! asset_versioned('/custom/js/puzzles-3rd.js', 'js', 'type="text/javascript"') !!}
 @endsection

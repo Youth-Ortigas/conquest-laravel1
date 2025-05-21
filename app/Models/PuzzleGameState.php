@@ -11,5 +11,9 @@ class PuzzleGameState extends Model
 
     protected $table = 'puzzle_game_state';
 
-    protected $fillable = ['user_id', 'puzzle_num', 'game_state'];
+    protected $fillable = [
+        'team_id',
+        'puzzle_num',
+        'game_state'
+    ];
 }

@@ -15,7 +15,7 @@ return new class extends Migration {
     {
         Schema::create('puzzle_attempts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->default(1); // Testing, later replace with auth user
+            $table->unsignedBigInteger('user_id')->default(1);
             $table->float('puzzle_num');
             $table->string('entered_key');
             $table->boolean('is_correct')->default(false);

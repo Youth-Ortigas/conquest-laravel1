@@ -124,7 +124,7 @@
                                                         </sr7-content>
 
                                                         <sr7-module-bg
-                                                            style="background-color: rgb(21, 16, 8); width: 1512px; height: 1102px; left: -116.983px; touch-action: manipulation;"
+                                                            style="background-color: rgb(21, 16, 8); touch-action: manipulation;"
                                                             data-pos="module"></sr7-module-bg>
                                                     </sr7-module>
                                                     <script>
@@ -158,8 +158,8 @@
                                     </div>
                                 </div>
                                 <div data-vc-full-width="true" data-vc-full-width-init="true"
-                                     class="vc_row wpb_row vc_row-fluid vc_custom_1522153891227 vc_row-has-fill hide_bg_image_on_tablet hide_bg_image_on_mobile shape_divider_top-none shape_divider_bottom-none"
-                                     style="width: 1481.75px; left: -86.875px; right: auto; padding-left: 86.875px; padding-right: 86.875px; position: relative; box-sizing: border-box; max-width: 1512px;">
+                                    class="vc_row wpb_row vc_row-fluid vc_custom_1522153891227 vc_row-has-fill hide_bg_image_on_tablet hide_bg_image_on_mobile shape_divider_top-none shape_divider_bottom-none"
+                                >
                                     <div
                                         class="wpb_column vc_column_container vc_col-sm-12 sc_layouts_column_icons_position_left">
                                         <div class="vc_column-inner">
@@ -345,7 +345,7 @@
                                 <div data-vc-full-width="true" data-vc-full-width-init="true"
                                      data-vc-stretch-content="true"
                                      class="vc_row wpb_row vc_row-fluid vc_row-no-padding shape_divider_top-none shape_divider_bottom-none"
-                                     style="width: 1481.75px; left: -86.875px; right: auto; padding-left: 0px; padding-right: 0px; position: relative; box-sizing: border-box; max-width: 1512px;">
+                                >
                                     <div
                                         class="wpb_column vc_column_container vc_col-sm-12 sc_layouts_column_icons_position_left">
                                         <div class="vc_column-inner vc_custom_1521627361881">
@@ -370,7 +370,7 @@
                                 <div class="vc_row-full-width vc_clearfix"></div>
                                 <div data-vc-full-width="true" data-vc-full-width-init="true"
                                      class="vc_row wpb_row vc_row-fluid vc_custom_1516978326411 vc_row-has-fill shape_divider_top-none shape_divider_bottom-none"
-                                     style="width: 1481.75px; left: -86.875px; right: auto; padding-left: 86.875px; padding-right: 86.875px; position: relative; box-sizing: border-box; max-width: 1512px;">
+                                >
                                     <div
                                         class="wpb_column vc_column_container vc_col-sm-12 vc_col-md-offset-3 vc_col-md-6 sc_layouts_column_icons_position_left scheme_default">
                                         <div class="vc_column-inner">

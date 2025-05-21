@@ -33,6 +33,7 @@ class RouteServiceProvider extends ServiceProvider
     public function map()
     {
         $this->mapWebRoutes();
+        $this->mapWebRoutesCustomAuth();
     }
 
     /**
@@ -46,5 +47,15 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::namespace($this->namespace)
              ->group(base_path('routes/web.php'));
+    }
+
+    /**
+     * [Routes] Define routing for the application
+     * @return void
+     */
+    protected function mapWebRoutesCustomAuth()
+    {
+        Route::namespace($this->namespace)
+            ->group(base_path('routes/custom/auth.php'));
     }
 }

@@ -7,6 +7,18 @@
 $(document).ready(function () {
     let zoomLevel = 1;
 
+    // $(document).on('contextmenu', function (e) {
+    //     e.preventDefault();
+    // });
+
+    $(document).on('keydown', function (e) {
+        if (e.keyCode === 123 || // F12
+            (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || // Ctrl+Shift+I/J
+            (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83))) { // Ctrl+U/S
+            e.preventDefault();
+        }
+    });
+
     $(".zoomable-image").click(function (event) {
         if (zoomLevel === 1) {
             zoomLevel = 2;
@@ -45,6 +57,17 @@ $(document).ready(function () {
      * [Module] Puzzles Instance
      */
     var oModulePuzzles = {
+        /**
+         * Initialize module
+         */
+        init: function () {
+            this.showLoading();
+            this.loadProperties();
+            this.enterKey(this.DOMClassKeyButton, this.DOMClassKeyInput);
+            this.generateVigenereTable();
+            this.restoreGameState();
+            this.saveGameState();
+        },
 
         /**
          * Load properties
@@ -56,15 +79,8 @@ $(document).ready(function () {
             this.DOMClassKeyInput = $(`${this.classKeyInput}`);
             this.DOMClassKeyButton = $(`${this.classKeyButton}`);
             this.mToken = $("input[name='_token']").val();
-        },
-
-        /**
-         * Initialize module
-         */
-        init: function () {
-            this.loadProperties();
-            this.enterKey(this.DOMClassKeyButton, this.DOMClassKeyInput);
-            this.generateVigenereTable();
+            this.isPuzzleComplete = false;
+            this.puzzleNum = 1;
         },
 
         /**
@@ -90,85 +106,91 @@ $(document).ready(function () {
             });
         },
 
+        restoreGameState: function () {
+            $.get(`/puzzle-get-game-state/${this.puzzleNum}`, function (response) {
+                if (response && response.game_state) {
+                    const savedAnswer = response.game_state;
+
+                    this.DOMClassKeyInput.val(savedAnswer)
+                    Swal.close();
+                } else if(response && response.status === 'complete') {
+                    this.isPuzzleComplete = true
+                    Swal.close();
+                } else {
+                    Swal.close();
+                    console.warn('No saved game state found.');
+                }
+            }.bind(this));
+        },
+
+        saveGameState: function () {
+            var oThis = this
+
+            oThis.DOMClassKeyInput.on('blur', function () {
+                if (!oThis.isPuzzleComplete) {
+                    const input = $(this).val().trim().toLowerCase();
+
+                    $.post('/puzzle-save-game-state', {
+                        _token: oThis.mToken,
+                        puzzle_num: oThis.puzzleNum,
+                        game_state: JSON.stringify(input)
+                    }).done(function (response) {
+                        console.log(response)
+                        if (response.status !== 'success') {
+                            console.error('Failed to save game state');
+                        }
+                    });
+                }
+            });
+        },
+
         /**
          * [1st Puzzle - General] Validate puzzle key
          * @param enteredKey
          */
         validatePuzzleKey: function (enteredKey) {
+            let oThis = this
             $.post("/validate-puzzle-key", {
                 _token: $('meta[name="csrf-token"]').attr('content'),
                 puzzle_key: enteredKey,
-                puzzle_num: 1
+                puzzle_num: oThis.puzzleNum
             }, function(data) {
                 if (data.status === 'success') {
-                    Swal.fire({
-                        title: 'Puzzle unlocked!',
-                        text: 'Click Cool! to go to next puzzle',
-                        icon: 'success',
-                        confirmButtonText: 'Cool!'
-                    }).then(() => {
-                        window.open(data.next_puzzle, '_blank');
-                    });
+                    if(data.next_puzzle) {
+                        Swal.fire({
+                            title: 'Puzzle Unlocked!',
+                            html: '<p>Thou hast conquered the Vigenère puzzle!</p><p>Click <strong>Go Forth!</strong> to journey to the second puzzle.</p>',
+                            icon: 'success',
+                            confirmButtonText: 'Go Forth!'
+                        }).then(() => {
+                            window.location.href = data.next_puzzle;
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Alas, the Game is Over!',
+                            text: `Thou hast conquered the Vigenère puzzle!`,
+                            icon: 'info',
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                            allowEnterKey: false,
+                            confirmButtonText: 'View Results',
+                            footer: '<strong>Pray, wait for the next puzzle to be unlocked.</strong>'
+                        }).then(() => {
+                            oThis.DOMClassKeyInput.prop('disabled', true);
+                            oThis.DOMClassKeyButton.remove();
+                        });
+                    }
                 } else {
                     Swal.fire({
-                        title: 'You\'re almost there!',
-                        text: data.message || 'Try again',
+                        title: 'Thou art near!',
+                        text: data.message,
                         icon: 'error',
-                        confirmButtonText: 'G!'
+                        confirmButtonText: 'Persevere!'
                     });
                 }
             }).fail(function(error) {
                 console.error("Error validating puzzle key:", error);
             });
-        },
-
-        callResourceViaAjax: function(sAjaxUrl, oAssignData, sMethod) {
-            var oThis = this;
-            return new Promise(function(oResolve, oReject) {
-                $.ajaxSetup({
-                    async: true,
-                    headers: {
-                        'X-CSRF-TOKEN': oThis.mToken
-                    }
-                });
-
-                $.ajax({
-                    url: sAjaxUrl,
-                    type: sMethod,
-                    data: oAssignData,
-                    cache: false,
-                    dataType: 'json',
-                    processData: false,
-                    contentType: false,
-                    success: function (data) {
-                        oResolve(data);
-                    },
-                    error: function (oError) {
-                        oReject(oError);
-                    }
-                });
-            });
-        },
-
-        checkIfHasValue: function(mValue) {
-            switch (typeof mValue) {
-                case "string":
-                    return mValue.trim().length > 0
-
-                case "object":
-                    return Object.keys(mValue).length > 0
-
-                case "undefined" :
-                    return false;
-
-                case 'boolean':
-                case 'bigint':
-                case 'number':
-                    return mValue < 0
-
-                default:
-                    return mValue.trim().length > 0
-            }
         },
 
         generateVigenereTable: function () {
@@ -197,15 +219,28 @@ $(document).ready(function () {
                     let $td = $("<td>").text(shiftedAlphabet[j]);
 
                     // Add Click Event to Insert Letter into Input
-                    $td.on("click", function () {
-                        $inputField.val($inputField.val() + $(this).text()); // Append clicked letter
-                    });
+                    if(!$inputField.is(':disabled')) {
+                        $td.on("click", function () {
+                            $inputField.val($inputField.val() + $(this).text()); // Append clicked letter
+                        });
+                    }
 
                     $row.append($td);
                 }
 
                 $table.append($row);
             }
+        },
+
+        showLoading: function () {
+            Swal.fire({
+                title: 'Loading...',
+                text: 'Please wait while we prepare your puzzle.',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
         }
 
     }

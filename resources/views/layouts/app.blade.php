@@ -3378,7 +3378,18 @@
 <script></script>
 <!--<script src="https://code.tidio.co/ctybgkiqd4jhsgdvzlgahqx3pjybdwlg.js" async=""></script>-->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+@if (session('error'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops!',
+                text: '{{ session('error') }}',
+                confirmButtonText: 'Okay'
+            });
+        });
+    </script>
+@endif
 @section('footer-scripts')
 
 @show
