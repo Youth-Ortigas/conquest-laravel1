@@ -289,9 +289,12 @@
                                                 <div id="sc_title_129112229"
                                                      class="sc_title color_style_default sc_title_default italic"><h3
                                                         class="sc_item_title sc_title_title sc_align_left sc_item_title_style_default sc_item_title_tag">
-                                                        “Finally, be strong in the Lord and in the strength of his might."
-                                                        <br/>"Put on the whole armor of God, that you may be able to stand against the schemes of the devil..”
-                                                        <br/>[Ephesians 6:10-11]
+                                                       <sup>10</sup> “Finally, be strong in the Lord and in the strength of his might." <br/>
+                                                        <sup>11</sup> "Put on the whole armor of God, that you may be able to stand against the schemes of the devil.” <br/>
+                                                        <sup>12</sup> "For we do not wrestle against flesh and blood, but against the rulers, against the authorities, against the cosmic powers over this present darkness, against the spiritual forces of evil in the heavenly places." <br/>
+                                                        <sup>13</sup> "Therefore take up the whole armor of God, that you may be able to withstand in the evil day, and having done all, to stand firm." <br/>
+
+                                                        <br/>[Ephesians 6:10-13 ESV]
                                                     </h3>
                                                 </div>
                                                 <!-- /.sc_title -->
