@@ -2,7 +2,7 @@
     text-align: center !important;
     font-size: 2.5rem;
     font-weight: bold;
-    color: #6b3e0f;
+    color: #62401f !important;
     position: relative;
     margin-bottom: 30px;
 }
@@ -52,4 +52,51 @@
     font-size: 3rem;
     color: #8b4f0c;
     line-height: 0.6;
+}
+
+.welcome-title-sub {
+    text-align: center !important;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #62401f !important;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.welcome-title-sub::before,
+.welcome-title-sub::after {
+    content: "";
+    position: absolute;
+}
+
+.welcome-title-sub::before {
+    background-image: url('../../images/home/welcome-header1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 50%;
+    height: 50%;
+    left: 25%;
+    margin-bottom: 15px;
+}
+
+.welcome-title-sub::after {
+    background-image: url('../../images/home/welcome-header2.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 50%;
+    height: 150%;
+    left: 25%;
+    margin-bottom: 15px;
+}
+
+.common-title-sub {
+    text-transform: uppercase;
+    text-align: center !important;
+    font-size: 2.5rem;
+    font-weight: bold !important;
+    color: #62401f !important;
+    position: relative;
+    margin-bottom: 30px;
 }
