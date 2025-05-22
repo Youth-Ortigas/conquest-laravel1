@@ -1,0 +1,55 @@
+.welcome-title {
+    text-align: center !important;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #6b3e0f;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.welcome-title::before,
+.welcome-title::after {
+    content: "";
+    position: absolute;
+}
+
+.welcome-title::before {
+    background-image: url('../../images/home/welcome-header1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 50%;
+    height: 100%;
+    left: 25%;
+    margin-bottom: 15px;
+}
+
+.welcome-title::after {
+    background-image: url('../../images/home/welcome-header2.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 50%;
+    height: 100%;
+    left: 25%;
+    margin-bottom: 15px;
+}
+
+.welcome-paragraph-initial {
+    padding: 25px 0 0 0;
+}
+
+.welcome-paragraph {
+    font-size: 1.25rem;
+    line-height: 2;
+    text-align: justify;
+    margin-bottom: 25px;
+}
+
+.dropcap {
+    float: left;
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    color: #8b4f0c;
+    line-height: 0.6;
+}

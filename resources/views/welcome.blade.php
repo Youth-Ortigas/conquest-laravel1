@@ -3,103 +3,66 @@
 @section('page-class', 'home')
 
 @section('content')
-    <link rel="stylesheet" href="{{ asset('library/ResponsiveSlides.js/responsiveslides.css') }}">
+    <link rel="stylesheet" href="{{ asset('library/ResponsiveSlides.js/responsiveslides.css') }}"
+          xmlns="http://www.w3.org/1999/html">
+    <link rel="stylesheet" href="{{ asset('custom/css/home.css') }}">
     <div class="page_wrap">
         @include('includes.header')
 
         @include('includes.menu_mobile')
 
         <div class="page_content_wrap">
+            <div class="wpb_revslider_element wpb_content_element">
+                <ul class="rslides" id="slider">
+                    <li><img src="{{ asset("images/conquest2025-moodboard1.png") }}" alt="Conquest Image"></li>
+                    <video id="slide-video" width="640" height="360" autoplay loop muted>
+                        <source src="{{ asset("videos/conquest2025-moodboard2.mp4") }}" type="video/mp4">
+                        Your browser does not support the video tag. Use thy Chrome/Firefox/Safari for a better user experience
+                    </video>
+                </ul>
+            </div>
             <div class="content_wrap">
                 <div class="content">
                     <article id="post-367"
                              class="post_item_single post_type_page post-367 page type-page status-publish hentry">
                         <div class="post_content entry-content">
                             <div class="wpb-content-wrapper">
-                                <div
-                                    class="vc_row wpb_row vc_row-fluid shape_divider_top-none shape_divider_bottom-none">
-                                    <div
-                                        class="wpb_column vc_column_container vc_col-sm-12 sc_layouts_column_icons_position_left">
+                                <div class="vc_row wpb_row vc_row-fluid shape_divider_top-none shape_divider_bottom-none">
+                                    <div class="wpb_column vc_column_container vc_col-sm-12 sc_layouts_column_icons_position_left">
                                         <div class="vc_column-inner vc_custom_1523868071853">
                                             <div class="wpb_wrapper">
-                                                <div class="wpb_revslider_element wpb_content_element">
-                                                    <ul class="rslides">
-                                                        <li><img src="{{ asset("images/conquest2025-moodboard1.png") }}"></li>
-                                                        <li><img src="{{ asset("images/slider1-1-orig.jpg") }}"></li>
-                                                    </ul>
+                                                <div class="container">
+                                                    <div class="welcome-section">
+                                                        <h1 class="welcome-title" style="text-transform: uppercase"><br/><br/>Welcome Conquerors!</h1>
+                                                        <p class="welcome-paragraph welcome-paragraph-initial">
+                                                            <span class="dropcap">F</span>or the past years, Youth Camps have created an opportunity for us to raise students who follow God comprehensively, fish lost people
+                                                            consistently, and fellowship cross-generationally. With the recent expansion of our horizon in reaching out to the campuses, this will provide an
+                                                            avenue for us to evangelize, disciple, and raise leaders in our campuses in Ortigas and Cubao.
+                                                        </p>
+                                                        <p class="welcome-paragraph">
+                                                            Our goal is to equip the students to become strong and mighty leaders in their fields by being armed with biblical truths in proclaiming and demonstrating the gospel through intentional discipleship and servant leadership.
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div data-vc-full-width="true" data-vc-full-width-init="true"
-                                    class="vc_row wpb_row vc_row-fluid vc_custom_1522153891227 vc_row-has-fill hide_bg_image_on_tablet hide_bg_image_on_mobile shape_divider_top-none shape_divider_bottom-none"
-                                >
-                                    <div
-                                        class="wpb_column vc_column_container vc_col-sm-12 sc_layouts_column_icons_position_left">
-                                        <div class="vc_column-inner">
-                                            <div class="wpb_wrapper">
-                                                <div class="vc_empty_space" style="height: 8.1rem"><span
-                                                        class="vc_empty_space_inner"></span></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div
-                                        class="wpb_column vc_column_container vc_col-sm-6 vc_col-has-fill sc_layouts_column_icons_position_left">
+                                <div data-vc-full-width="true" data-vc-full-width-init="true" class="vc_row wpb_row vc_row-fluid vc_custom_1522153891227 vc_row-has-fill hide_bg_image_on_tablet hide_bg_image_on_mobile shape_divider_top-none shape_divider_bottom-none">
+                                    <div class="wpb_column vc_column_container vc_col-sm-2 vc_col-has-fill sc_layouts_column_icons_position_left">
                                         <div class="vc_column-inner vc_custom_1521556308493">
                                             <div class="wpb_wrapper">
-                                                <div
-                                                    class="wpb_single_image wpb_content_element vc_align_left wpb_content_element">
-
+                                                <div class="wpb_single_image wpb_content_element vc_align_left wpb_content_element">
                                                     <figure class="wpb_wrapper vc_figure">
-                                                        <div class="vc_single_image-wrapper   vc_box_border_grey"><img
-                                                                loading="lazy" decoding="async" width="639" height="467"
-                                                                src="{{ asset("images/home/index-armor-of-god1.png") }}"
-                                                                class="vc_single_image-img attachment-full" alt=""
+                                                        <div class="vc_single_image-wrapper vc_box_border_grey">
+                                                            <img loading="lazy" decoding="async" src="{{ asset("images/home/welcome-armor-of-god1.png") }}"
+                                                                class="vc_single_image-img attachment-full" alt="The Whole Armor of God"
                                                                 title="img-4-copyright"
-                                                                srcset="{{ asset("images/home/index-armor-of-god1.png") }}"
-                                                                sizes="auto, (max-width: 639px) 100vw, 639px"></div>
+                                                                srcset="{{ asset("images/home/welcome-armor-of-god1.png") }}">
+                                                        </div>
                                                     </figure>
                                                 </div>
-                                                <div class="sc_content_wrap sc_push_large">
-                                                    <div id="sc_content_766732279"
-                                                         class="sc_content color_style_default sc_content_default sc_float_center">
-                                                        <div class="sc_content_container">
-                                                            <div
-                                                                class="vc_row wpb_row vc_inner vc_row-fluid shape_divider_top-none shape_divider_bottom-none">
-                                                                <div
-                                                                    class="wpb_column vc_column_container vc_col-sm-4 sc_layouts_column_icons_position_left">
-                                                                    <div class="vc_column-inner">
-                                                                        <div class="wpb_wrapper"></div>
-                                                                    </div>
-                                                                </div>
-                                                                <div
-                                                                    class="wpb_column vc_column_container vc_col-sm-12 vc_col-md-8 sc_shift_x_tiny sc_layouts_column_icons_position_left">
-                                                                    <div class="vc_column-inner">
-                                                                        <div class="wpb_wrapper">
-                                                                            <div id="widget_video_1189808536"
-                                                                                 class="widget_area sc_widget_video vc_widget_video wpb_content_element">
-                                                                                <aside
-                                                                                    id="widget_video_1189808536_widget"
-                                                                                    class="widget widget_video">
-                                                                                    <div id="sc_video_2094393415"
-                                                                                         class="trx_addons_video_player with_cover hover_play">
-                                                                                        <img loading="lazy"
-                                                                                             decoding="async"
-                                                                                             src="{{ asset("images/home/index-armor-of-god2.png") }}"
-                                                                                             alt="" width="437"
-                                                                                             height="285" />
-                                                                                    </div><!-- .sc_popup -->
-                                                                                </aside>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- /.sc_content --></div><!-- /.sc_content_wrap -->
-                                                <div class="vc_empty_space  hide_on_mobile" style="height: 8rem"><span
-                                                        class="vc_empty_space_inner"></span></div>
+                                                <div class="vc_empty_space  hide_on_mobile" style="height: 8rem"><span class="vc_empty_space_inner"></span></div>
                                             </div>
                                         </div>
                                     </div>
