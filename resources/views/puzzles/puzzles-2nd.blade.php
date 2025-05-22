@@ -42,7 +42,6 @@
                                             <br>
                                             <button id="btn-key-send" class="d-none">Submit</button>
 
-                                            <a id="" href="/puzzle-wordle-reset">Reset</a>
                                             <p id="message"></p>
                                         </div>
                                     </div>
