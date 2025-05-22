@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TeamLeaderboardController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\PuzzleController;
 use App\Http\Controllers\PuzzleGameStateController;
@@ -15,6 +16,9 @@ Route::middleware(['web'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index']);
     Route::get('document-sign/waiver-form', [DocumentController::class, 'index']);
     Route::post('document-sign/save', [DocumentController::class, 'saveWaiverForm']);
+
+    Route::get('team-leaderboards', [TeamLeaderboardController::class, 'index']);
+    Route::get('team-leaderboards-table/{puzzleNum?}', [TeamLeaderboardController::class, 'getTeamLeaderboard'])->name('team-leaderboard.table');
 
     Route::get('/puzzles/{reference}', [PuzzleController::class, 'getDetails'])->name('puzzles.getDetails');
     Route::post('/validate-puzzle-key', [PuzzleController::class, 'validatePuzzleKey'])->name('puzzles.validate');

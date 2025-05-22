@@ -46,6 +46,7 @@ class PuzzleController extends BaseController
         $modelPuzzlesList = [];
         $assignPuzzlesRound = [];
         $modelPuzzlesDateUnlocked = [];
+        $puzzleAvailableIn = [];
 
         if ($modelPuzzles->count() > 0) {
             $modelPuzzlesAssign = $modelPuzzles->pluck("puzzle_num")->toArray();
@@ -74,23 +75,17 @@ class PuzzleController extends BaseController
         $checkPuzzleState['3rd'] = $assignPuzzlesRound[2] ?? [];
         $checkPuzzleState['4th'] = $assignPuzzlesRound[3] ?? [];
 
-        $flagPuzzleDisableOpacity['1st'] = Auth::check() !== true ? "opacity: 0.5" : "";
-        $flagPuzzleDisableOpacity['2nd'] = $isArray($checkPuzzleState['2nd']) !== true ? "opacity: 0.5" : "";
-        $flagPuzzleDisableOpacity['3rd'] = $isArray($checkPuzzleState['3rd']) !== true || count($checkPuzzleState['3rd']) !== $REQUIRED_WORDLE_WORD_COUNT ? "opacity: 0.5" : "";
-        $flagPuzzleDisableOpacity['4th'] = $isArray($checkPuzzleState['4th']) !== true ? "opacity: 0.5" : "";
-
-        $flagPuzzleAllowLink['1st'] = Auth::check();
-        $flagPuzzleAllowLink['2nd'] = $isArray($checkPuzzleState['2nd']);
-        $flagPuzzleAllowLink['3rd'] = $isArray($checkPuzzleState['3rd']) && count($checkPuzzleState['3rd']) === $REQUIRED_WORDLE_WORD_COUNT;
-        $flagPuzzleAllowLink['4th'] = $isArray($checkPuzzleState['4th']);
-
         $isPuzzleComplete['1st'] = $isArray($checkPuzzleState['2nd']);
         $isPuzzleComplete['2nd'] = $isArray($checkPuzzleState['3rd']) && count($checkPuzzleState['3rd']) === $REQUIRED_WORDLE_WORD_COUNT;
         $isPuzzleComplete['3rd'] = $isArray($checkPuzzleState['4th']);
 
+        $puzzleAvailableIn['1st'] = max(round(now()->diffInSeconds(Carbon::parse($modelPuzzlesDateUnlocked[0]))), 0);
+        $puzzleAvailableIn['2nd'] = max(round(now()->diffInSeconds(Carbon::parse($modelPuzzlesDateUnlocked[1]))), 0);
+        $puzzleAvailableIn['3rd'] = max(round(now()->diffInSeconds(Carbon::parse($modelPuzzlesDateUnlocked[2]))), 0);
+        $puzzleAvailableIn['4th'] = max(round(now()->diffInSeconds(Carbon::parse($modelPuzzlesDateUnlocked[3]))), 0);
+
         return view('puzzles', compact(
-            'modelPuzzlesList', 'modelPuzzlesDateUnlocked', 'authTeamID',
-            'checkPuzzleState', 'flagPuzzleDisableOpacity', 'flagPuzzleAllowLink', 'isPuzzleComplete'
+            'modelPuzzlesList', 'puzzleAvailableIn', 'authTeamID', 'checkPuzzleState', 'isPuzzleComplete'
         ));
     }
 

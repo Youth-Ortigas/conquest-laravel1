@@ -41,7 +41,7 @@
                                                 <div class="wpb_single_image wpb_content_element vc_align_left wpb_content_element">
                                                     <div class="container" style="margin: 25px 0 0 0;">
                                                         <div class="zoom-container">
-                                                            <img src="{{ asset("images/conquestclue.jpg") }}" alt="conquest clue" class="zoomable-image">
+                                                            <img src="{{ asset("images/conquestclue.jpg") }}" alt="conquest clue" class="zoomable-image" id="zoomable-image">
                                                             <div class="zoom-controls">
                                                                 <button class="zoom-reset">Reset</button>
                                                             </div>
@@ -75,7 +75,7 @@
                                                                             />
 
                                                                             @unless(isset($correctAttempt[0]))
-                                                                                <button type="submit" style="margin-left: 15px;" id="btn-puzzle-send"> Deliver Thy Reply </button>
+                                                                                <button type="submit" style="margin-left: 15px; margin-top: 10px" id="btn-puzzle-send"> Deliver Thy Reply </button>
                                                                             @endif
                                                                         </label>
                                                                     </div>
@@ -87,7 +87,7 @@
                                                             <div class="vc_column-inner" style="padding-right:0;">
                                                                 <div class="wpb_wrapper">
                                                                     <div class="wpb_single_image wpb_content_element vc_align_left wpb_content_element">
-                                                                        <div class="container" style="margin: 25px 0 0 0; padding-right:0;">
+                                                                        <div class="container" style="margin: 25px 0 0 0;">
                                                                             <div class="table-wrapper">
                                                                                 <table id="vigenereTable"></table>
                                                                             </div>
