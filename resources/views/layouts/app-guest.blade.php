@@ -4,7 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="format-detection" content="telephone=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Conquest Youth Camp 2025 Event</title> <!-- Changed from ENC to Youth Camp -->
+    <link rel="icon" type="image/x-icon" href="{{ asset("images/favicon.ico") }}">
+    <title>Conquest Youth Camp 2025 Event</title>
     <meta name="robots" content="noindex, nofollow">
     <style>img:is([sizes="auto" i], [sizes^="auto," i]) {
             contain-intrinsic-size: 3000px 1500px
@@ -2439,7 +2440,7 @@
                     }
                 }
             },
-            "thumb": "{{ asset("wp-content/uploads/2018/03/slider1-1.jpg") }}",
+            "thumb": "{{ asset("wp-content/uploads/2018/03/slider1-1.png") }}",
             "aU": [],
             "imgs": [{
                 "lib_id": 641,
@@ -2452,7 +2453,7 @@
             }, {
                 "lib_id": "",
                 "lib": "",
-                "src": "{{ asset("wp-content/uploads/2018/03/slider1-1.jpg") }}"
+                "src": "{{ asset("wp-content/uploads/2018/03/slider1-1.png") }}"
             }],
             "hasYT": false,
             "version": "6.7.23"
@@ -2468,14 +2469,14 @@
                     "language": "default",
                     "order": 1,
                     "thumb": {
-                        "src": "{{ asset("wp-content/uploads/2018/03/slider1-1.jpg") }}",
+                        "src": "{{ asset("wp-content/uploads/2018/03/slider1-1.png") }}",
                         "srcId": "",
                         "admin": "",
                         "adminId": "",
                         "dimension": "slider",
                         "default": {
                             "image": {
-                                "src": "{{ asset("wp-content/uploads/2018/03/slider1-1.jpg") }}",
+                                "src": "{{ asset("wp-content/uploads/2018/03/slider1-1.png") }}",
                                 "repeat": "",
                                 "size": "cover",
                                 "pos": {"x": "50%", "y": "100%"}
@@ -3121,7 +3122,7 @@
                         "bg": {
                             "image": {
                                 "ratio": 1.6978221415607986,
-                                "src": "{{ asset("wp-content/uploads/2018/03/slider1-1.jpg") }}",
+                                "src": "{{ asset("wp-content/uploads/2018/03/slider1-1.png") }}",
                                 "lib": "",
                                 "lib_id": 638,
                                 "lib_size": "",
@@ -3162,14 +3163,14 @@
                     "language": "default",
                     "order": 2,
                     "thumb": {
-                        "src": "{{ asset("wp-content/uploads/2018/03/slider1-1.jpg") }}",
+                        "src": "{{ asset("wp-content/uploads/2018/03/slider1-1.png") }}",
                         "srcId": "",
                         "admin": "",
                         "adminId": "",
                         "dimension": "slider",
                         "default": {
                             "image": {
-                                "src": "{{ asset("wp-content/uploads/2018/03/slider1-1.jpg") }}",
+                                "src": "{{ asset("wp-content/uploads/2018/03/slider1-1.png") }}",
                                 "repeat": "",
                                 "size": "cover",
                                 "pos": {"x": "50%", "y": "100%"}
@@ -3205,14 +3206,14 @@
                     "language": "default",
                     "order": 3,
                     "thumb": {
-                        "src": "{{ asset("wp-content/uploads/2018/03/slider1-1.jpg") }}",
+                        "src": "{{ asset("wp-content/uploads/2018/03/slider1-1.png") }}",
                         "srcId": "",
                         "admin": "",
                         "adminId": "",
                         "dimension": "slider",
                         "default": {
                             "image": {
-                                "src": "{{ asset("wp-content/uploads/2018/03/slider1-1.jpg") }}",
+                                "src": "{{ asset("wp-content/uploads/2018/03/slider1-1.png") }}",
                                 "repeat": "",
                                 "size": "cover",
                                 "pos": {"x": "50%", "y": "100%"}

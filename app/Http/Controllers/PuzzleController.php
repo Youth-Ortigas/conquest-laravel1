@@ -109,7 +109,7 @@ class PuzzleController extends BaseController
             '4th' => 4
         ];
 
-        $puzzleNum = $puzzleOrder[$reference];
+        $puzzleNum = $puzzleOrder[$reference] ?? 1;
 
         $isPuzzleAvailable = $this->isPuzzleAvailebleOrUnlocked($puzzleNum, $authTeamID);
         if($isPuzzleAvailable) return $isPuzzleAvailable;

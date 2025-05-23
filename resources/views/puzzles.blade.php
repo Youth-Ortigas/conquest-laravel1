@@ -3,15 +3,27 @@
 @section('page-class', 'home')
 
 @section('content')
+    <link rel="stylesheet" href="{{ asset('custom/css/puzzles.css') }}">
+
     <div class="page_wrap">
-        @include('includes.puzzle_banner', ['title' => 'Puzzles'])
 
         @include('includes.header')
 
         <div class="sc_content_container">
-            <div class="vc_empty_space" style="height: 5.1rem">
+            <div class="vc_empty_space" style="height: 4rem">
                 <span class="vc_empty_space_inner"></span>
             </div>
+            <h1 class="welcome-title" style="text-transform: uppercase"><br/><br/>PUZZLES</h1>
+            <p style="max-width: 600px; margin: 0.2em auto; font-style: italic; font-size: 0.9em; color: #555;">
+                Teams are ranked based on the following criteria, applied in order:
+            </p>
+            <ol style="max-width: 600px; margin: 0 auto 2em auto; font-style: italic; font-size: 0.9em; color: #555; text-align: left">
+                <li><strong>Number of Puzzles Completed</strong> — Higher is better.</li>
+                <li><strong>Completion Time</strong> — Lower total time is better.
+                    (<em>Measured from when each puzzle was made available, not when the team started their attempt.</em>)
+                </li>
+                <li><strong>Number of Attempts</strong> — Lower is better.</li>
+            </ol>
             <div id="sc_icons_1100097351" class="sc_icons sc_icons_default sc_icons_size_medium sc_align_center">
                 <div class="sc_icons_columns_wrap sc_item_columns trx_addons_columns_wrap columns_padding_bottom">
                     <div class="trx_addons_column-1_4">
@@ -100,17 +112,6 @@
                         </a>
                     </div>
                 </div>
-                <h3 style="text-align: center; margin: 0 auto;">Criteria</h3><br>
-                    <p style="max-width: 600px; margin: 0.2em auto; font-style: italic; font-size: 0.9em; color: #555;">
-                        Teams are ranked based on the following criteria, applied in order:
-                    </p>
-                    <ol style="max-width: 600px; margin: 0 auto 2em auto; font-style: italic; font-size: 0.9em; color: #555; text-align: left">
-                        <li><strong>Number of Puzzles Completed</strong> — Higher is better.</li>
-                        <li><strong>Completion Time</strong> — Lower total time is better.
-                            (<em>Measured from when each puzzle was made available, not when the team started their attempt.</em>)
-                        </li>
-                        <li><strong>Number of Attempts</strong> — Lower is better.</li>
-                    </ol>
             </div><!-- /.sc_icons -->
         </div>
 

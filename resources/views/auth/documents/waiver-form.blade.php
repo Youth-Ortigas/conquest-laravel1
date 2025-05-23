@@ -24,21 +24,40 @@
                                         <div class="vc_column-inner">
                                             <div class="wpb_wrapper">
                                                 <div class="wpb_single_image wpb_content_element vc_align_left wpb_content_element">
-                                                    <h3 style="margin:0;"> To Thy Youths: <br/> Kindly show this message to thy parent or legal guardian, that they may read and sign the waiver form. </h3>
-                                                    <h3 style="margin:15px 0 30px 0;"> To Thy Parents/Legal Guardians: <br/> Click on [Draw] to provide thy signature and agree to the terms of the waiver. </h3>
-                                                    <div id="toolbar" style="width:100%; text-align: right;">
-                                                        <button id="prev-page" class="tool-button hide"><i class="fas fa-arrow-left"></i> Previous</button>
-                                                        <button id="next-page" class="tool-button hide"><i class="fas fa-arrow-right"></i> Next</button>
-                                                        <button id="draw-button" class="tool-button"><i class="fas fa-pencil-alt"></i> Draw</button>
-                                                        <button id="erase-button" class="tool-button"><i class="fas fa-eraser"></i> Erase</button>
-                                                        <button id="download-button" class="tool-button"><i class="fas fa-download"></i> Download</button>
-                                                        <button id="save-button" class="tool-button"><i class="fas fa-save"></i> Save</button>
-                                                    </div>
-                                                    <div id="pdf-container">
-                                                        <canvas id="pdf-canvas"></canvas>
-                                                        <canvas id="annotation-canvas"></canvas>
-                                                    </div>
-                                                    <div id="page-info">Page: <span id="page-num"></span> / <span id="page-count"></span></div>
+                                                    <h3 style="margin:0;"> To Thy Youths: </h3>
+                                                    <ul style="font-family: 'Spectral SC',serif; font-size: 2.4em; line-height: 1.5em;">
+                                                        <li> Kindly show this message to thy parent or legal guardian, that they may read and sign the waiver form. </li>
+                                                    </ul>
+                                                    <h3 style="margin:15px 0 0 0;"> To Thy Parents/Legal Guardians:</h3>
+                                                    <ul style="font-family: 'Spectral SC',serif; font-size: 2.4em; line-height: 1.5em;">
+                                                        <li>Click on [Submit] to provide thy signature</li>
+                                                        <li>[Enter text to place] to input your text.</li>
+                                                        <li>Click on [Place Text] and select section of the form to place your text.</li>
+                                                    </ul>
+
+                                                    @if($modelDocuments->count() > 0)
+                                                        <?php
+                                                            $fileId = $modelDocuments->first()->doc_gdrive_resource_id ?? 0;
+                                                            $embedUrl = "https://drive.google.com/file/d/{$fileId}/preview";
+                                                        ?>
+                                                        <iframe src="{{ $embedUrl }}" width="1224" height="1584" allow="autoplay"></iframe>
+                                                    @else
+                                                        <div id="toolbar" style="width:100%; text-align: right;">
+                                                            <button id="prev-page" class="tool-button hide"><i class="fas fa-arrow-left"></i> Previous</button>
+                                                            <button id="next-page" class="tool-button hide"><i class="fas fa-arrow-right"></i> Next</button>
+                                                            <button id="draw-button" class="tool-button"><i class="fas fa-pencil-alt"></i> Sign</button>
+                                                            <button id="erase-button" class="tool-button"><i class="fas fa-eraser"></i> Erase</button>
+                                                            <button id="download-button" class="tool-button"><i class="fas fa-download"></i> Download</button>
+                                                            <button id="save-button" class="tool-button"><i class="fas fa-save"></i> Submit</button>
+                                                            <button id="place-text-button" class="tool-button"><i class="fas fa-save"></i> Place Text</button>
+                                                            <input type="text" id="annotationText" placeholder="Enter text to place">
+                                                        </div>
+                                                        <div id="pdf-container">
+                                                            <canvas id="pdf-canvas"></canvas>
+                                                            <canvas id="annotation-canvas"></canvas>
+                                                        </div>
+                                                        <div id="page-info">Page: <span id="page-num"></span> / <span id="page-count"></span></div>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -75,6 +94,7 @@
         let fileName = @json($fileName);
         const saveUrl = @json($saveURL);
         const documentId = @json($documentID);
+        const doc = new jsPDF();
 
         let pdfDoc = null;
         let pageNum = 1;
@@ -218,6 +238,31 @@
             toggleTool('erase');
         });
 
+        let placingText = false;
+
+        document.getElementById('place-text-button').addEventListener('click', () => {
+            placingText = true;
+        });
+
+        annotationCanvas.addEventListener('click', (event) => {
+            placeText(event);
+        });
+
+        function placeText(event) {
+            if (!placingText) return;
+
+            const text = document.getElementById('annotationText').value;
+            const rect = annotationCanvas.getBoundingClientRect();
+            const positionX = event.clientX - rect.left;
+            const positionY = event.clientY - rect.top;
+            annotationCtx.fillStyle = 'black';
+            annotationCtx.font = '20px Arial';
+            annotationCtx.fillText(text, positionX, positionY);
+
+            doc.text(text, positionX * 0.2645, positionY * 0.2645);
+            placingText = false;
+        }
+
         function toggleTool(tool) {
             if (tool === 'draw') {
                 drawing = !drawing;
@@ -271,6 +316,7 @@
             formData.append('_token', csrfToken);
             formData.append('doc_id', documentId);
             formData.append('file', pdfBlob, fileName);
+            console.log(formData);
 
             fetch(saveUrl, {
                 method: 'POST',
@@ -282,27 +328,37 @@
                 .then(response => {
                     if (!response.ok) {
                         hideInProgress();
-                        //messagePopup({ message:'Network response was not ok' });
-                        alert({ message:'Network response was not ok' });
+                        Swal.fire({
+                            title: 'Thy Error Found',
+                            text: 'Network response was not ok',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
                     }
 
                     return response.json();
                 })
                 .then(data => {
                     hideInProgress();
-                    //messagePopup({ message: data.message });
-                    alert({ message: data.message });
+                    Swal.fire({
+                        title: 'Success',
+                        text: data.message,
+                        icon: 'ok',
+                        confirmButtonText: 'OK'
+                    }).then(function() {
+                        window.location.reload();
+                    });
 
-                    if (data.success) {
-                        const newAttachment = data.newAttachment;
-                        filePath = newAttachment.att_storage_path;
-                        fileName = newAttachment.att_filename;
-                    }
                 })
                 .catch(error => {
                     hideInProgress();
-                    //messagePopup({ message:'Error while saving the PDF: ' + error });
-                    alert({ message:'Error while saving the PDF: ' + error });
+                    Swal.fire({
+                        title: 'Thy Error Found',
+                        text: 'Error while saving the PDF: ' + error ,
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+
                 });
         }
 
@@ -346,8 +402,6 @@
                 }
 
                 Promise.all(renderPromises).then(canvases => {
-                    const doc = new jsPDF();
-
                     canvases.forEach((canvas, index) => {
                         if (index > 0) {
                             doc.addPage();
@@ -359,9 +413,14 @@
                     const pdfBlob = doc.output('blob');
                     callback(pdfBlob);
                 }).catch(error => {
-                    //messagePopup({ message:'Error generating PDF: ' + error });
-                    alert({ message:'Error generating PDF: ' + error });
+                    Swal.fire({
+                        title: 'Thy Error Found',
+                        text: 'Error generating PDF: ' + error,
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
                 });
+
             });
         }
 
@@ -370,11 +429,20 @@
         });
 
         document.getElementById('save-button').addEventListener('click', () => {
-            const userConfirmed = confirm("Saving the document will finalize all changes and cannot be undone. Do you want to proceed?");
-
-            if (userConfirmed) {
-                generatePdf(sendPdf);
-            }
+            Swal.fire({
+                title: "Thou art near!",
+                text: "Saving the waiver form will finalize all changes and cannot be undone. Do you want to proceed?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, submit waiver form",
+                cancelButtonText: "No, see waiver form again"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    generatePdf(sendPdf);
+                }
+            });
         });
 
         showInProgress();
@@ -388,8 +456,12 @@
             hideInProgress();
         }).catch(error => {
             hideInProgress();
-            //messagePopup({ message:'Error loading PDF: ' + error });
-            alert({ message:'Error loading PDF: ' + error });
+            Swal.fire({
+                title: 'Thou art near!',
+                text: 'Error loading PDF: ' + error,
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
         });
     </script>
 @endsection

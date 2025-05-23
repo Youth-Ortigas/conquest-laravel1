@@ -16,6 +16,7 @@ table {
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
     font-size: 12px; /* Smaller text */
     width: max-content !important;
+    overflow-x: visible !important;
 }
 
 th, td {
@@ -150,4 +151,29 @@ td:hover {
     .zoom-reset {
         font-size: 9px !important;
     }
+}
+
+.common-title {
+    text-align: center !important;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #62401f !important;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.common-paragraph {
+    font-size: 1.25rem;
+    line-height: 2;
+    text-align: justify;
+    margin-bottom: 25px;
+}
+
+.common-paragraph ul {
+    list-style: none;
+}
+
+.common-span {
+    font-weight: bold;
+    color: #62401f !important;
 }
