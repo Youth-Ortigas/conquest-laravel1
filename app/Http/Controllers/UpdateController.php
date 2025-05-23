@@ -17,6 +17,6 @@ class UpdateController extends Controller
      * @return void
      */
     public function index() {
-        return view('welcome');
+        return view('updates');
     }
 }
