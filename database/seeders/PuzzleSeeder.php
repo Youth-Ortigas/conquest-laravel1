@@ -22,7 +22,7 @@ class PuzzleSeeder extends Seeder
         ]);
 
         Puzzle::create([
-            'puzzle_key' => json_encode(['shoes', 'sword', 'waist', 'truth', 'peace']),
+            'puzzle_key' => json_encode(['might','whole','armor','stand','flesh','blood','ruler','power','place','truth','peace','faith','sword','saint','chain','speak']),
             'puzzle_num' => 2,
             'unlock_puzzle' => '3rd',
             'date_unlocked' => '2025-05-15 07:00:00'
