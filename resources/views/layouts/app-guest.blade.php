@@ -4,7 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="format-detection" content="telephone=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Conquest Youth Camp 2025 Event</title> <!-- Changed from ENC to Youth Camp -->
+    <link rel="icon" type="image/x-icon" href="{{ asset("images/favicon.ico") }}">
+    <title>Conquest Youth Camp 2025 Event</title>
     <meta name="robots" content="noindex, nofollow">
     <style>img:is([sizes="auto" i], [sizes^="auto," i]) {
             contain-intrinsic-size: 3000px 1500px

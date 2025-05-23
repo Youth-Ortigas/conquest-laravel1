@@ -133,3 +133,28 @@ td:hover {
         min-width: 25px; /* Reduce minimum width */
     }
 }
+
+.common-title {
+    text-align: center !important;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #62401f !important;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.common-paragraph {
+    font-size: 1.25rem;
+    line-height: 2;
+    text-align: justify;
+    margin-bottom: 25px;
+}
+
+.common-paragraph ul {
+    list-style: none;
+}
+
+.common-span {
+    font-weight: bold;
+    color: #62401f !important;
+}
