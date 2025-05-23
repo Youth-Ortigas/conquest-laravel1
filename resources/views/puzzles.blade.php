@@ -95,7 +95,6 @@
                                 </div>
                                 <div class="wpb_content_element vc_align_left wpb_content_element">
                                     <h4 class="common-title-sub1 text-uppercase">Represent Your Team</h4>
-
                                 </div>
                                 <div class="wpb_content_element vc_align_left wpb_content_element">
                                     <h5 class="common-title-sub2 text-uppercase"> Name Your House </h5>
@@ -177,6 +176,24 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+
+                                <div class="wpb_content_element vc_align_left wpb_content_element">
+                                    <h4 class="common-title-sub1 text-uppercase">House Performance</h4>
+                                    <div class="common-paragraph">
+                                        <ol class="list-number">
+                                            <li>Each house will perform during our social night. The performance should be Conquest themed.</li>
+                                            <li>You may perform in whatever style. It can be through a chorale, interpretative dance, contemporary dance, musical, skit etc. It can also be a combination of multiple styles.</li>
+                                            <li>Each house will be given 2 to 4 minutes to perform.</li>
+                                            <li>Criteria for judging:
+                                                <ol>
+                                                    <li>Creativity</li>
+                                                    <li>Relevance to the Conquest theme</li>
+                                                    <li>Originality</li>
+                                                </ol>
+                                            </li>
+                                        </ol>
                                     </div>
                                 </div>
 
