@@ -207,11 +207,11 @@
                                     </div>
                                 </div>
 
-                                <div class="wpb_content_element vc_align_left">
-                                    <div class="wpb_column vc_column_container vc_col-md-12 vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left">
+                                <div class="wpb_content_element vc_align_left wpb_content_element">
+                                    <div class="wpb_column vc_column_container vc_col-md-12 vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left" id="div-design-flag">
                                         <div class="vc_column-inner" style="padding-left:0;">
                                             <div class="wpb_wrapper flex-container">
-                                                <div class="vc_col-md-6 vc_col-sm-12 wpb_content_element common-paragraph flex-center" style="padding:0;">
+                                                <div class="vc_col-md-6 vc_col-sm-12 wpb_content_element common-paragraph flex-center" style="height: 300px; padding:0;">
                                                     <ol>
                                                         <li class="common-title-sub2 block-title">Design Your Flag</li>
                                                         <li>Using the materials provided, design a flag that represents your house. The flag must be PORTRAIT.</li>

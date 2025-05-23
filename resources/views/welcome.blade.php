@@ -75,7 +75,7 @@
                                             <div class="wpb_wrapper">
                                                 <div class="container">
                                                     <div class="welcome-section">
-                                                        <h1 class="welcome-title-sub" style="text-transform: uppercase"><br/>Ephesians 6:10-13 ESV</h1>
+                                                        <h1 class="welcome-title-sub" style="text-transform: uppercase"><br/><br/>Ephesians 6:10-13 ESV</h1>
                                                         <p class="welcome-paragraph welcome-paragraph-initial">
                                                             10 Finally, be strong in the Lord and in the strength of his might.
                                                             <br/> 11 Put on the whole armor of God, that you may be able to stand against the schemes of the devil.
