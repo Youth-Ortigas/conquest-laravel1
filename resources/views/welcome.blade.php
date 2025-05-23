@@ -3,6 +3,7 @@
 @section('page-class', 'home')
 
 @section('content')
+    {{-- TEST     --}}
     <link rel="stylesheet" href="{{ asset('library/ResponsiveSlides.js/responsiveslides.css') }}"
           xmlns="http://www.w3.org/1999/html">
     <link rel="stylesheet" href="{{ asset('custom/css/home.css') }}">
