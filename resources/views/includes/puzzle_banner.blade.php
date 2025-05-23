@@ -1,5 +1,5 @@
 <div class="banner-main">
-    <div class="vc_row wpb_row vc_row-fluid shape_divider_top-none shape_divider_bottom-none sc_layouts_row sc_layouts_row_type_normal scheme_dark" style="max-height: 300px">
+    <div class="vc_row wpb_row vc_row-fluid shape_divider_top-none shape_divider_bottom-none sc_layouts_row  scheme_dark" style="max-height: 300px">
         <div class="wpb_column vc_column_container vc_col-sm-12 sc_layouts_column sc_layouts_column_align_center sc_layouts_column_icons_position_left">
             <div class="vc_column-inner">
                 <div class="wpb_wrapper">
