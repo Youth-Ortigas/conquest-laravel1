@@ -1,0 +1,209 @@
+.welcome-title {
+    text-align: center !important;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #62401f !important;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.welcome-title::before,
+.welcome-title::after {
+    content: "";
+    position: absolute;
+}
+
+.welcome-title::before {
+    background-image: url('../../images/home/welcome-header1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 50%;
+    height: 100%;
+    left: 25%;
+    margin-bottom: 15px;
+}
+
+.welcome-title::after {
+    background-image: url('../../images/home/welcome-header2.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 50%;
+    height: 100%;
+    left: 25%;
+    margin-bottom: 15px;
+}
+
+.welcome-paragraph-initial {
+    padding: 25px 0 0 0;
+}
+
+.welcome-paragraph {
+    font-size: 1.25rem;
+    line-height: 2;
+    text-align: justify;
+    margin-bottom: 25px;
+}
+
+.dropcap {
+    float: left;
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    color: #8b4f0c;
+    line-height: 0.6;
+}
+
+.welcome-title-sub {
+    text-align: center !important;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #62401f !important;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.welcome-title-sub::before,
+.welcome-title-sub::after {
+    content: "";
+    position: absolute;
+}
+
+.welcome-title-sub::before {
+    background-image: url('../../images/home/welcome-header1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 50%;
+    height: 50%;
+    left: 25%;
+    margin-bottom: 15px;
+}
+
+.welcome-title-sub::after {
+    background-image: url('../../images/home/welcome-header2.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 50%;
+    height: 150%;
+    left: 25%;
+    margin-bottom: 15px;
+}
+
+.common-title-sub1 {
+    text-transform: uppercase;
+    text-align: left !important;
+    font-weight: bold !important;
+    color: #62401f !important;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.common-title-sub2 {
+    text-transform: uppercase;
+    text-align: left !important;
+    font-weight: bold !important;
+    color: #0e0d12 !important;
+    position: relative;
+    margin: 0 0 15px 0;
+}
+
+.common-paragraph {
+    text-align: left;
+    font-size: 20px;
+}
+
+.common-paragraph .list-number {
+    line-height: 2em;
+}
+
+.common-paragraph .list-disc {
+    list-style: disc;
+}
+
+.common-paragraph .list-number p {
+    margin: 0;
+}
+
+.common-paragraph .trx_addons_column-1_4 li {
+    margin: 15px 0;
+}
+
+.common-paragraph .trx_addons_column-1_4 li:first-child {
+    margin: 0;
+}
+
+.flex-container {
+    display: flex;
+    gap: 20px;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.block-title {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.flex-container ol {
+    margin:0;
+    padding:0;
+    text-align: left;
+}
+
+.flex-container ol li:first-child {
+    margin-left: 0;
+    font-family: "Spectral SC",serif;
+    font-size: 1.2em;
+    font-weight: 700;
+    font-style: normal;
+    line-height: 1.23em;
+    text-decoration: none;
+    text-transform: none;
+    letter-spacing: -0.4px;
+}
+
+.flex-container ol li {
+    margin-left: 25px;
+    line-height: 2em;
+}
+
+.what-to-bring li {
+    line-height: 2em;
+}
+
+.speakers .sc_icons_item_title,
+.speakers .sc_icons_item_description h6 {
+    margin: 0;
+}
+
+.daily-devotion .dd-item {
+    background: #bf9775;
+    color: #0b0b0b;
+    font-weight: bold;
+    width: 50%;
+    margin: 0 auto 15px;
+    padding: 15px;
+}
+
+h5.schedule {
+    color: #62401f;
+    font-weight: bold;
+    margin: 30px 0 0 0;
+}
+
+h5.schedule span.schedule-sub {
+    color: #0b0b0b;
+    margin: 0 30px
+}
+
+.schedule-list .sc_icons_item_title {
+    font-size: 20px;
+}
