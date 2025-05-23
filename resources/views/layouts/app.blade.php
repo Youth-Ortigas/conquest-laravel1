@@ -2,6 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon">
     <meta name="format-detection" content="telephone=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Conquest Youth Camp 2025 Event</title> <!-- Changed from ENC to Youth Camp -->
@@ -423,6 +424,7 @@
     <link property="stylesheet" rel="stylesheet" id="kings-queens-font-google_fonts-css"
           href="https://fonts.googleapis.com/css?family=Montserrat:500,600,700%7CSpectral+SC:400,700%7CTangerine:400,700&amp;subset=latin,latin-ext"
           type="text/css" media="all">
+    <link href="https://fonts.googleapis.com/css2?family=Grenze&display=swap" rel="stylesheet">
     <link property="stylesheet" rel="stylesheet" id="fontello-icons-css"
           href="{{ asset("wp-content/themes/kings-queens/css/font-icons/css/fontello-embedded.css") }}"
           type="text/css" media="all">

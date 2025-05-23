@@ -123,4 +123,16 @@
 @section('footer-scripts')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="{{ asset("custom/js/puzzles.js") }}"></script>
+    @if (session('error'))
+        <script>
+            $(document).ready(function () {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops!',
+                    text: @json(session('error')),
+                    confirmButtonText: 'Okay'
+                });
+            });
+        </script>
+    @endif
 @endsection
