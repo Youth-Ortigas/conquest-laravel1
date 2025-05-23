@@ -193,9 +193,9 @@
                                 </div>
 
                                 <div class="wpb_content_element vc_align_left wpb_content_element">
-                                    <div class="wpb_column vc_column_container vc_col-md-12 vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left">
+                                    <div class="wpb_column vc_column_container vc_col-md-12 vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left" id="div-design-flag">
                                         <div class="vc_column-inner" style="padding-left:0;">
-                                            <div class="wpb_wrapper flex-container">
+                                            <div class="wpb_wrapper flex-container wbp_reference_only">
                                                 <div class="vc_col-md-6 vc_col-sm-12 wpb_content_element common-paragraph flex-center" style="height: 300px; padding:0;">
                                                     <ol>
                                                         <li class="common-title-sub2 block-title">Design Your Flag</li>
