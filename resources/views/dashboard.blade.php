@@ -17,7 +17,7 @@
                             <div class="wpb-content-wrapper">
                                 <div data-vc-full-width="true" data-vc-full-width-init="true"
                                      class="vc_row wpb_row vc_row-fluid vc_custom_1522153891227 vc_row-has-fill hide_bg_image_on_tablet hide_bg_image_on_mobile shape_divider_top-none shape_divider_bottom-none" style="margin: 0 0 30px 0 !important;">
-                                    <div class="wpb_column vc_column_container vc_col-md-6 vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left">
+                                    <div class="wpb_column vc_column_container vc_col-md-6 vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left" style="margin-top: 30px;">
                                         <div class="vc_column-inner">
                                             <div class="wpb_wrapper">
                                                 <div class="wpb_single_image wpb_content_element vc_align_left wpb_content_element">
@@ -45,7 +45,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="wpb_column vc_column_container vc_col-md-6 vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left">
+                                    <div class="wpb_column vc_column_container vc_col-md-6 vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left" style="margin-top: 30px;">
                                         <div class="vc_column-inner">
                                             <div class="wpb_wrapper">
                                                 <div class="wpb_single_image wpb_content_element vc_align_left wpb_content_element">
@@ -78,12 +78,11 @@
                                     </div>
                                 </div>
 
-                                <div data-vc-full-width="true" data-vc-full-width-init="true"
-                                     class="vc_row wpb_row vc_row-fluid vc_custom_1522153891227 vc_row-has-fill hide_bg_image_on_tablet hide_bg_image_on_mobile shape_divider_top-none shape_divider_bottom-none">
-                                    <div class="wpb_column vc_column_container vc_col-md-6 vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left" style="margin: 0 0 30px 0 !important;">
+                                <div data-vc-full-width="true" data-vc-full-width-init="true" class="vc_row wpb_row vc_row-fluid vc_custom_1522153891227 vc_row-has-fill hide_bg_image_on_tablet hide_bg_image_on_mobile shape_divider_top-none shape_divider_bottom-none">
+                                    <div class="wpb_column vc_column_container vc_col-md-6 vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left" style="margin-top: 30px;">
                                         <div class="vc_column-inner">
-                                            <div class="wpb_wrapper">
-                                                <div class="wpb_single_image wpb_content_element vc_align_left wpb_content_element">
+                                            <div class="wpb_wrapper" style="margin-left: 15px;">
+                                                <div class="wpb_content_element vc_align_left wpb_content_element">
                                                     <h3 style="margin:0 0 15px 0;"> Thy Decrees </h3>
                                                     <table class="tbl-info-user">
                                                         <tr>
@@ -97,6 +96,9 @@
                                     </div>
                                 </div>
 
+                                <div class="vc_empty_space" style="height: 7rem">
+                                    <span class="vc_empty_space_inner"></span>
+                                </div>
 
                             </div>
                         </div>

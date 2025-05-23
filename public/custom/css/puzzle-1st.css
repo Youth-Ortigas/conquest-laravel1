@@ -1,27 +1,30 @@
 .table-wrapper {
     display: flex;
     justify-content: center;
-    margin-bottom: 16px; /* Reduce margin */
+    margin-bottom: 16px;
     padding: 10px;
-    overflow-x: auto; /* Ensure scrolling on smaller screens */
+    overflow-x: auto;
+    margin-left: 0px;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
 }
 
 table {
     border-collapse: collapse;
-    width: auto !important; /* Prevent stretching */
-    max-width: 600px !important; /* Limit table size */
+    width: auto !important;
     border: 3px solid #5a3e1b !important;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
     font-size: 12px; /* Smaller text */
+    width: max-content !important;
 }
 
 th, td {
     border: 2px solid #8b5e3c !important;
-    padding: 1px 3px 1px 3px !important; /* Smaller padding */
+    padding: 1px 3px 1px 3px !important;
     text-align: center;
     max-width: 15px !important;
     max-height: 10px !important;
-    font-size: 12px;
+    font-size: 11px;
     color: #3b2900;
     font-weight: bold;
 }
@@ -124,12 +127,52 @@ td:hover {
     }
 
     table {
-        font-size: 12px; /* Reduce font size */
-        box-shadow: none; /* Remove shadow to keep it clean */
+        font-size: 12px;
+        box-shadow: none;
+        width: max-content;
     }
 
     th, td {
         padding: 4px;
-        min-width: 25px; /* Reduce minimum width */
     }
+}
+
+@media (max-width: 480px) {
+    .table-wrapper {
+        margin-left: -15px;
+    }
+
+    .zoom-container {
+        border: 2px solid #8b5e3c;
+        padding: 0px;
+    }
+
+    .zoom-reset {
+        font-size: 9px !important;
+    }
+}
+
+.common-title {
+    text-align: center !important;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #62401f !important;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.common-paragraph {
+    font-size: 1.25rem;
+    line-height: 2;
+    text-align: justify;
+    margin-bottom: 25px;
+}
+
+.common-paragraph ul {
+    list-style: none;
+}
+
+.common-span {
+    font-weight: bold;
+    color: #62401f !important;
 }

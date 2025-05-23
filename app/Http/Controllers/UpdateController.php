@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 /**
- * Class PuzzlesController
- * @author Johnvic Dela Cruz <dealcruzjohnvic21@gmail.com>
- * @since Apr 03, 2025
+ * Class UpdateController
+ * @author Marylyn Lajato <flippie.cute@gmail.com>
+ * @since May 23, 2025
  */
 class UpdateController extends Controller
 {
@@ -17,6 +17,6 @@ class UpdateController extends Controller
      * @return void
      */
     public function index() {
-        return view('welcome');
+        return view('updates');
     }
 }
