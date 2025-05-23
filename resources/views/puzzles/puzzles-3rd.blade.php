@@ -105,7 +105,7 @@
                                                                         in chains, that I may declare it boldly, as I ought to speak.
                                                                     </div>
 
-                                                                    <button id="btn-submit-answers" type="button" disabled>Submit</button>
+                                                                    <button id="btn-submit-answers" type="button">Submit</button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -129,4 +129,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     {!! asset_versioned('/custom/js/puzzles-3rd.js', 'js', 'type="text/javascript"') !!}
+    {!! asset_versioned('/custom/js/disable-buttons.js', 'js', 'type="text/javascript"') !!}
 @endsection

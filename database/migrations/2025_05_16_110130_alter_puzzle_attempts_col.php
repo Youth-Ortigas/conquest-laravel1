@@ -23,7 +23,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('puzzle_attempts', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->default(1);
+            $table->unsignedBigInteger('user_id')->default(1)->change();
             $table->float('puzzle_num')->change();
         });
     }

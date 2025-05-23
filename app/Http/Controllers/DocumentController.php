@@ -2,17 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Documents;
 use App\Traits\TraitsCommon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
-
-use App\Models\Puzzle;
-use App\Models\PuzzleAttempt;
-use App\Models\PuzzleGameState;
 use Illuminate\Support\Facades\Auth;
-
-use App\Http\Requests\ValidatePuzzleKeyRequest;
 use Illuminate\Routing\Controller as BaseController;
+use Google_Client;
+use Google_Service_Drive;
 
 /**
  * Class DocumentController
@@ -46,13 +42,64 @@ class DocumentController extends BaseController
         $documentID = 1;
         $saveURL = '/document-sign/save';
 
+        $modelDocuments = Documents::where([
+            ["doc_user_id", "=", $authUserID]
+        ]);
+
         return view('auth.documents.waiver-form',
-            compact('authUserID', 'fileName', 'filePath', 'documentID', 'saveURL')
+            compact('authUserID', 'fileName', 'filePath', 'documentID', 'saveURL', 'modelDocuments')
         );
     }
 
+    /**
+     * [Google Drive] Save waiver form
+     * @param Request $request
+     * @return string
+     * @throws \Google\Exception
+     * @throws \Google\Service\Exception
+     */
     public function saveWaiverForm(Request $request)
     {
+        date_default_timezone_set('Asia/Manila');
+        $authUserRegCode = Auth::user()->reg_code ?? "";
+        $authUserLastName = trim(str_replace(" ", "_", Auth::user()->last_name)) ?? "";
+        $fileName = "Conquest2025_WaiverForm-$authUserRegCode-$authUserLastName.pdf";
+        $folderID = "1UsyPfwSoRS8upXr6dDq5cbKRFnj-u0A_"; //@marylyn: https://drive.google.com/drive/u/3/folders/1UsyPfwSoRS8upXr6dDq5cbKRFnj-u0A_ -> Public GDrive link
 
+        $client = new Google_Client();
+        $client->setAuthConfig(storage_path('app/google/credentials.json'));
+        $client->addScope(Google_Service_Drive::DRIVE_FILE);
+        $client->setAccessType('offline');
+
+        $driveService = new Google_Service_Drive($client);
+        $fileMetadata = new \Google_Service_Drive_DriveFile([
+            'name'     => $fileName,
+            'mimeType' => 'application/pdf'
+        ]);
+
+        $fileMetadata->setParents([$folderID]);
+        $file = $request->file('file');
+        $contents = file_get_contents($file->getRealPath());
+        $file = $driveService->files->create($fileMetadata, [
+            'data'       => $contents,
+            'mimeType'   => 'application/pdf',
+            'uploadType' => 'multipart',
+            'fields'     => 'id, name, webViewLink'
+        ]);
+
+        $modelDocuments = Documents::where([
+            ["doc_user_id", "=", Auth::user()->id]
+        ]);
+
+        if ($modelDocuments->count() < 1) {
+            $modelDocumentsCreate = new Documents();
+            $modelDocumentsCreate->doc_type = "waiver_form";
+            $modelDocumentsCreate->doc_user_id = Auth::user()->id;
+            $modelDocumentsCreate->doc_signed_at = now();
+            $modelDocumentsCreate->doc_gdrive_resource_id = $file->id;
+            $modelDocumentsCreate->save();
+        }
+
+        return response()->json(['file_id' => $file->id, 'message' => 'Sent Waiver Form']);
     }
 }
