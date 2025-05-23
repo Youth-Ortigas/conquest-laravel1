@@ -3,7 +3,7 @@
     $loggedInName = Auth::check() && Auth::user()->first_name ? explode(' ', Auth::user()->first_name)[0] : '';
     $loggedInTeamName = Auth::user()->team->team_name ?? "";
     $buttonText = $checkLoggedStatus ? "Hail $loggedInName of the $loggedInTeamName!" : "Step To Thy Conquest!";
-    $buttonLink = $checkLoggedStatus ? "/logout" : "/login";
+    $buttonLink = $checkLoggedStatus ? "/dashboard" : "/login";
 @endphp
 
 <div class="menu_mobile_overlay"></div>
@@ -35,6 +35,12 @@
                     {{ Request::is('login*') ? 'current-menu-ancestor current-menu-parent' : '' }}">
                     <a href="{{ $buttonLink }}"><span>{{ $buttonText }}</span></a>
                 </li>
+                @if (Auth::check())
+                    <li id="menu-item-260" class="menu-item menu-item-type-post_type menu-item-object-page
+                    {{ Request::is('logout*') ? 'current-menu-ancestor current-menu-parent' : '' }}">
+                        <a href="/logout"><span>Logout</span></a>
+                    </li>
+                @endif
             </ul>
         </nav>
     </div>

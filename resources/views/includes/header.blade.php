@@ -38,6 +38,12 @@
                                     {{ Request::is('materials*') ? 'current-menu-ancestor current-menu-parent' : '' }}">
                                     <a href="{{ url('/materials') }}"><span>Materials</span></a>
                                 </li>
+                                @if (Auth::check())
+                                    <li id="menu-item-260" class="menu-item menu-item-type-post_type menu-item-object-page
+                                            {{ Request::is('logout*') ? 'current-menu-ancestor current-menu-parent' : '' }}">
+                                            <a href="/logout"><span>Logout</span></a>
+                                    </li>
+                                @endif
                             </ul>
                         </nav>
                         <div class="sc_layouts_iconed_text sc_layouts_menu_mobile_button">
@@ -61,7 +67,7 @@
                             : '';
                             $loggedInTeamName = Auth::user()->team->team_name ?? "";
                             $buttonText = $checkLoggedStatus ? "Hail $loggedInName of the $loggedInTeamName!" : "Step To Thy Conquest!";
-                            $buttonLink = $checkLoggedStatus ? "/logout" : "/login";
+                            $buttonLink = $checkLoggedStatus ? "/dashboard" : "/login";
                         @endphp
                         <a href="{{ $buttonLink }}" class="sc_button color_style_default sc_button_bordered sc_button_size_normal sc_button_with_icon sc_button_icon_left" id="btn-step-to-thy-conquest">
                             <span class="sc_button_icon">

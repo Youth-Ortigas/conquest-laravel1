@@ -38,10 +38,18 @@ window.jQuery(document).ready(function () {
             window.jQuery("header.top_panel_custom_header-home").css({
                 "height": "100px"
             });
+
+            window.jQuery("#frm-login").css({
+                "width": "50%"
+            });
+
             if (/Android|webOS|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
                 window.jQuery("#btn-step-to-thy-conquest").hide();
                 window.jQuery("header.top_panel_custom_header-home").css({
                     "height": "50px"
+                });
+                window.jQuery("#frm-login").css({
+                    "width": "100%"
                 });
             }
         },
