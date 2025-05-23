@@ -58,4 +58,5 @@
 @section('footer-scripts')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     {!! asset_versioned('/custom/js/puzzles-2nd.js', 'js', 'type="text/javascript"') !!}
+    {!! asset_versioned('/custom/js/disable-buttons.js', 'js', 'type="text/javascript"') !!}
 @endsection

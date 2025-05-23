@@ -1,26 +1,47 @@
-<div class="menu_mobile_overlay" style="display: none;"></div>
+@php
+    $checkLoggedStatus = Auth::check();
+    $loggedInName = Auth::check() && Auth::user()->first_name ? explode(' ', Auth::user()->first_name)[0] : '';
+    $loggedInTeamName = Auth::user()->team->team_name ?? "";
+    $buttonText = $checkLoggedStatus ? "Hail $loggedInName of the $loggedInTeamName!" : "Step To Thy Conquest!";
+    $buttonLink = $checkLoggedStatus ? "/dashboard" : "/login";
+@endphp
+
+<div class="menu_mobile_overlay"></div>
 <div class="menu_mobile menu_mobile_fullscreen scheme_dark">
-	<div class="menu_mobile_inner">
-		<a class="menu_mobile_close icon-cancel"></a><a class="sc_layouts_logo" href="https://kingsqueens.ancorathemes.com/"><img src="//kingsqueens.ancorathemes.com/wp-content/uploads/2018/01/logo_header.png" alt="" width="218" height="58"></a><nav class="menu_mobile_nav_area"><ul id="menu_mobile_1951209549" class="prepared"><li id="menu_mobile-item-171" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-171 current-menu-ancestor current-menu-parent"><a href="#"><span>Home</span><span class="open_child_menu"></span></a>
-<ul class="sub-menu"><li id="menu_mobile-item-381" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home page_item page-item-367 menu-item-381 current-menu-item current_page_item"><a href="https://kingsqueens.ancorathemes.com/" aria-current="page"><span>Home 1</span></a></li><li id="menu_mobile-item-382" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-382"><a href="https://kingsqueens.ancorathemes.com/home-2/"><span>Home 2</span></a></li><li id="menu_mobile-item-383" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-383"><a href="https://kingsqueens.ancorathemes.com/home-3/"><span>Home 3</span></a></li><li id="menu_mobile-item-384" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-384"><a href="https://kingsqueens.ancorathemes.com/home-ecommerce/"><span>Home eCommerce</span></a></li></ul>
-</li><li id="menu_mobile-item-272" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-272"><a href="#"><span>About Us</span><span class="open_child_menu"></span></a>
-<ul class="sub-menu"><li id="menu_mobile-item-327" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-327"><a href="https://kingsqueens.ancorathemes.com/our-story/"><span>Our Story</span></a></li><li id="menu_mobile-item-306" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-306"><a href="https://kingsqueens.ancorathemes.com/our-team/"><span>Our Team</span></a></li><li id="menu_mobile-item-273" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-273"><a href="https://kingsqueens.ancorathemes.com/rules/"><span>Rules</span></a></li><li id="menu_mobile-item-185" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-185"><a href="#"><span>Features</span><span class="open_child_menu"></span></a>
-	<ul class="sub-menu"><li id="menu_mobile-item-188" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-188"><a href="https://kingsqueens.ancorathemes.com/typography/"><span>Typography</span></a></li><li id="menu_mobile-item-186" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-186"><a href="https://kingsqueens.ancorathemes.com/shortcodes/"><span>Shortcodes</span></a></li><li id="menu_mobile-item-419" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-419"><a href="https://kingsqueens.ancorathemes.com/service-plus/"><span>Service Plus</span></a></li><li id="menu_mobile-item-1039" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-privacy-policy menu-item-1039"><a rel="privacy-policy" href="https://kingsqueens.ancorathemes.com/privacy-policy/"><span>Privacy Policy</span></a></li></ul>
-</li></ul>
-</li><li id="menu_mobile-item-258" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-258"><a href="https://kingsqueens.ancorathemes.com/event/"><span>Events</span></a></li><li id="menu_mobile-item-172" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-172"><a href="#"><span>Blog</span><span class="open_child_menu"></span></a>
-<ul class="sub-menu"><li id="menu_mobile-item-173" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-173"><a href="https://kingsqueens.ancorathemes.com/all-posts/"><span>All Posts</span></a></li><li id="menu_mobile-item-174" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-174"><a href="#"><span>Classic Style</span><span class="open_child_menu"></span></a>
-	<ul class="sub-menu"><li id="menu_mobile-item-175" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-175"><a href="https://kingsqueens.ancorathemes.com/blog-classic-2-columns/"><span>2 Columns</span></a></li><li id="menu_mobile-item-176" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-176"><a href="https://kingsqueens.ancorathemes.com/blog-classic-3-columns/"><span>3 Columns</span></a></li></ul>
-</li><li id="menu_mobile-item-177" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-177"><a href="#"><span>Portfolio</span><span class="open_child_menu"></span></a>
-	<ul class="sub-menu"><li id="menu_mobile-item-178" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-178"><a href="https://kingsqueens.ancorathemes.com/blog-portfolio-2-columns/"><span>2 Columns</span></a></li><li id="menu_mobile-item-179" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-179"><a href="https://kingsqueens.ancorathemes.com/blog-portfolio-3-columns/"><span>3 Columns</span></a></li><li id="menu_mobile-item-180" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-180"><a href="https://kingsqueens.ancorathemes.com/blog-portfolio-4-columns/"><span>4 Columns</span></a></li></ul>
-</li><li id="menu_mobile-item-181" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-181"><a href="#"><span>Chess Style</span><span class="open_child_menu"></span></a>
-	<ul class="sub-menu"><li id="menu_mobile-item-182" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-182"><a href="https://kingsqueens.ancorathemes.com/blog-chess-2-columns/"><span>2 Columns</span></a></li><li id="menu_mobile-item-183" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-183"><a href="https://kingsqueens.ancorathemes.com/blog-chess-4-columns/"><span>4 Columns</span></a></li><li id="menu_mobile-item-184" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-184"><a href="https://kingsqueens.ancorathemes.com/blog-chess-6-columns/"><span>6 Columns</span></a></li></ul>
-</li></ul>
-</li><li id="menu_mobile-item-191" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-191"><a href="https://kingsqueens.ancorathemes.com/gallery/"><span>Gallery</span></a></li><li id="menu_mobile-item-237" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-237"><a href="https://kingsqueens.ancorathemes.com/shop/"><span>Shop</span></a></li><li id="menu_mobile-item-190" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-190"><a href="https://kingsqueens.ancorathemes.com/contacts/"><span>Contacts</span></a></li></ul></nav><div class="search_wrap search_style_normal search_mobile inited">
-	<div class="search_form_wrap">
-		<form role="search" method="get" class="search_form" action="https://kingsqueens.ancorathemes.com/">
-			<input type="text" class="search_field fill_inited" placeholder="Search" value="" name="s">
-			<button type="submit" class="search_submit trx_addons_icon-search"></button>
-					</form>
-	</div>
-	</div><div class="socials_mobile"><a target="_blank" href="https://www.facebook.com/AncoraThemes/" class="social_item social_item_style_icons social_item_type_icons"><span class="social_icon social_icon_facebook"><span class="icon-facebook"></span></span></a><a target="_blank" href="https://x.com/themes_ancora" class="social_item social_item_style_icons social_item_type_icons"><span class="social_icon social_icon_x"><span class="icon-x"></span></span></a><a target="_blank" href="https://www.behance.net/ancorathemes" class="social_item social_item_style_icons social_item_type_icons"><span class="social_icon social_icon_behance"><span class="icon-behance"></span></span></a><a target="_blank" href="https://www.youtube.com/channel/UCdIjRh7-lPVHqTTKpaf8PLA" class="social_item social_item_style_icons social_item_type_icons"><span class="social_icon social_icon_youtube"><span class="icon-youtube"></span></span></a></div>	</div>
+    <div class="menu_mobile_inner">
+        <a class="menu_mobile_close icon-cancel"></a>
+        <a class="sc_layouts_logo" href="{{ route('home.index') }}">
+            <img src="{{ asset('images/mobile/conquestlogo.png') }}" alt="Conquest 2025 Youth Camp">
+        </a>
+        <nav class="menu_mobile_nav_area">
+            <ul id="menu_mobile_1082560149" class="prepared">
+                <li id="menu-item-171" class="menu-item menu-item-type-custom menu-item-object-custom
+                    {{ Request::is('home') ? 'current-menu-ancestor current-menu-parent' : '' }}">
+                    <a href="{{ url('/home') }}" class="sf-with-ul"><span>Home</span></a>
+                </li>
+                <li id="menu-item-272" class="menu-item menu-item-type-post_type menu-item-object-page
+                    {{ Request::is('puzzles*') ? 'current-menu-ancestor current-menu-parent' : '' }}">
+                    <a href="{{ url('/puzzles') }}" class="sf-with-ul"><span>Pre-Camp Activities</span></a>
+                </li>
+                <li id="menu-item-258" class="menu-item menu-item-type-post_type menu-item-object-page
+                    {{ Request::is('updates*') ? 'current-menu-ancestor current-menu-parent' : '' }}">
+                    <a href="{{ url('/updates') }}"><span>Updates</span></a>
+                </li>
+                <li id="menu-item-259" class="menu-item menu-item-type-post_type menu-item-object-page
+                    {{ Request::is('materials*') ? 'current-menu-ancestor current-menu-parent' : '' }}">
+                    <a href="{{ url('/materials') }}"><span>Materials</span></a>
+                </li>
+                <li id="menu-item-259" class="menu-item menu-item-type-post_type menu-item-object-page
+                    {{ Request::is('login*') ? 'current-menu-ancestor current-menu-parent' : '' }}">
+                    <a href="{{ $buttonLink }}"><span>{{ $buttonText }}</span></a>
+                </li>
+                @if (Auth::check())
+                    <li id="menu-item-260" class="menu-item menu-item-type-post_type menu-item-object-page
+                    {{ Request::is('logout*') ? 'current-menu-ancestor current-menu-parent' : '' }}">
+                        <a href="/logout"><span>Logout</span></a>
+                    </li>
+                @endif
+            </ul>
+        </nav>
+    </div>
 </div>
