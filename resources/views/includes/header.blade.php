@@ -19,8 +19,7 @@
                             <ul id="sc_layouts_menu_106073659"
                                 class="sc_layouts_menu_nav inited sf-js-enabled sf-arrows"
                                 style="touch-action: pan-y;">
-                                <li id="menu-item-171"
-                                    class="menu-item menu-item-type-custom menu-item-object-custom
+                                <li id="menu-item-171" class="menu-item menu-item-type-custom menu-item-object-custom
                                     {{ Request::is('home') ? 'current-menu-ancestor current-menu-parent' : '' }}">
                                     <a href="{{ url('/home') }}" class="sf-with-ul"><span>Home</span></a>
                                 </li>
@@ -64,7 +63,7 @@
                             $buttonText = $checkLoggedStatus ? "Hail $loggedInName of the $loggedInTeamName!" : "Step To Thy Conquest!";
                             $buttonLink = $checkLoggedStatus ? "/logout" : "/login";
                         @endphp
-                        <a href="{{ $buttonLink }}" class="sc_button color_style_default sc_button_bordered sc_button_size_normal sc_button_with_icon sc_button_icon_left">
+                        <a href="{{ $buttonLink }}" class="sc_button color_style_default sc_button_bordered sc_button_size_normal sc_button_with_icon sc_button_icon_left" id="btn-step-to-thy-conquest">
                             <span class="sc_button_icon">
                                 <span class="icon-icon-2"></span>
                             </span>

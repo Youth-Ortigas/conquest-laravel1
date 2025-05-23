@@ -11,6 +11,7 @@
             contain-intrinsic-size: 3000px 1500px
         }</style>
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="stylesheet" href="{{ asset('custom/css/common.css') }}">
     <link property="stylesheet" rel="stylesheet" id="trx_demo_icons-css"
           href="{{ asset("wp-content/plugins/trx_demo/css/font-icons/css/trx_demo_icons.css") }}"
           type="text/css" media="all">
@@ -3391,6 +3392,7 @@
         });
     </script>
 @endif
+<script src="{{ asset("custom/js/common.js") }}"></script>
 @section('footer-scripts')
 
 @show
