@@ -1,4 +1,4 @@
-<header class="top_panel top_panel_custom top_panel_custom_592 top_panel_custom_header-home with_bg_image kings_queens_inline_219517677" style="background-color: rgba(15, 11, 14, 0.92) !important; height: 100px;">
+<header class="top_panel  top_panel_custom_592 top_panel_custom_header-home with_bg_image kings_queens_inline_219517677" style="background-color: rgba(15, 11, 14, 0.92) !important; height: 100px;">
     <div
         class="vc_row wpb_row vc_row-fluid vc_custom_1521023294303 vc_row-o-equal-height vc_row-o-content-middle vc_row-flex shape_divider_top-none shape_divider_bottom-none sc_layouts_row sc_layouts_row_type_normal sc_layouts_row_fixed scheme_dark"
         style="top: auto;">

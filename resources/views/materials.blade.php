@@ -13,7 +13,7 @@
                 <span class="vc_empty_space_inner"></span>
             </div>
             <div class="post_content entry-content">
-                <div class="wpb-content-wrapper" style="text-align: center; margin: 0 100px 0;">
+                <div class="wpb-content-wrapper" style="text-align: center; margin: 0 5% 0;">
                     <div class="wpb_column vc_column_container vc_col-md-12 vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left">
                         <div class="vc_column-inner">
                             <div class="wpb_wrapper">
