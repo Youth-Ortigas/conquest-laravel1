@@ -33,7 +33,7 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Team</th>
+                                                <th>Team Name</th>
                                                 <th># Puzzles<br>Completed</th>
                                                 <th>Time Completion</th>
                                                 <th># Attempts</th>
