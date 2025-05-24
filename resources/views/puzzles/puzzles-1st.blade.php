@@ -28,6 +28,7 @@
                                                         <div class="zoom-container">
                                                             <img src="{{ asset("images/conquestclue.jpg") }}" alt="conquest clue" class="zoomable-image" id="zoomable-image">
                                                             <div class="zoom-controls">
+                                                                <button class="zoom-reset" onclick="downloadImage()">Download Image</button>
                                                                 <button class="zoom-reset">Reset</button>
                                                             </div>
                                                         </div>
