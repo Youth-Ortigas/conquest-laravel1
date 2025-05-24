@@ -13,7 +13,7 @@
                 <span class="vc_empty_space_inner"></span>
             </div>
             <div id="sc_icons_1100097351" class="sc_icons sc_icons_default sc_icons_size_medium sc_align_center">
-                <div class="sc_icons_columns_wrap sc_item_columns trx_addons_columns_wrap columns_padding_bottom">
+                <div class="sc_icons_columns_wrap sc_item_columns trx_addons_columns_wrap columns_padding_bottom" style="margin: 0 5% 0;">
                     <div class="trx_addons_column-1_4">
                         <a id="link-puzzle-1" href="{{ route('puzzles.getDetails', ['reference' => '1st']) }}">
                             <div class="sc_icons_item sc_icons_item_linked">
@@ -100,25 +100,40 @@
                         </a>
                     </div>
                 </div>
-                <h3 style="text-align: center; margin: 0 auto;">Criteria</h3><br>
-                <p style="max-width: 600px; margin: 0.2em auto; font-style: italic; font-size: 0.9em; color: #555;">
-                    Teams are ranked based on the following criteria, applied in order:
-                </p>
-                <ol style="max-width: 600px; margin: 0 auto 2em auto; font-style: italic; font-size: 0.9em; color: #555; text-align: left">
-                    <li><strong>Number of Puzzles Completed</strong> — Higher is better.</li>
-                    <li><strong>Completion Time</strong> — Lower total time is better.
-                        (<em>Measured from when each puzzle was made available, not when the team started their attempt.</em>)
-                    </li>
-                    <li><strong>Number of Attempts</strong> — Lower is better.</li>
-                </ol>
-                <a href="{{ route('team-leaderboard.index') }}" target="_blank" style="font-size: larger"><u>VIEW LEADERBOARDS</u></a>
             </div>
+
+            <div class="post_content entry-content">
+                <div class="wpb-content-wrapper" style="text-align: center; margin: 0 5% 0;">
+                    <div class="wpb_column vc_column_container vc_col-md-12 vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left">
+                        <div class="vc_column-inner">
+                            <div class="wpb_wrapper">
+                                <div class="wpb_content_element vc_align_left wpb_content_element">
+                                    <h3 class="welcome-title" style="margin: 0 0 50px 0; !important;"><br/><br/>Puzzle Criteria</h3>
+                                </div>
+                                <div class="common-paragraph">
+                                    <ol class="list-number">
+                                        <li><strong>Number of Puzzles Completed</strong> — Higher is better.</li>
+                                        <li>
+                                            <strong>Completion Time</strong> — Lower total time is better.
+                                            (<em>Measured from when each puzzle was made available, not when the team started their attempt.</em>)
+                                        </li>
+                                        <li><strong>Number of Attempts</strong> — Lower is better.</li>
+                                    </ol>
+                                </div>
+
+                                <a href="{{ route('team-leaderboard.index') }}" target="_blank" style="font-size: larger"><u>VIEW LEADERBOARDS</u></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="vc_empty_space" style="height: 3rem">
                 <span class="vc_empty_space_inner"></span>
             </div>
 
             <div class="post_content entry-content">
-                <div class="wpb-content-wrapper" style="text-align: center; margin: 0 100px 0;">
+                <div class="wpb-content-wrapper" style="text-align: center; margin: 0 5% 0;">
                     <div class="wpb_column vc_column_container vc_col-md-12 vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left">
                         <div class="vc_column-inner">
                             <div class="wpb_wrapper">
@@ -193,7 +208,7 @@
                                 </div>
 
                                 <div class="wpb_content_element vc_align_left wpb_content_element">
-                                    <div class="wpb_column vc_column_container vc_col-md-12 vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left">
+                                    <div class="wpb_column vc_column_container vc_col-md-12 vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left" id="div-design-flag">
                                         <div class="vc_column-inner" style="padding-left:0;">
                                             <div class="wpb_wrapper flex-container">
                                                 <div class="vc_col-md-6 vc_col-sm-12 wpb_content_element common-paragraph flex-center" style="height: 300px; padding:0;">

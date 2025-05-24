@@ -56,7 +56,7 @@
 
 .welcome-title-sub {
     text-align: center !important;
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: bold;
     color: #62401f !important;
     position: relative;
@@ -75,7 +75,7 @@
     background-repeat: no-repeat;
     background-position: center;
     width: 50%;
-    height: 50%;
+    height: 100%;
     left: 25%;
     margin-bottom: 15px;
 }
@@ -86,7 +86,7 @@
     background-repeat: no-repeat;
     background-position: center;
     width: 50%;
-    height: 150%;
+    height: 100%;
     left: 25%;
     margin-bottom: 15px;
 }
