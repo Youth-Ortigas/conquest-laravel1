@@ -15,7 +15,14 @@ return new class extends Migration
      */
     public function up(): void
     {
+        //@marylyn: No transfer: Team 2
         $this->transferTeamMembers1();
+        $this->transferTeamMembers3();
+        $this->transferTeamMembers4();
+        $this->transferTeamMembers5();
+        $this->transferTeamMembers6();
+        $this->transferTeamMembers7();
+        $this->transferTeamMembers8();
     }
 
     /**
