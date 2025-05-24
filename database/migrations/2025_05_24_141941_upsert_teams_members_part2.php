@@ -18,7 +18,6 @@ return new class extends Migration
         try {
             date_default_timezone_set('Asia/Manila');
             $assignTeams = $this->assignTeams();
-            $assignTeamsModel = [];
             foreach ($assignTeams as $teamItem) {
                 $whereParams = [
                     ["team_name", "=", $teamItem["team_name"]],
@@ -34,6 +33,9 @@ return new class extends Migration
                         ]
                     );
                 }
+
+                $this->assignMembersTeam9();
+                $this->assignMembersTeam10();
             }
 
         } catch (Exception $exception) {
@@ -199,7 +201,7 @@ return new class extends Migration
 
         $modelUsers = User::whereIn("reg_code", array_keys($whereParamsUsersRegCodes));
         $assignTeamsUsers = [];
-        if ($modelTeams->count() >= 1 && $modelUsers->count() >= 12) {
+        if ($modelTeams->count() >= 1) {
             $assignTeams = $modelTeams->first();
             foreach ($modelUsers->get() as $userIndex => $userItem) {
                 $userItemID = $userItem->id ?? -1;
