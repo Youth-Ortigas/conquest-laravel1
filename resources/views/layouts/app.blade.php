@@ -18,6 +18,7 @@
     <link property="stylesheet" rel="stylesheet" id="trx_demo_icons_animation-css"
           href="{{ asset("wp-content/plugins/trx_demo/css/font-icons/css/animation.css") }}"
           type="text/css" media="all">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <style id="wp-emoji-styles-inline-css" type="text/css">
 
         img.wp-smiley, img.emoji {
