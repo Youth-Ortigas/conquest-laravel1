@@ -54,11 +54,5 @@
     max-height: 300px !important;
 }
 
-@media (max-width: 480px) {
-    .puzzle_banner {
-        max-height: 55px !important;
-    }
-}
-
 
 

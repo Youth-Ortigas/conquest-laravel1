@@ -8,12 +8,12 @@
                             <div id="sc_layouts_title_850083845" class="sc_layouts_title with_content without_image without_tint">
                                 <div class="sc_layouts_title_content">
                                     <div class="sc_layouts_title_title">
-                                        <h1 class="sc_layouts_title_caption">{{ $title }}</h1>
-                                        <h6 class="sc_layouts_title_caption">
+                                        <h1 class="sc_layouts_title_caption">{{ $title, 0, 17 }}</h1>
+                                        {{-- <h6 class="sc_layouts_title_caption">
                                             @if(isset($dateTimeCompleted) && $dateTimeCompleted)
                                                 Completed on {{ $dateTimeCompleted }} ({{ $numberOfAttempt }} {{ Str::plural('attempt', $numberOfAttempt) }})
                                             @endif
-                                        </h6>
+                                        </h6> --}}
                                     </div>
                                 </div><!-- .sc_layouts_title_content -->
                             </div><!-- /.sc_layouts_title -->

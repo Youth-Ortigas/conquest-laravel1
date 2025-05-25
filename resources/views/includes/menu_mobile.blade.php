@@ -20,7 +20,7 @@
                     <a href="{{ url('/home') }}" class="sf-with-ul"><span>Home</span></a>
                 </li>
                 <li id="menu-item-272" class="menu-item menu-item-type-post_type menu-item-object-page
-                    {{ Request::is('puzzles*') ? 'current-menu-ancestor current-menu-parent' : '' }}">
+                    {{ Request::is('puzzles*') | Request::is('team-leaderboards*') ? 'current-menu-ancestor current-menu-parent' : '' }}">
                     <a href="{{ url('/puzzles') }}" class="sf-with-ul"><span>Pre-Camp Activities</span></a>
                 </li>
                 <li id="menu-item-258" class="menu-item menu-item-type-post_type menu-item-object-page
