@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ asset('custom/css/updates.css') }}">
     {{ csrf_field() }}
     <div class="page_wrap">
-        @include('includes.header')
+        @include('includes.header_with_bg_color')
         @include('includes.menu_mobile')
         <div class="sc_content_container">
             <div class="vc_empty_space" style="height: 5.1rem">
@@ -19,7 +19,7 @@
                         <div class="vc_column-inner">
                             <div class="wpb_wrapper">
                                 <h3 style="margin: 0 0 15px 0;"> Team Leaderboards (Pre-camp)</h3>
-                                <div style="text-align: center; margin: 10px 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 2px">
+                                <div style="text-align: center; margin: 10px 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 3px">
                                     <button  style="padding: 5px 10px;" class="btn-filter-puzzle active" data-puzzle="">Overall</button>
                                     <button  style="padding: 5px 10px;" class="btn-filter-puzzle" data-puzzle="1">Puzzle 1</button>
                                     <button  style="padding: 5px 10px;" class="btn-filter-puzzle" data-puzzle="2">Puzzle 2</button>
