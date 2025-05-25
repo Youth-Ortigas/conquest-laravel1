@@ -87,7 +87,7 @@
                                 <div class="wpb_content_element vc_align_left wpb_content_element speakers">
                                     <h3 class="welcome-title" style="margin: 0 0 50px 0; !important;"><br/><br/>Speakers</h3>
                                         @if(false)
-                                        <div class="sc_icons_columns_wrap sc_item_columns trx_addons_columns_wrap columns_padding_bottom">
+                                        <div class="sc_icons_columns_wrap sc_item_columns trx_addons_columns_wrap columns_padding_bottom" style="margin-bottom: 50px">
                                             <div class="trx_addons_column-1_3">
                                                 <div class="sc_icons_item sc_icons_item_linked">
                                                     <div id="sc_icons_1100097351_icon-icon-11" class="sc_icons_icon sc_icon_type_ icon-icon-11">
@@ -129,7 +129,7 @@
                                             </div>
                                         </div>
                                         @else
-                                            <h4>Details to Be Announced</h4>
+                                            <h4 style="margin-bottom: 90px">Details to Be Announced</h4>
                                         @endif
                                 </div>
                             </div>

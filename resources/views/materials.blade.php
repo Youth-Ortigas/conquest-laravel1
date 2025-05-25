@@ -120,7 +120,7 @@
                                     </iframe>
                                 </div>
 
-                                <div class="vc_col-md-12 vc_col-sm-12 wpb_single_image wpb_content_element" style="margin-bottom: 100px; !important;">
+                                <div class="vc_col-md-12 vc_col-sm-12 wpb_single_image wpb_content_element" style="margin-bottom: 100px !important; border:">
                                     <img src="{{ asset('images/materials/fb-group-qrcode1.png') }}" alt="QR Code - Conquest 2025">
                                 </div>
                             </div>
