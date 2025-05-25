@@ -4,6 +4,16 @@
  * @author Johnvic Dela Cruz <delacruzjohnvic21@gmail.com>
  * @since Apr 1, 2025
  */
+function downloadImage() {
+    const imageUrl = "/images/conquestclue.jpg";
+    const link = document.createElement('a');
+    link.href = imageUrl;
+    link.download = 'conquestclue.jpg';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
 $(document).ready(function () {
     let zoomLevel = 1;
 

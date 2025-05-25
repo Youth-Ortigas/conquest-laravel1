@@ -46,5 +46,19 @@
     color: #fff;
 }
 
+.sc_layouts_title_caption {
+    padding-top: 3% !important;
+}
+
+.puzzle_banner {
+    max-height: 300px !important;
+}
+
+@media (max-width: 480px) {
+    .puzzle_banner {
+        max-height: 55px !important;
+    }
+}
+
 
 

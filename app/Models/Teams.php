@@ -28,7 +28,7 @@ class Teams extends Model
 
     public function teamsMembers()
     {
-        return $this->hasOne(TeamsMembers::class, 'teams_id', 'id');
+        return $this->hasMany(TeamsMembers::class, 'teams_id');
     }
 
     public function puzzleAttempts() {
