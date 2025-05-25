@@ -38,11 +38,6 @@
                                 @endif
                             </ul>
                         </nav>
-                        <div class="sc_layouts_iconed_text sc_layouts_menu_mobile_button" style="margin-top: 6px">
-                            <a class="sc_layouts_item_link sc_layouts_iconed_text_link" href="#">
-                                <span class="sc_layouts_item_icon sc_layouts_iconed_text_icon trx_addons_icon-menu"></span>
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -75,6 +70,12 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="sc_layouts_iconed_text sc_layouts_menu_mobile_button" style="position: absolute; right: 25; top: 10; z-index: 9999">
+            <a class="sc_layouts_item_link sc_layouts_iconed_text_link" href="#">
+                <span class="sc_layouts_item_icon sc_layouts_iconed_text_icon trx_addons_icon-menu"></span>
+            </a>
         </div>
 
     </div>
