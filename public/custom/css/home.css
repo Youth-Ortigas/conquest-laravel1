@@ -100,3 +100,23 @@
     position: relative;
     margin-bottom: 30px;
 }
+
+@media (min-width: 480px) and (max-width: 1278px) {
+    .menu_button {
+        display: inline-block !important;
+        transform: scale(1.5);
+        right: 10 !important;
+        top: 36 !important;
+    }
+
+    .menu_mobile_close {
+        display: inline-block !important;
+        transform: scale(1.5);
+        right: 14 !important;
+        top: 20 !important;
+    }
+
+    .top_panel {
+        max-height: 65px !important;
+    }
+}
