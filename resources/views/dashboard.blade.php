@@ -54,8 +54,8 @@
                                                         $loggedUser = \App\Models\User::find(Auth::user()->id);
                                                         if(isset($loggedUser->team)) {
 
-                                                            $loggedUserLeaderMain = \App\Models\User::find($loggedUser->team->team_leader_user_id_primary)?->name ?? 'N/A';
-                                                            $loggedUserLeaderSecondary = \App\Models\User::find($loggedUser->team->team_leader_user_id_secondary)?->name ?? 'N/A';
+                                                            $loggedUserLeaderMain = \App\Models\User::find($loggedUser->team->team_leader_user_id_primary) ?? 'N/A';
+                                                            $loggedUserLeaderSecondary = \App\Models\User::find($loggedUser->team->team_leader_user_id_secondary) ?? 'N/A';
                                                         }
                                                     ?>
                                                     <table class="tbl-info-user">
