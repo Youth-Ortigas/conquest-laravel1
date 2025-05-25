@@ -5,9 +5,9 @@
 @section('content')
     <link rel="stylesheet" href="{{ asset('custom/css/puzzles.css') }}">
     <div class="page_wrap">
-        @include('includes.puzzle_banner', ['title' => 'Puzzles'])
         @include('includes.header')
         @include('includes.menu_mobile')
+        @include('includes.puzzle_banner', ['title' => 'Puzzles'])
         <div class="sc_content_container">
             <div class="vc_empty_space" style="height: 5.1rem">
                 <span class="vc_empty_space_inner"></span>

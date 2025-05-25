@@ -1,8 +1,6 @@
-<header class="top_panel top_panel_custom_592 top_panel_custom_header-home with_bg_image kings_queens_inline_219517677" style="height: 100px;">
+<header class="top_panel top_panel_custom_592 top_panel_custom_header-home with_bg_image kings_queens_inline_219517677" style="background-color: black !important; height: 100px;">
     <div
-        class="vc_row wpb_row vc_row-fluid vc_custom_1521023294303 vc_row-o-equal-height vc_row-o-content-middle vc_row-flex shape_divider_top-none shape_divider_bottom-none sc_layouts_row sc_layouts_row_type_normal sc_layouts_row_fixed scheme_dark"
-        style="top: auto;">
-
+        class="vc_row wpb_row vc_row-fluid vc_custom_1521023294303 vc_row-o-equal-height vc_row-o-content-middle vc_row-flex shape_divider_top-none shape_divider_bottom-none sc_layouts_row sc_layouts_row_type_normal sc_layouts_row_fixed scheme_dark" style="top: auto;">
         <div class="wpb_column vc_column_container vc_col-sm-8 vc_col-md-9 vc_col-lg-9 vc_col-sm-offset-0 vc_col-xs-offset-3 vc_col-xs-2 sc_layouts_column sc_layouts_column_align_left" style="margin-top: -10px">
             <div class="vc_column-inner">
                 <div class="wpb_wrapper">
@@ -50,7 +48,7 @@
             </div>
         </div>
 
-        <div class="wpb_column vc_column_container vc_col-sm-3 vc_col-xs-12 sc_layouts_column sc_layouts_column_align_center" style="margin-top: 15px">
+        <div class="wpb_column vc_column_container vc_col-sm-3 vc_col-xs-12 sc_layouts_column sc_layouts_column_align_right" style="margin-top: 15px">
             <div class="vc_column-inner vc_custom_1523451038926">
                 <div class="wpb_wrapper">
                     <div class="sc_layouts_item">
