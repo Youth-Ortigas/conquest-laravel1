@@ -8,12 +8,11 @@
           xmlns="http://www.w3.org/1999/html">
     <link rel="stylesheet" href="{{ asset('custom/css/home.css') }}">
     <div class="page_wrap">
-        @include('includes.header')
-
+        @include('includes.header_with_bg_color')
         @include('includes.menu_mobile')
 
         <div class="page_content_wrap">
-            <div class="wpb_revslider_element wpb_content_element">
+            <div class="wpb_revslider_element wpb_content_element" style="margin-top: 50px">
                 <ul class="rslides" id="slider">
                     <li><img src="{{ asset("images/conquest2025-moodboard1.png") }}" alt="Conquest Image"></li>
                     <video id="slide-video" width="640" height="360" autoplay loop muted>
