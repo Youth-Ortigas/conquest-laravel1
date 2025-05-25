@@ -58,7 +58,7 @@
                             : '';
                             $loggedInTeamName = Auth::user()->team->team_name ?? "";
                             $loggedInTeamName = implode(' ', array_slice(explode(' ', $loggedInTeamName), -2));
-                            $buttonText = $checkLoggedStatus ? "Hail $loggedInName of the $loggedInTeamName!" : "Step To Thy Conquest!";
+                            $buttonText = $checkLoggedStatus ? ($loggedInTeamName != '' ? "Hail $loggedInName of the $loggedInTeamName!" : "Hail $loggedInName!") : "Step To Thy Conquest!";
                             $buttonLink = $checkLoggedStatus ? "/dashboard" : "/login";
                         @endphp
                         <a href="{{ $buttonLink }}" class="sc_button color_style_default sc_button_bordered sc_button_size_normal sc_button_with_icon sc_button_icon_left" id="btn-step-to-thy-conquest">
