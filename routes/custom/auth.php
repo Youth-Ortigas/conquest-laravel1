@@ -17,8 +17,9 @@ Route::middleware(['web'])->group(function () {
     Route::get('document-sign/waiver-form', [DocumentController::class, 'index']);
     Route::post('document-sign/save', [DocumentController::class, 'saveWaiverForm']);
 
-    Route::get('team-leaderboards', [TeamLeaderboardController::class, 'index']);
+    Route::get('team-leaderboards', [TeamLeaderboardController::class, 'index'])->name('team-leaderboard.index');
     Route::get('team-leaderboards-table/{puzzleNum?}', [TeamLeaderboardController::class, 'getTeamLeaderboard'])->name('team-leaderboard.table');
+    Route::get('get-team-members', [TeamLeaderboardController::class, 'getTeamMembersPerTeam']);
 
     Route::get('/puzzles/{reference}', [PuzzleController::class, 'getDetails'])->name('puzzles.getDetails');
     Route::post('/validate-puzzle-key', [PuzzleController::class, 'validatePuzzleKey'])->name('puzzles.validate');

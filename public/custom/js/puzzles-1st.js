@@ -4,20 +4,18 @@
  * @author Johnvic Dela Cruz <delacruzjohnvic21@gmail.com>
  * @since Apr 1, 2025
  */
+function downloadImage() {
+    const imageUrl = "/images/conquestclue.jpg";
+    const link = document.createElement('a');
+    link.href = imageUrl;
+    link.download = 'conquestclue.jpg';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
 $(document).ready(function () {
     let zoomLevel = 1;
-
-    // $(document).on('contextmenu', function (e) {
-    //     e.preventDefault();
-    // });
-
-    $(document).on('keydown', function (e) {
-        if (e.keyCode === 123 || // F12
-            (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || // Ctrl+Shift+I/J
-            (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83))) { // Ctrl+U/S
-            e.preventDefault();
-        }
-    });
 
     $(".zoomable-image").click(function (event) {
         if (zoomLevel === 1) {

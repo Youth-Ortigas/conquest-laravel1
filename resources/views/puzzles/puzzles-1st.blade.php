@@ -19,15 +19,22 @@
                         <div class="post_content entry-content">
                             <div class="wpb-content-wrapper" style="text-align: center">
                                 <div data-vc-full-width="true" data-vc-full-width-init="true" class="vc_row wpb_row vc_row-fluid vc_custom_1522153891227 vc_row-has-fill hide_bg_image_on_tablet hide_bg_image_on_mobile shape_divider_top-none shape_divider_bottom-none">
+                                    <h4 class="sc_layouts_title_caption">
+                                        @if(isset($dateTimeCompleted) && $dateTimeCompleted)
+                                            Completed on {{ $dateTimeCompleted }} ({{ $numberOfAttempt }} {{ Str::plural('attempt', $numberOfAttempt) }})
+                                        @endif
+                                    </h4>
                                     <div class="wpb_column vc_column_container vc_col-md-6 vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left">
                                         <div class="vc_column-inner">
                                             <div class="wpb_wrapper">
+
                                                 <div class="wpb_single_image wpb_content_element vc_align_left wpb_content_element">
                                                     <h3 id="hint" class="common-title">The key is hidden in the city. <br>Take charge young Conqueror!</h3>
                                                     <div class="container" style="margin: 25px 0 0 0;">
                                                         <div class="zoom-container">
                                                             <img src="{{ asset("images/conquestclue.jpg") }}" alt="conquest clue" class="zoomable-image">
                                                             <div class="zoom-controls">
+                                                                <button class="zoom-reset" onclick="downloadImage()">Download Image</button>
                                                                 <button class="zoom-reset">Reset</button>
                                                             </div>
                                                         </div>
@@ -97,7 +104,7 @@
 
                                                                         @unless(isset($correctAttempt[0]))
                                                                             <br>
-                                                                            <button type="submit" style="margin-top: 10" id="btn-puzzle-send"> Deliver Thy Reply </button>
+                                                                            <button type="submit" style="margin-top: 15px;" id="btn-puzzle-send"> Deliver Thy Reply </button>
                                                                         @endif
                                                                     </label>
                                                                 </div>
@@ -134,4 +141,6 @@
 @section('footer-scripts')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="{{ asset("custom/js/puzzles-1st.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("custom/js/disable-buttons.js") }}"></script>
+
 @endsection

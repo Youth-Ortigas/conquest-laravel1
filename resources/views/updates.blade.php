@@ -13,12 +13,13 @@
                 <span class="vc_empty_space_inner"></span>
             </div>
             <div class="post_content entry-content">
-                <div class="wpb-content-wrapper" style="text-align: center; margin: 0 100px 0;">
+                <div class="wpb-content-wrapper" style="text-align: center; margin: 0 5% 0;">
                     <div class="wpb_column vc_column_container vc_col-md-12 vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left">
                         <div class="vc_column-inner">
                             <div class="wpb_wrapper">
                                 <div class="wpb_content_element vc_align_left wpb_content_element">
                                     <h3 class="welcome-title" style="margin: 0 0 50px 0; !important;"><br/><br/>Reminders</h3>
+                                    @if(false)
                                     <div class="common-paragraph">
                                         <ol class="list-number" style="color: #000000;">
                                             <li>Pack your essentials.</li>
@@ -35,6 +36,9 @@
                                             <li>Enjoy the camp and meet new friends!</li>
                                         </ol>
                                     </div>
+                                    @else
+                                        <h4>Details to Be Announced</h4>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -45,6 +49,7 @@
                             <div class="wpb_wrapper">
                                 <div class="wpb_content_element vc_align_left wpb_content_element">
                                     <h3 class="welcome-title" style="margin: 0 0 50px 0; !important;"><br/><br/>What to bring</h3>
+                                        @if(false)
                                         <div class="wpb_column vc_column_container vc_col-md-7 vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left common-paragraph">
                                             <ul class="what-to-bring">
                                                 <li>Camp Kit</li>
@@ -68,6 +73,9 @@
                                                 <li>Plastic bag for wet clothes</li>
                                             </ul>
                                         </div>
+                                        @else
+                                            <h4>Details to Be Announced</h4>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -78,7 +86,8 @@
                             <div class="wpb_wrapper">
                                 <div class="wpb_content_element vc_align_left wpb_content_element speakers">
                                     <h3 class="welcome-title" style="margin: 0 0 50px 0; !important;"><br/><br/>Speakers</h3>
-                                        <div class="sc_icons_columns_wrap sc_item_columns trx_addons_columns_wrap columns_padding_bottom">
+                                        @if(false)
+                                        <div class="sc_icons_columns_wrap sc_item_columns trx_addons_columns_wrap columns_padding_bottom" style="margin-bottom: 50px">
                                             <div class="trx_addons_column-1_3">
                                                 <div class="sc_icons_item sc_icons_item_linked">
                                                     <div id="sc_icons_1100097351_icon-icon-11" class="sc_icons_icon sc_icon_type_ icon-icon-11">
@@ -118,7 +127,10 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                    </div>
+                                        </div>
+                                        @else
+                                            <h4 style="margin-bottom: 90px">Details to Be Announced</h4>
+                                        @endif
                                 </div>
                             </div>
                         </div>

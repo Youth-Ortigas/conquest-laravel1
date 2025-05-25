@@ -9,14 +9,15 @@ use Illuminate\Http\Request;
  * @author Marylyn Lajato <flippie.cute@gmail.com>
  * @since May 23, 2025
  */
-class UpdateController extends Controller
+class MaterialsController extends Controller
 {
     /**
-     * index
+     * Materials Page
      *
      * @return void
      */
-    public function index() {
-        return view('updates');
+    public function index()
+    {
+        return view('materials');
     }
 }

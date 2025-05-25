@@ -8,12 +8,57 @@ use App\Models\Teams;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
+use App\Models\TeamsMembers;
+
 class TeamLeaderboardController extends Controller
 {
     public function index() {
         $teamLeaderboard = $this->getTeamLeaderboard();
 
         return view('team-leaderboards', compact('teamLeaderboard'));
+    }
+
+    public function getTeamMembersPerTeam() {
+        $teams = Teams::where('id', '!=', 11)->get();
+        $teamMembers = [];
+
+        foreach ($teams as $team) {
+            $allMembers = TeamsMembers::where('teams_id', $team->id)
+                                    ->join('users', 'users.id', 'teams_members.teams_user_id')
+                                    ->select('users.id', 'users.name', 'users.reg_code', 'teams_members.cabin_name')
+                                    ->get();
+
+            // Get primary and secondary leaders
+            $primaryLeaderId = $team->team_leader_user_id_primary;
+            $secondaryLeaderId = $team->team_leader_user_id_secondary;
+
+            $leaders = collect();
+            $others = collect();
+
+            foreach ($allMembers as $member) {
+                if ($member->id == $primaryLeaderId) {
+                    $member->role = 'Primary Leader';
+                    $leaders->prepend($member);
+                } elseif ($member->id == $secondaryLeaderId) {
+                    $member->role = 'Secondary Leader';
+                    $leaders->push($member);
+                } else {
+                    $member->role = 'Member';
+                    $others->push($member);
+                }
+            }
+
+            $others = $others->sortBy('name')->values();
+
+            $orderedMembers = $leaders->merge($others); // leaders first
+
+            $teamMembers[$team->id] = [
+                'team_name' => $team->team_name,
+                'members' => $orderedMembers
+            ];
+        }
+
+        return response()->json($teamMembers);
     }
 
     public function getTeamLeaderboard($puzzleNum = 'all') {

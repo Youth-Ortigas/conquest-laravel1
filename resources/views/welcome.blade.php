@@ -3,16 +3,16 @@
 @section('page-class', 'home')
 
 @section('content')
+    {{-- TEST     --}}
     <link rel="stylesheet" href="{{ asset('library/ResponsiveSlides.js/responsiveslides.css') }}"
           xmlns="http://www.w3.org/1999/html">
     <link rel="stylesheet" href="{{ asset('custom/css/home.css') }}">
     <div class="page_wrap">
-        @include('includes.header')
-
+        @include('includes.header_with_bg_color')
         @include('includes.menu_mobile')
 
         <div class="page_content_wrap">
-            <div class="wpb_revslider_element wpb_content_element">
+            <div class="wpb_revslider_element wpb_content_element" style="margin-top: 50px">
                 <ul class="rslides" id="slider">
                     <li><img src="{{ asset("images/conquest2025-moodboard1.png") }}" alt="Conquest Image"></li>
                     <video id="slide-video" width="640" height="360" autoplay loop muted>
@@ -74,7 +74,7 @@
                                             <div class="wpb_wrapper">
                                                 <div class="container">
                                                     <div class="welcome-section">
-                                                        <h1 class="welcome-title-sub" style="text-transform: uppercase"><br/>Ephesians 6:10-13 ESV</h1>
+                                                        <h1 class="welcome-title-sub" style="text-transform: uppercase"><br/><br/>Ephesians 6:10-13 ESV</h1>
                                                         <p class="welcome-paragraph welcome-paragraph-initial">
                                                             10 Finally, be strong in the Lord and in the strength of his might.
                                                             <br/> 11 Put on the whole armor of God, that you may be able to stand against the schemes of the devil.

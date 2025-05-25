@@ -12,12 +12,14 @@
             contain-intrinsic-size: 3000px 1500px
         }</style>
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="stylesheet" href="{{ asset('custom/css/common.css') }}">
     <link property="stylesheet" rel="stylesheet" id="trx_demo_icons-css"
           href="{{ asset("wp-content/plugins/trx_demo/css/font-icons/css/trx_demo_icons.css") }}"
           type="text/css" media="all">
     <link property="stylesheet" rel="stylesheet" id="trx_demo_icons_animation-css"
           href="{{ asset("wp-content/plugins/trx_demo/css/font-icons/css/animation.css") }}"
           type="text/css" media="all">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <style id="wp-emoji-styles-inline-css" type="text/css">
 
         img.wp-smiley, img.emoji {
@@ -3381,7 +3383,19 @@
 <script></script>
 <!--<script src="https://code.tidio.co/ctybgkiqd4jhsgdvzlgahqx3pjybdwlg.js" async=""></script>-->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+@if (session('error'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops!',
+                text: '{{ session('error') }}',
+                confirmButtonText: 'Okay'
+            });
+        });
+    </script>
+@endif
+<script src="{{ asset("custom/js/common.js") }}"></script>
 @section('footer-scripts')
 
 @show

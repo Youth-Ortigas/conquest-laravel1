@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="{{ asset('custom/css/auth/login.css') }}">
     {{ csrf_field() }}
     <div class="page_wrap">
-        @include('includes.banner_common', ['title' => 'Login'])
         @include('includes.header')
         @include('includes.menu_mobile')
+        @include('includes.banner_common', ['title' => 'Login'])
 
         <div class="page_content_wrap">
             <div class="content_wrap">
