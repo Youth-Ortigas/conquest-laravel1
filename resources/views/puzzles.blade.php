@@ -6,24 +6,13 @@
     <link rel="stylesheet" href="{{ asset('custom/css/puzzles.css') }}">
 
     <div class="page_wrap">
-        @include('includes.puzzle_banner', ['title' => 'Puzzles'])
+
         @include('includes.header')
-        @include('includes.menu_mobile')
+
         <div class="sc_content_container">
             <div class="vc_empty_space" style="height: 4rem">
                 <span class="vc_empty_space_inner"></span>
             </div>
-            <h1 class="welcome-title" style="text-transform: uppercase"><br/><br/>PUZZLES</h1>
-            <p style="max-width: 600px; margin: 0.2em auto; font-style: italic; font-size: 0.9em; color: #555;">
-                Teams are ranked based on the following criteria, applied in order:
-            </p>
-            <ol style="max-width: 600px; margin: 0 auto 2em auto; font-style: italic; font-size: 0.9em; color: #555; text-align: left">
-                <li><strong>Number of Puzzles Completed</strong> — Higher is better.</li>
-                <li><strong>Completion Time</strong> — Lower total time is better.
-                    (<em>Measured from when each puzzle was made available, not when the team started their attempt.</em>)
-                </li>
-                <li><strong>Number of Attempts</strong> — Lower is better.</li>
-            </ol>
             <div id="sc_icons_1100097351" class="sc_icons sc_icons_default sc_icons_size_medium sc_align_center">
                 <div class="sc_icons_columns_wrap sc_item_columns trx_addons_columns_wrap columns_padding_bottom">
                     <div class="trx_addons_column-1_4">
@@ -112,132 +101,24 @@
                         </a>
                     </div>
                 </div>
-            </div>
-
-            <div class="vc_empty_space" style="height: 3rem">
-                <span class="vc_empty_space_inner"></span>
-            </div>
-
-            <div class="post_content entry-content">
-                <div class="wpb-content-wrapper" style="text-align: center; margin: 0 100px 0;">
-                    <div class="wpb_column vc_column_container vc_col-md-12 vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left">
-                        <div class="vc_column-inner">
-                            <div class="wpb_wrapper">
-                                <div class="wpb_content_element vc_align_left wpb_content_element">
-                                    <h3 class="welcome-title" style="margin: 0 0 50px 0; !important;"><br/><br/>Team Challenges</h3>
-                                </div>
-                                <div class="wpb_content_element vc_align_left wpb_content_element">
-                                    <h4 class="common-title-sub1 text-uppercase">Represent Your Team</h4>
-                                </div>
-                                <div class="wpb_content_element vc_align_left wpb_content_element">
-                                    <h5 class="common-title-sub2 text-uppercase"> Name Your House </h5>
-                                    <div class="common-paragraph">
-                                        <ol class="list-number">
-                                            <li>Choose a warrior name from the list below.  Names are first come first serve basis.</li>
-                                            <li>Then choose an animal.</li>
-                                            <li>
-                                                <p>Create your team name using this format:</p>
-                                                <p>[Warrior Name from the list] of [assigned color] + [Chosen animal]</p>
-                                                <p>Ex. Warriors of the Golden Fish or Hero of the Golden Fish</p>
-                                            </li>
-                                        </ol>
-
-                                        <div class="sc_icons_columns_wrap sc_item_columns trx_addons_columns_wrap columns_padding_bottom">
-                                            <div class="trx_addons_column-1_4">
-                                                <ul>
-                                                    <li>Warrior</li>
-                                                    <li>Hero</li>
-                                                    <li>Defender</li>
-                                                    <li>Guardian</li>
-                                                    <li>Knight</li>
-                                                </ul>
-                                            </div>
-                                            <div class="trx_addons_column-1_4">
-                                                <ul>
-                                                    <li>Avenger</li>
-                                                    <li>General</li>
-                                                    <li>Patriot</li>
-                                                    <li>Army</li>
-                                                    <li>Fighter</li>
-                                                </ul>
-                                            </div>
-                                            <div class="trx_addons_column-1_4">
-                                                <ul>
-                                                    <li>Soldier</li>
-                                                    <li>Peacemaker</li>
-                                                    <li>Veteran</li>
-                                                    <li>Cavalier</li>
-                                                    <li>Protector</li>
-                                                </ul>
-                                            </div>
-                                            <div class="trx_addons_column-1_4">
-                                                <ul>
-                                                    <li>Champion</li>
-                                                    <li>Gladiator</li>
-                                                    <li>Swordsman</li>
-                                                    <li>Crusader</li>
-                                                    <li>Trooper</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="wpb_content_element vc_align_left wpb_content_element">
-                                    <h5 class="common-title-sub2"> Compose Your Battle Cry </h5>
-                                    <div class="common-paragraph">
-                                        <ol class="list-number">
-                                            <li>Create a short chant (maximum of 1 min.) that embodies your house’s battle cry.</li>
-                                            <li>Be ready to present it on our camp.  </li>
-                                        </ol>
-                                    </div>
-                                </div>
-
-                                <div class="wpb_content_element vc_align_left wpb_content_element">
-                                    <div class="wpb_column vc_column_container vc_col-md-12 vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left">
-                                        <div class="vc_column-inner" style="padding-left:0;">
-                                            <div class="wpb_wrapper flex-container">
-                                                <div class="vc_col-md-6 vc_col-sm-12 wpb_content_element common-paragraph flex-center" style="height: 300px; padding:0;">
-                                                    <ol>
-                                                        <li class="common-title-sub2 block-title">Design Your Flag</li>
-                                                        <li>Using the materials provided, design a flag that represents your house. The flag must be PORTRAIT.</li>
-                                                        <li>Your house’s animal should be your emblem.</li>
-                                                    </ol>
-                                                </div>
-                                                <div class="vc_col-md-6 vc_col-sm-12 wpb_single_image wpb_content_element">
-                                                    <img src="{{ asset('images/puzzles/flags.png') }}" alt="Flag List">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="wpb_content_element vc_align_left wpb_content_element">
-                                    <h4 class="common-title-sub1 text-uppercase">House Performance</h4>
-                                    <div class="common-paragraph">
-                                        <ol class="list-number">
-                                            <li>Each house will perform during our social night. The performance should be Conquest themed.</li>
-                                            <li>You may perform in whatever style. It can be through a chorale, interpretative dance, contemporary dance, musical, skit etc. It can also be a combination of multiple styles.</li>
-                                            <li>Each house will be given 2 to 4 minutes to perform.</li>
-                                            <li>Criteria for judging:
-                                                <ol>
-                                                    <li>Creativity</li>
-                                                    <li>Relevance to the Conquest theme</li>
-                                                    <li>Originality</li>
-                                                </ol>
-                                            </li>
-                                        </ol>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+                <h3 style="text-align: center; margin: 0 auto;">Criteria</h3><br>
+                <p style="max-width: 600px; margin: 0.2em auto; font-style: italic; font-size: 0.9em; color: #555;">
+                    Teams are ranked based on the following criteria, applied in order:
+                </p>
+                <ol style="max-width: 600px; margin: 0 auto 2em auto; font-style: italic; font-size: 0.9em; color: #555; text-align: left">
+                    <li><strong>Number of Puzzles Completed</strong> — Higher is better.</li>
+                    <li><strong>Completion Time</strong> — Lower total time is better.
+                        (<em>Measured from when each puzzle was made available, not when the team started their attempt.</em>)
+                    </li>
+                    <li><strong>Number of Attempts</strong> — Lower is better.</li>
+                </ol>
+            </div><!-- /.sc_icons -->
         </div>
-    </div>
+
+        @include('includes.header')
+
+        @include('includes.menu_mobile')
+    </div><!-- /.page_wrap -->
 @endsection
 
 @section('footer-scripts')
