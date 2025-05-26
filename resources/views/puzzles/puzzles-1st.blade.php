@@ -32,7 +32,7 @@
                                                     <h3 id="hint" class="common-title">The key is hidden in the city. <br>Take charge young Conqueror!</h3>
                                                     <div class="container" style="margin: 25px 0 0 0;">
                                                         <div class="zoom-container">
-                                                            <img src="{{ asset("images/conquestclue.jpg") }}" alt="conquest clue" class="zoomable-image" id="zoomable-image">
+                                                            <img src="{{ asset("images/conquestclue.jpg") }}" alt="conquest clue" class="zoomable-image">
                                                             <div class="zoom-controls">
                                                                 <button class="zoom-reset" onclick="downloadImage()">Download Image</button>
                                                                 <button class="zoom-reset">Reset</button>
@@ -116,7 +116,7 @@
                                                         <div class="vc_column-inner" style="padding-right:0;">
                                                             <div class="wpb_wrapper">
                                                                 <div class="wpb_single_image wpb_content_element vc_align_left wpb_content_element">
-                                                                    <div class="container" style="margin: 25px 0 0 0; padding-right:0;">
+                                                                    <div class="container" style="margin: 25px 0 0 0;">
                                                                         <div class="table-wrapper">
                                                                             <table id="vigenereTable"></table>
                                                                         </div>
@@ -131,7 +131,6 @@
                                     </div>
                                 </div>
                             </div>
-
                     </article>
                 </div>
             </div>

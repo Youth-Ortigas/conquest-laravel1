@@ -4,12 +4,13 @@
 
 @section('content')
     <link rel="stylesheet" href="{{ asset('custom/css/puzzles.css') }}">
+
     <div class="page_wrap">
         @include('includes.header')
         @include('includes.menu_mobile')
         @include('includes.puzzle_banner', ['title' => 'Puzzles'])
         <div class="sc_content_container">
-            <div class="vc_empty_space" style="height: 5.1rem">
+            <div class="vc_empty_space" style="height: 4rem">
                 <span class="vc_empty_space_inner"></span>
             </div>
             <div id="sc_icons_1100097351" class="sc_icons sc_icons_default sc_icons_size_medium sc_align_center">
@@ -253,10 +254,26 @@
             </div>
 
         </div>
-    </div>
+
+        @include('includes.header')
+
+        @include('includes.menu_mobile')
+    </div><!-- /.page_wrap -->
 @endsection
 
 @section('footer-scripts')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="{{ asset("custom/js/puzzles.js") }}"></script>
+    @if (session('error'))
+        <script>
+            $(document).ready(function () {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops!',
+                    text: @json(session('error')),
+                    confirmButtonText: 'Okay'
+                });
+            });
+        </script>
+    @endif
 @endsection
