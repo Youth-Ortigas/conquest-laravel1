@@ -1293,6 +1293,8 @@
         },
         {
             "name": "laravel/framework",
+<<<<<<< HEAD
+<<<<<<< HEAD
             "version": "v12.15.0",
             "source": {
                 "type": "git",
@@ -1303,6 +1305,35 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/2ef7fb183f18e547af4eb9f5a55b2ac1011f0b77",
                 "reference": "2ef7fb183f18e547af4eb9f5a55b2ac1011f0b77",
+=======
+=======
+>>>>>>> master
+            "version": "v12.14.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "84b142958d1638a7e89de94ce75c2821c601d3d7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/84b142958d1638a7e89de94ce75c2821c601d3d7",
+                "reference": "84b142958d1638a7e89de94ce75c2821c601d3d7",
+<<<<<<< HEAD
+>>>>>>> master
+=======
+=======
+            "version": "v12.15.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "2ef7fb183f18e547af4eb9f5a55b2ac1011f0b77"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/2ef7fb183f18e547af4eb9f5a55b2ac1011f0b77",
+                "reference": "2ef7fb183f18e547af4eb9f5a55b2ac1011f0b77",
+>>>>>>> fb65d923b584938522232a1c645708dec68e3edf
+>>>>>>> master
                 "shasum": ""
             },
             "require": {
@@ -1504,7 +1535,18 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
+<<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2025-05-20T15:10:44+00:00"
+=======
+            "time": "2025-05-13T17:50:51+00:00"
+>>>>>>> master
+=======
+            "time": "2025-05-13T17:50:51+00:00"
+=======
+            "time": "2025-05-20T15:10:44+00:00"
+>>>>>>> fb65d923b584938522232a1c645708dec68e3edf
+>>>>>>> master
         },
         {
             "name": "laravel/prompts",
@@ -2744,6 +2786,8 @@
                 }
             ],
             "time": "2025-05-08T08:14:37+00:00"
+<<<<<<< HEAD
+=======
         },
         {
             "name": "paragonie/constant_time_encoding",
@@ -2861,6 +2905,7 @@
                 "source": "https://github.com/paragonie/random_compat"
             },
             "time": "2020-10-15T08:29:30+00:00"
+>>>>>>> fb65d923b584938522232a1c645708dec68e3edf
         },
         {
             "name": "phpoption/phpoption",
@@ -7378,6 +7423,18 @@
         },
         {
             "name": "phpunit/phpunit",
+<<<<<<< HEAD
+            "version": "11.5.20",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/phpunit.git",
+                "reference": "e6bdea63ecb7a8287d2cdab25bdde3126e0cfe6f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/e6bdea63ecb7a8287d2cdab25bdde3126e0cfe6f",
+                "reference": "e6bdea63ecb7a8287d2cdab25bdde3126e0cfe6f",
+=======
             "version": "11.5.21",
             "source": {
                 "type": "git",
@@ -7388,6 +7445,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/d565e2cdc21a7db9dc6c399c1fc2083b8010f289",
                 "reference": "d565e2cdc21a7db9dc6c399c1fc2083b8010f289",
+>>>>>>> fb65d923b584938522232a1c645708dec68e3edf
                 "shasum": ""
             },
             "require": {
@@ -7459,7 +7517,11 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
+<<<<<<< HEAD
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/11.5.20"
+=======
                 "source": "https://github.com/sebastianbergmann/phpunit/tree/11.5.21"
+>>>>>>> fb65d923b584938522232a1c645708dec68e3edf
             },
             "funding": [
                 {
@@ -7483,7 +7545,11 @@
                     "type": "tidelift"
                 }
             ],
+<<<<<<< HEAD
+            "time": "2025-05-11T06:39:52+00:00"
+=======
             "time": "2025-05-21T12:35:00+00:00"
+>>>>>>> fb65d923b584938522232a1c645708dec68e3edf
         },
         {
             "name": "sebastian/cli-parser",

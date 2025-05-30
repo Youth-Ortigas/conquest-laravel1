@@ -68,6 +68,92 @@
                                             </div>
                                         </div>
                                     </div>
+<<<<<<< HEAD
+                                    <div
+                                        class="wpb_column vc_column_container vc_col-sm-6 vc_col-md-offset-1 vc_col-md-5 sc_layouts_column_icons_position_left scheme_default">
+                                        <div class="vc_column-inner">
+                                            <div class="wpb_wrapper">
+                                                <div class="vc_empty_space" style="height: 3.3rem"><span
+                                                        class="vc_empty_space_inner"></span></div>
+                                                <div id="sc_title_176277804"
+                                                     class="sc_title color_style_default scheme_default sc_title_default  vc_custom_1732093109752">
+                                                    <h6 class="sc_item_subtitle sc_title_subtitle sc_align_left sc_item_title_style_default">
+                                                        Welcome Youths!</h6>
+                                                    <h2 class="sc_item_title sc_title_title sc_align_left sc_item_title_style_default">
+                                                        Conquest Youth Camp 2025</h2>
+                                                    <div class="sc_item_descr sc_title_descr sc_align_left">
+                                                        <p>
+                                                            For the past years, Youth Camps have created an opportunity for us to raise students who follow God comprehensively, fish lost people consistently, and fellowship cross-generationally. With the recent expansion of our horizon in reaching out to the campuses, this will provide an avenue for us to evangelize, disciple, and raise leaders in our campuses in Ortigas and Cubao.
+                                                        </p>
+                                                        <p>
+                                                            Our goal is to equip the students to become strong and mighty leaders in their fields by being armed with biblical truths in proclaiming and demonstrating the gospel through intentional discipleship and servant leadership.
+                                                        </p>
+                                                    </div>
+                                                </div><!-- /.sc_title --></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="vc_row-full-width vc_clearfix"></div>
+                                <div
+                                    class="vc_row wpb_row vc_row-fluid vc_custom_1522153958676 vc_row-has-fill hide_bg_image_on_tablet hide_bg_image_on_mobile shape_divider_top-none shape_divider_bottom-none">
+                                    <div
+                                        class="wpb_column vc_column_container vc_col-sm-12 sc_layouts_column_icons_position_left">
+                                        <div class="vc_column-inner">
+                                            <div class="wpb_wrapper">
+                                                <div class="vc_empty_space" style="height: 3.45rem"><span
+                                                        class="vc_empty_space_inner"></span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="wpb_column vc_column_container vc_col-sm-6 sc_layouts_column_icons_position_left">
+                                        <div class="vc_column-inner">
+                                            <div class="wpb_wrapper">
+                                                <div class="vc_empty_space" style="height: 2.5rem"><span
+                                                        class="vc_empty_space_inner"></span></div>
+                                                <div id="sc_title_412861930"
+                                                     class="sc_title color_style_default sc_title_default  vc_custom_1521626058719">
+                                                    <h3 class="sc_item_title sc_title_title sc_align_left sc_item_title_style_default sc_item_title_tag">
+                                                        More than just a youth camp</h3>
+                                                </div><!-- /.sc_title -->
+                                                <div id="sc_title_2131711708"
+                                                     class="sc_title color_style_default sc_title_default  vc_custom_1523444662354">
+                                                    <div class="sc_item_descr sc_title_descr sc_align_left">
+                                                        <p>
+                                                            A Christian Youth and Sports Center-calm and peaceful place
+                                                            with the awesome beauty of God's wonderful creation.
+                                                        </p>
+                                                    </div>
+                                                </div><!-- /.sc_title -->
+                                                <div class="vc_empty_space" style="height: 2.1rem"><span
+                                                        class="vc_empty_space_inner"></span></div>
+                                                <div id="sc_title_129112229"
+                                                     class="sc_title color_style_default sc_title_default italic"><h3
+                                                        class="sc_item_title sc_title_title sc_align_left sc_item_title_style_default sc_item_title_tag">
+                                                       <sup>10</sup> “Finally, be strong in the Lord and in the strength of his might." <br/>
+                                                        <sup>11</sup> "Put on the whole armor of God, that you may be able to stand against the schemes of the devil.” <br/>
+                                                        <sup>12</sup> "For we do not wrestle against flesh and blood, but against the rulers, against the authorities, against the cosmic powers over this present darkness, against the spiritual forces of evil in the heavenly places." <br/>
+                                                        <sup>13</sup> "Therefore take up the whole armor of God, that you may be able to withstand in the evil day, and having done all, to stand firm." <br/>
+
+                                                        <br/>[Ephesians 6:10-13 ESV]
+                                                    </h3>
+                                                </div>
+                                                <!-- /.sc_title -->
+                                                <div
+                                                    class="vc_empty_space  hide_on_desktop hide_on_notebook hide_on_tablet sc_height_medium"
+                                                    style="height: 32px"><span class="vc_empty_space_inner"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="wpb_column vc_column_container vc_col-sm-6 sc_layouts_column_icons_position_left">
+                                        <div class="vc_column-inner">
+                                            <div class="wpb_wrapper">
+                                                <div
+                                                    class="wpb_single_image wpb_content_element vc_align_right wpb_content_element  image_shadow">
+=======
+>>>>>>> master
 
                                     <div class="wpb_column vc_column_container vc_col-sm-12 vc_col-md-8 vc_col-has-fill sc_layouts_column_icons_position_left">
                                         <div class="vc_column-inner">
