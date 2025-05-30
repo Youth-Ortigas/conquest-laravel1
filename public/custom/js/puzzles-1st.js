@@ -178,9 +178,10 @@ $(document).ready(function () {
                             allowEnterKey: false,
                             confirmButtonText: 'View Results',
                             footer: '<strong>Pray, wait for the next puzzle to be unlocked.</strong>'
-                        }).then(() => {
-                            oThis.DOMClassKeyInput.prop('disabled', true);
-                            oThis.DOMClassKeyButton.remove();
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.reload();
+                            }
                         });
                     }
                 } else {
