@@ -184,10 +184,11 @@
                                                     <h3 class="common-title-sub"> The Hall Of Memories </h3>
                                                     <figure class="wpb_wrapper vc_figure">
                                                         <div class="vc_single_image-wrapper vc_box_border_grey">
-                                                            <img loading="lazy" decoding="async" src="{{ asset("images/home/welcome-armor-of-god1.png") }}"
-                                                                 class="vc_single_image-img attachment-full" alt="Hall Of Memories"
-                                                                 title="img-4-copyright"
-                                                                 srcset="{{ asset("images/home/hall-of-memories.png") }}">
+                                                            <a href="{{ asset('images/home/hall-of-memories.png') }}" target="_blank" class="lightbox-link">
+                                                                <img class="vc_single_image-img attachment-full" alt="Hall Of Memories"
+                                                                    title="img-4-copyright"
+                                                                    srcset="{{ asset("images/home/hall-of-memories.png") }}">
+                                                            </a>
                                                         </div>
                                                     </figure>
                                                 </div>
@@ -202,10 +203,11 @@
                                                     <h3 class="common-title-sub"> Rizal Recreation Center Map </h3>
                                                     <figure class="wpb_wrapper vc_figure">
                                                         <div class="vc_single_image-wrapper vc_box_border_grey">
-                                                            <img loading="lazy" decoding="async" src="{{ asset("images/home/welcome-armor-of-god1.png") }}"
-                                                                 class="vc_single_image-img attachment-full" alt="Rizal Recreation Center Map"
-                                                                 title="img-4-copyright"
-                                                                 srcset="{{ asset("images/home/rizal-recreation-center-map.png") }}">
+                                                            <a href="{{ asset('images/home/rizal-recreation-center-map.png') }}" target="_blank" class="lightbox-link">
+                                                                <img class="vc_single_image-img attachment-full" alt="Rizal Recreation Center Map"
+                                                                    title="img-4-copyright"
+                                                                    srcset="{{ asset("images/home/rizal-recreation-center-map.png") }}">
+                                                            </a>
                                                         </div>
                                                     </figure>
                                                 </div>
