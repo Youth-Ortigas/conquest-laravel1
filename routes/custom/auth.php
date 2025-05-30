@@ -8,6 +8,7 @@ use App\Http\Controllers\TeamLeaderboardController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\PuzzleController;
 use App\Http\Controllers\PuzzleGameStateController;
+use App\Http\Controllers\PuzzleProofController;
 
 Route::middleware(['web'])->group(function () {
     Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -29,4 +30,9 @@ Route::middleware(['web'])->group(function () {
 
     Route::post('/puzzle-save-game-state', [PuzzleGameStateController::class, 'saveGameState']);
     Route::get('/puzzle-get-game-state/{puzzle_num}', [PuzzleGameStateController::class, 'getGameState']);
+
+    Route::post('/puzzle-upload-proof', [PuzzleProofController::class, 'uploadProof'])->name('puzzles.upload');
+    Route::post('/puzzle-proof/{proof}/reaction', [PuzzleProofController::class, 'toggleReaction'])->name('puzzle-proof.toggleReaction');
+    Route::get('/puzzle-proof/{proof}/reactions', [PuzzleProofController::class, 'getReactions'])->name('puzzle-proof.getReactions');
+    Route::get('/puzzle-proof/{proof}/reactions/users', [PuzzleProofController::class, 'getReactors']);
 });

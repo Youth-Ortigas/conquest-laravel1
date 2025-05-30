@@ -77,7 +77,7 @@ $(document).ready(function () {
                                 title: `Welcome Back, Conqueror!`,
                                 text: `Thou hast made ${this.attempts} of 6 guesses. Continue thy noble quest!`,
                                 icon: 'info',
-                                confirmButtonText: 'Understood'
+                                confirmButtonText: 'Understood',
                             }).then(() => {
                                 this.focusToNextInput();
                             });
@@ -176,9 +176,14 @@ $(document).ready(function () {
                                 allowOutsideClick: false,
                                 allowEscapeKey: false,
                                 allowEnterKey: false,
-                                confirmButtonText: 'Go Forth!'
-                            }).then(() => {
-                                window.location.href = data.next_puzzle;
+                                confirmButtonText: 'Go Forth!',
+                                cancelButtonText: 'Submit Group Photo',
+                                showCancelButton: true,
+                            }).then((result) => {
+                                if(result.isConfirmed)
+                                    window.location.href = data.next_puzzle;
+                                else
+                                    location.reload();
                             });
                         } else {
                             Swal.fire({
@@ -190,8 +195,10 @@ $(document).ready(function () {
                                 allowEnterKey: false,
                                 confirmButtonText: 'View Results',
                                 footer: '<strong>Pray, wait for the next puzzle to be unlocked.</strong>'
-                            }).then(() => {
-                                $("#words-left-h5").addClass('d-none')
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload();
+                                }
                             });
                         }
                     } else {

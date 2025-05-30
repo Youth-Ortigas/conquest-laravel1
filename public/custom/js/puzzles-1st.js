@@ -159,9 +159,14 @@ $(document).ready(function () {
                             title: 'Puzzle Unlocked!',
                             html: '<p>Thou hast conquered the Vigenère puzzle!</p><p>Click <strong>Go Forth!</strong> to journey to the second puzzle.</p>',
                             icon: 'success',
-                            confirmButtonText: 'Go Forth!'
-                        }).then(() => {
-                            window.location.href = data.next_puzzle;
+                            confirmButtonText: 'Go Forth!',
+                            cancelButtonText: 'Submit Group Photo',
+                            showCancelButton: true,
+                        }).then((result) => {
+                            if(result.isConfirmed) 
+                                window.location.href = data.next_puzzle;
+                            else
+                                location.reload();
                         });
                     } else {
                         Swal.fire({
@@ -173,9 +178,10 @@ $(document).ready(function () {
                             allowEnterKey: false,
                             confirmButtonText: 'View Results',
                             footer: '<strong>Pray, wait for the next puzzle to be unlocked.</strong>'
-                        }).then(() => {
-                            oThis.DOMClassKeyInput.prop('disabled', true);
-                            oThis.DOMClassKeyButton.remove();
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.reload();
+                            }
                         });
                     }
                 } else {
