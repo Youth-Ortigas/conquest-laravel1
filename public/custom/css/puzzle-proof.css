@@ -1,0 +1,120 @@
+#photo-preview {
+    max-width: 100%; 
+    height: auto; 
+    max-height: 500px; 
+    border-radius: 12px; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    margin-bottom: 10px;
+}
+
+.count {
+    margin-left: 2px;
+}
+
+.reactions {
+    display: flex;
+    gap: 5px;
+    font-size: 24px;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap; /* prevent wrapping */
+    background-color: #deccb3;
+    padding: 5px;
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.reaction, .view-reactions-btn {
+    white-space: nowrap; /* keep emoji and count on the same line */
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.reaction .count {
+    font-size: 16px;
+    color: #555;
+    user-select: none; /* optional: prevent selecting count text */
+}
+
+.view-reactions-btn {
+    margin-left: 15px;
+    font-size: 16px;
+    padding: 4px 10px;
+    cursor: pointer;
+    white-space: nowrap; /* prevent wrapping */
+}
+
+.reaction:hover, .view-reactions-btn:hover {
+    background-color: #d8b37e;
+}
+
+.reaction.reacted {
+    background-color: #d8b37e;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 6px;
+}
+
+#reaction-popup-overlay {
+    display: none;
+    position: fixed;
+    inset: 0; /* shorthand for top:0; right:0; bottom:0; left:0 */
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 9999;
+}
+
+/* Popup */
+#reaction-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 20px 20px;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    max-width: 360px;
+    max-height: 450px;
+    overflow-y: auto;
+    z-index: 10000;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+/* Bulleted list styling */
+#reaction-popup-content {
+    padding-top: 15px;
+
+}
+
+#reaction-popup-content ul {
+    list-style-type: disc;
+    width: 100%;
+    overflow: hidden;
+}
+
+#close-reaction-popup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    line-height: 1;
+    color: #666;
+    transition: color 0.2s ease;
+    padding: 0;
+    width: auto;
+    height: auto;
+}
+
+#close-reaction-popup:hover {
+    color: #e63946;
+}
