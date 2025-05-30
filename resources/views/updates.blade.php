@@ -33,6 +33,7 @@
                                             <li>During your free time, you may enjoy the pool amenities of the venue, but make sure to have an appropriate swimwear.</li>
                                             <li>Don’t forget your personal medication (if there’s any).</li>
                                             <li>Be ready for a rainy weather. Bring your jacket and umbrella.</li>
+                                            <li>Be sure to check our Facebook group for announcements.</li>
                                             <li>Enjoy the camp and meet new friends!</li>
                                         </ol>
                                     </div>
