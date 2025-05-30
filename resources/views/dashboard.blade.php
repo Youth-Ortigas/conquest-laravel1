@@ -52,18 +52,23 @@
                                                     <h3 style="margin:0 0 15px 0;"> Thy Team & Cabin </h3>
                                                     <?php
                                                         $loggedUser = \App\Models\User::find(Auth::user()->id);
-                                                        $loggedUserLeaderMain = \App\Models\User::find($loggedUser->team->team_leader_user_id_primary);
-                                                        $loggedUserLeaderSecondary = \App\Models\User::find($loggedUser->team->team_leader_user_id_secondary);
+                                                        if(isset($loggedUser->team)) {
+
+                                                            $loggedUserLeaderMain = \App\Models\User::find($loggedUser->team->team_leader_user_id_primary) ?? 'N/A';
+                                                            $loggedUserLeaderSecondary = \App\Models\User::find($loggedUser->team->team_leader_user_id_secondary) ?? 'N/A';
+                                                        }
                                                     ?>
                                                     <table class="tbl-info-user">
                                                         <tr>
-                                                            <th class="th-label">Team Name & Code</th>
-                                                            <td class="td-value"> {{ $loggedUser->team?->team_name ?? "N/A" }} : {{ $loggedUser->team?->team_code ?? "N/A" }} </td>
+                                                            <th class="th-label">Team Name</th>
+                                                            <td class="td-value"> {{ $loggedUser->team?->team_name ?? "N/A" }} </td>
                                                         </tr>
                                                         <tr>
                                                             <th class="th-label">Cabin Name</th>
-                                                            <td class="td-value"> {{ $loggedUser->teamMember?->cabin_name ?? "N/A" }} </td>
+                                                            <td class="td-value">Cabin TBA</td>
+                                                            {{-- <td class="td-value"> {{ $loggedUser->teamMember?->cabin_name ?? "N/A" }} </td> --}}
                                                         </tr>
+                                                        @if($loggedUser->team?->id != 11 && isset($loggedUser->team))
                                                         <tr>
                                                             <th class="th-label">Team Leader/s & Email/s </th>
                                                             <td class="td-value">
@@ -71,6 +76,7 @@
                                                                 <p style="margin: 0;"> <b>Assistant:</b> {{ $loggedUserLeaderSecondary->first_name ?? "N/A" }} {{ $loggedUserLeaderSecondary->last_name ?? "N/A" }} ({{ $loggedUserLeaderSecondary->email ?? "N/A" }}) </p>
                                                             </td>
                                                         </tr>
+                                                        @endif
                                                     </table>
                                                 </div>
                                             </div>

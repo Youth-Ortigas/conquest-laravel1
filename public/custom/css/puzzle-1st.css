@@ -16,6 +16,7 @@ table {
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
     font-size: 12px; /* Smaller text */
     width: max-content !important;
+    overflow-x: visible !important;
 }
 
 th, td {

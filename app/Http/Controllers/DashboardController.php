@@ -12,6 +12,7 @@ use App\Models\PuzzleGameState;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests\ValidatePuzzleKeyRequest;
+use App\Models\TeamsMembers;
 use Illuminate\Routing\Controller as BaseController;
 
 /**

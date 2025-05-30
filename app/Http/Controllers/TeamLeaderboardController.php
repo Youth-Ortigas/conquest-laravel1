@@ -61,7 +61,6 @@ class TeamLeaderboardController extends Controller
         return response()->json($teamMembers);
     }
 
-
     public function getTeamLeaderboard($puzzleNum = 'all') {
         $teams = Teams::where('id', '!=', 11)->select('id', 'team_name')->get();
         $puzzleQuery = Puzzle::whereNot('puzzle_num', 4);
