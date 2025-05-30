@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Traits\TraitsCommon;
 use App\Models\Puzzle;
 use App\Models\PuzzleAttempt;
 use App\Models\Teams;

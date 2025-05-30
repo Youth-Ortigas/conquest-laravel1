@@ -124,9 +124,15 @@ $(document).ready(function () {
                                 title: 'Puzzle Unlocked!',
                                 html: '<p>Thou hast conquered the fill in the blanks puzzle!</p><p>Click <strong>Go Forth!</strong> to journey to the last puzzle.</p>',
                                 icon: 'success',
-                                confirmButtonText: 'Go Forth!'
-                            }).then(() => {
-                                window.location.href = response.next_puzzle;
+                                confirmButtonText: 'Go Forth!',
+                                cancelButtonText: 'Submit Group Photo',
+                                showCancelButton: true,
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = response.next_puzzle;
+                                } else {
+                                    location.reload();
+                                }
                             });
                         } else {
                             Swal.fire({
