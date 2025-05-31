@@ -160,13 +160,11 @@ class PuzzleController extends BaseController
 
         $teamProofs = collect();
 
-        if ($hasGroupPhoto) {
-            $teamProofs = PuzzleProof::where('puzzle_id', $puzzleNum)
-                                    ->get();
+        $teamProofs = PuzzleProof::where('puzzle_id', $puzzleNum)
+                                ->get();
 
-            foreach ($teamProofs as $proof) {
-                $proof->team_name = Teams::where('id', $proof->team_id)->value('team_name');
-            }
+        foreach ($teamProofs as $proof) {
+            $proof->team_name = Teams::where('id', $proof->team_id)->value('team_name');
         }
 
         if (view()->exists("puzzles/puzzles-$reference")) {
