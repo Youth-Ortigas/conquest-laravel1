@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Traits\TraitsCommon;
 use App\Models\Puzzle;
 use App\Models\PuzzleAttempt;
 use App\Models\Teams;
@@ -26,7 +25,7 @@ class TeamLeaderboardController extends Controller
         foreach ($teams as $team) {
             $allMembers = TeamsMembers::where('teams_id', $team->id)
                                     ->join('users', 'users.id', 'teams_members.teams_user_id')
-                                    ->select('users.id', 'users.name', 'users.reg_code', 'teams_members.cabin_name')
+                                    ->select('users.id', 'users.name', 'teams_members.cabin_name')
                                     ->get();
 
             // Get primary and secondary leaders
