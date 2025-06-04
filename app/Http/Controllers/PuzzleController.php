@@ -121,6 +121,7 @@ class PuzzleController extends BaseController
                                     ->where('team_id', $authTeamID)
                                     ->where('is_correct', 1)
                                     ->where('puzzle_num', 2)
+                                    ->distinct('entered_key')
                                     ->count();
 
             $remainingWordsToGuess = config('constants.REQUIRED_WORDLE_WORD_COUNT') - $totalCorrectWords;
@@ -138,6 +139,8 @@ class PuzzleController extends BaseController
 
         $correctAttempt = (clone $baseQuery)
                             ->where('is_correct', 1)
+                            ->select('entered_key')
+                            ->groupBy('entered_key')
                             ->pluck('entered_key')
                             ->toArray();
 
@@ -276,6 +279,7 @@ class PuzzleController extends BaseController
                 $attemptedWords = PuzzleAttempt::where('team_id', $this->getAuthTeamID())
                                                 ->where('puzzle_num', 2)
                                                 ->where('is_correct', 1)
+                                                ->groupBy('entered_key')
                                                 ->pluck('entered_key')
                                                 ->toArray();
 
@@ -445,9 +449,10 @@ class PuzzleController extends BaseController
             $numberOfCorrectAttempt = PuzzleAttempt::where('puzzle_num', $previousPuzzleNum)
                                                     ->where('team_id', $authTeamID)
                                                     ->where('is_correct', 1)
+                                                    ->distinct('entered_key')
                                                     ->count();
 
-            if($requiredCorrectAttempts !== $numberOfCorrectAttempt) {
+            if($requiredCorrectAttempts < $numberOfCorrectAttempt) {
                 return redirect()->route('puzzles.index')->with('error', "Hold, valiant one! Conquer Puzzle $previousPuzzleNum before thy path is made clear.");
             }
         }
