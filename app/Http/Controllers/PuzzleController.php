@@ -9,6 +9,8 @@ use Carbon\Carbon;
 use App\Models\Puzzle;
 use App\Models\PuzzleAttempt;
 use App\Models\PuzzleGameState;
+use App\Models\PuzzleProof;
+use App\Models\Teams;
 use Illuminate\Support\Facades\Auth;
 use App\Lib\LibUtility;
 
@@ -155,8 +157,21 @@ class PuzzleController extends BaseController
             $dateTimeCompleted = '';
         }
 
+        $hasGroupPhoto = PuzzleProof::where('puzzle_id', $puzzleNum)
+                                    ->where('team_id', $authTeamID)
+                                    ->exists();
+
+        $teamProofs = collect();
+
+        $teamProofs = PuzzleProof::where('puzzle_id', $puzzleNum)
+                                ->get();
+
+        foreach ($teamProofs as $proof) {
+            $proof->team_name = Teams::where('id', $proof->team_id)->value('team_name');
+        }
+
         if (view()->exists("puzzles/puzzles-$reference")) {
-            return view("puzzles/puzzles-$reference", compact('remainingWordsToGuess', 'correctAttempt', 'dateTimeCompleted', 'numberOfAttempt'));
+            return view("puzzles/puzzles-$reference", compact('remainingWordsToGuess', 'correctAttempt', 'dateTimeCompleted', 'numberOfAttempt', 'hasGroupPhoto', 'teamProofs', 'puzzleNum'));
         }
 
         abort(404);
@@ -363,7 +378,6 @@ class PuzzleController extends BaseController
         PuzzleAttempt::where('team_id', $this->getAuthTeamID())->delete();
         return redirect()->route('puzzles.index')->with('message', 'Game reset successfully.');
     }
-
 
     /**
      * Compare the user's guess with the correct word and generate feedback.

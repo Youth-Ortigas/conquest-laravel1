@@ -65,8 +65,7 @@
                                                         </tr>
                                                         <tr>
                                                             <th class="th-label">Cabin Name</th>
-                                                            <td class="td-value">Cabin TBA</td>
-                                                            {{-- <td class="td-value"> {{ $loggedUser->teamMember?->cabin_name ?? "N/A" }} </td> --}}
+                                                            <td class="td-value"> {{ $loggedUser->teamMember?->cabin_name ?? "N/A" }} </td>
                                                         </tr>
                                                         @if($loggedUser->team?->id != 11 && isset($loggedUser->team))
                                                         <tr>

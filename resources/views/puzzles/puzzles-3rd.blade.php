@@ -17,15 +17,17 @@
                 <div class="content">
                     <article id="post-367" class="post_item_single post_type_page post-367 page type-page status-publish hentry">
                         <div class="post_content entry-content">
-                            <div class="wpb-content-wrapper">
+                            <div class="wpb-content-wrapper" style="text-align: center">
                                 <div data-vc-full-width="true" data-vc-full-width-init="true"
                                      class="vc_row wpb_row vc_row-fluid vc_custom_1522153891227 vc_row-has-fill hide_bg_image_on_tablet hide_bg_image_on_mobile shape_divider_top-none shape_divider_bottom-none"
                                 >
-                                    <h4 class="sc_layouts_title_caption" style="text-align: center; margin-bottom: 50px">
-                                        @if(isset($dateTimeCompleted) && $dateTimeCompleted)
-                                            Completed on {{ $dateTimeCompleted }} ({{ $numberOfAttempt }} {{ Str::plural('attempt', $numberOfAttempt) }})
-                                        @endif
-                                    </h4>
+                                    @if(isset($dateTimeCompleted) && $dateTimeCompleted)
+                                        <h4 class="sc_layouts_title_caption">
+                                                Completed on {{ $dateTimeCompleted }} ({{ $numberOfAttempt }} {{ Str::plural('attempt', $numberOfAttempt) }})
+                                        </h4>
+
+                                        @include('puzzles.puzzle-proof-section')
+                                    @endif
                                     <div class="wpb_column vc_column_container vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left">
                                         <div class="">
                                             <div class="wpb_wrapper">
@@ -134,5 +136,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     {!! asset_versioned('/custom/js/puzzles-3rd.js', 'js', 'type="text/javascript"') !!}
-    {!! asset_versioned('/custom/js/disable-buttons.js', 'js', 'type="text/javascript"') !!}
+    @if(!$dateTimeCompleted)
+        {!! asset_versioned('/custom/js/disable-buttons.js', 'js', 'type="text/javascript"') !!}
+    @else
+        {!! asset_versioned('/custom/js/puzzle-proof.js', 'js', 'type="text/javascript"') !!}
+    @endif
 @endsection

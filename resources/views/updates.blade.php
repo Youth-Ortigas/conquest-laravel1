@@ -19,7 +19,7 @@
                             <div class="wpb_wrapper">
                                 <div class="wpb_content_element vc_align_left wpb_content_element">
                                     <h3 class="welcome-title" style="margin: 0 0 50px 0; !important;"><br/><br/>Reminders</h3>
-                                    @if(false)
+                                    @if(now()->greaterThanOrEqualTo('2025-05-31 17:00:00'))
                                     <div class="common-paragraph">
                                         <ol class="list-number" style="color: #000000;">
                                             <li>Pack your essentials.</li>
@@ -33,6 +33,7 @@
                                             <li>During your free time, you may enjoy the pool amenities of the venue, but make sure to have an appropriate swimwear.</li>
                                             <li>Don’t forget your personal medication (if there’s any).</li>
                                             <li>Be ready for a rainy weather. Bring your jacket and umbrella.</li>
+                                            <li>Be sure to check our Facebook group for announcements.</li>
                                             <li>Enjoy the camp and meet new friends!</li>
                                         </ol>
                                     </div>
@@ -49,7 +50,7 @@
                             <div class="wpb_wrapper">
                                 <div class="wpb_content_element vc_align_left wpb_content_element">
                                     <h3 class="welcome-title" style="margin: 0 0 50px 0; !important;"><br/><br/>What to bring</h3>
-                                        @if(false)
+                                        @if(now()->greaterThanOrEqualTo('2025-06-06 08:00:00'))
                                         <div class="wpb_column vc_column_container vc_col-md-7 vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left common-paragraph">
                                             <ul class="what-to-bring">
                                                 <li>Camp Kit</li>
@@ -86,7 +87,7 @@
                             <div class="wpb_wrapper">
                                 <div class="wpb_content_element vc_align_left wpb_content_element speakers">
                                     <h3 class="welcome-title" style="margin: 0 0 50px 0; !important;"><br/><br/>Speakers</h3>
-                                        @if(false)
+                                        @if(now()->greaterThanOrEqualTo('2025-06-08 08:00:00'))
                                         <div class="sc_icons_columns_wrap sc_item_columns trx_addons_columns_wrap columns_padding_bottom" style="margin-bottom: 50px">
                                             <div class="trx_addons_column-1_3">
                                                 <div class="sc_icons_item sc_icons_item_linked">

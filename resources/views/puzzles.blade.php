@@ -227,7 +227,7 @@
                                     </div>
                                 </div>
 
-                                @if(false)
+                                @if(now()->greaterThanOrEqualTo('2025-06-03 08:00:00'))
                                 <div class="wpb_content_element vc_align_left wpb_content_element">
                                     <h4 class="common-title-sub1 text-uppercase">House Performance</h4>
                                     <div class="common-paragraph">
