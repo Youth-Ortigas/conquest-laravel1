@@ -452,7 +452,7 @@ class PuzzleController extends BaseController
                                                     ->distinct('entered_key')
                                                     ->count();
 
-            if($requiredCorrectAttempts < $numberOfCorrectAttempt) {
+            if($numberOfCorrectAttempt < $requiredCorrectAttempts) {
                 return redirect()->route('puzzles.index')->with('error', "Hold, valiant one! Conquer Puzzle $previousPuzzleNum before thy path is made clear.");
             }
         }
