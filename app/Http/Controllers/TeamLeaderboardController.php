@@ -92,6 +92,16 @@ class TeamLeaderboardController extends Controller
                 $timeDifference = 0;
 
                 if ($latestCorrectAttempt) {
+                    if($puzzle->puzzle_num === 3) {
+                        $puzzle->date_unlocked = PuzzleAttempt::select('created_at')
+                                                            ->where('team_id', $team->id)
+                                                            ->where('puzzle_num', 2)
+                                                            ->where('is_correct', 1)
+                                                            ->orderByDesc('created_at')
+                                                            ->first()
+                                                            ->created_at ?? '';
+                    }
+
                     $timeDifference = Carbon::parse($puzzle->date_unlocked)
                         ->diffInSeconds(Carbon::parse($latestCorrectAttempt->created_at));
 
