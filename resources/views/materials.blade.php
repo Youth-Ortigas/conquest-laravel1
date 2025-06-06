@@ -20,17 +20,17 @@
                                 <div class="wpb_content_element vc_align_left wpb_content_element daily-devotion">
                                     <h3 class="welcome-title" style="margin: 0 0 50px 0; !important;"><br/><br/>Daily Devotion</h3>
                                     <div class="wpb_column vc_column_container vc_col-md-6 vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left">
-                                        
+
                                         @if(now()->greaterThanOrEqualTo('2025-06-10'))
-                                            <a href="#" download>
+                                            <a href="{{ asset("materials/Day-1-Devotional.pdf") }}" download>
                                                 <div class="dd-item text-uppercase"> Day 1: Truth </div>
                                             </a>
                                         @else
                                             <div class="dd-item text-uppercase"> Day 1: Truth </div>
                                         @endif
-                                        
+
                                         @if(now()->greaterThanOrEqualTo('2025-06-11'))
-                                            <a href="#" download>
+                                            <a href="{{ asset("materials/Day-2-Devotional.pdf") }}" download>
                                                 <div class="dd-item text-uppercase"> Day 2: Righteousness </div>
                                             </a>
                                         @else
@@ -38,7 +38,7 @@
                                         @endif
 
                                         @if(now()->greaterThanOrEqualTo('2025-06-12'))
-                                            <a href="#" download>
+                                            <a href="{{ asset("materials/Day-3-Devotional.pdf") }}" download>
                                                 <div class="dd-item text-uppercase"> Day 3: Peace </div>
                                             </a>
                                         @else
@@ -47,7 +47,7 @@
                                     </div>
                                     <div class="wpb_column vc_column_container vc_col-md-6 vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left">
                                         @if(now()->greaterThanOrEqualTo('2025-06-13'))
-                                            <a href="#" download>
+                                            <a href="{{ asset("materials/Day-4-Devotional.pdf") }}" download>
                                                 <div class="dd-item text-uppercase"> Day 4: Faith </div>
                                             </a>
                                         @else
@@ -55,7 +55,7 @@
                                         @endif
 
                                         @if(now()->greaterThanOrEqualTo('2025-06-14'))
-                                            <a href="#" download>
+                                            <a href="{{ asset("materials/Day-5-Devotional.pdf") }}" download>
                                                 <div class="dd-item text-uppercase"> Day 5: Salvation </div>
                                             </a>
                                         @else
@@ -63,7 +63,7 @@
                                         @endif
 
                                         @if(now()->greaterThanOrEqualTo('2025-06-15'))
-                                            <a href="#" download>
+                                            <a href="{{ asset("materials/Day-6-Devotional.pdf") }}" download>
                                                 <div class="dd-item text-uppercase"> Day 6: The Word Of God </div>
                                             </a>
                                         @else
