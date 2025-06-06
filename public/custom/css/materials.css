@@ -193,6 +193,11 @@
     padding: 15px;
 }
 
+.daily-devotion .dd-item:hover {
+    background: #000;
+    color: #fff;
+}
+
 h5.schedule {
     color: #62401f;
     font-weight: bold;
