@@ -23,7 +23,8 @@ class User extends Authenticatable
         'reg_code',
         'first_name',
         'last_name',
-        'type_id'
+        'type_id',
+        'is_active'
     ];
 
     /**
