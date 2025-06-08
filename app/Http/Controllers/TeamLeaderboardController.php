@@ -63,7 +63,7 @@ class TeamLeaderboardController extends Controller
 
     public function getTeamLeaderboard($puzzleNum = 'all') {
         $teams = Teams::where('id', '!=', 11)->select('id', 'team_name')->get();
-        $puzzleQuery = Puzzle::whereNot('puzzle_num', 4);
+        $puzzleQuery = Puzzle::query();
 
         if($puzzleNum === 'all')
             $puzzles = $puzzleQuery->get();
@@ -100,6 +100,8 @@ class TeamLeaderboardController extends Controller
                                                             ->orderByDesc('created_at')
                                                             ->first()
                                                             ->created_at ?? '';
+                    } elseif($puzzle->puzzle_num == 4) {
+                        $puzzle->date_unlocked = '2025-06-12 07:00:00';
                     }
 
                     $timeDifference = Carbon::parse($puzzle->date_unlocked)

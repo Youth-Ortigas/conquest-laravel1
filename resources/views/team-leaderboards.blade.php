@@ -24,6 +24,7 @@
                                     <button  style="padding: 5px 10px;" class="btn-filter-puzzle" data-puzzle="1">Puzzle 1</button>
                                     <button  style="padding: 5px 10px;" class="btn-filter-puzzle" data-puzzle="2">Puzzle 2</button>
                                     <button  style="padding: 5px 10px;" class="btn-filter-puzzle" data-puzzle="3">Puzzle 3</button>
+                                    <button  style="padding: 5px 10px;" class="btn-filter-puzzle" data-puzzle="4">Puzzle 4</button>
 
                                     <button  style="padding: 5px 10px; font-weight: bold;" id="refresh-leaderboard">Refresh</button>
                                 </div>
