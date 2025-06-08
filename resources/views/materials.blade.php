@@ -22,7 +22,7 @@
                                     <div class="wpb_column vc_column_container vc_col-md-6 vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left">
 
                                         @if(now()->greaterThanOrEqualTo('2025-06-10'))
-                                            <a href="{{ asset("materials/Day-1-Devotional.pdf") }}" download>
+                                            <a href="{{ asset("daily-devotions/Day-1-Belt-of-Truth.pdf") }}" target="_blank">
                                                 <div class="dd-item text-uppercase"> Day 1: Truth </div>
                                             </a>
                                         @else
@@ -30,7 +30,7 @@
                                         @endif
 
                                         @if(now()->greaterThanOrEqualTo('2025-06-11'))
-                                            <a href="{{ asset("materials/Day-2-Devotional.pdf") }}" download>
+                                            <a href="{{ asset("daily-devotions/Day-2-Breastplate-of-Righteousness.pdf") }}" target="_blank">
                                                 <div class="dd-item text-uppercase"> Day 2: Righteousness </div>
                                             </a>
                                         @else
@@ -38,7 +38,7 @@
                                         @endif
 
                                         @if(now()->greaterThanOrEqualTo('2025-06-12'))
-                                            <a href="{{ asset("materials/Day-3-Devotional.pdf") }}" download>
+                                            <a href="{{ asset("daily-devotions/Day-3-Gospel-of-Peace.pdf") }}" target="_blank">
                                                 <div class="dd-item text-uppercase"> Day 3: Peace </div>
                                             </a>
                                         @else
@@ -47,7 +47,7 @@
                                     </div>
                                     <div class="wpb_column vc_column_container vc_col-md-6 vc_col-sm-12 vc_col-has-fill sc_layouts_column_icons_position_left">
                                         @if(now()->greaterThanOrEqualTo('2025-06-13'))
-                                            <a href="{{ asset("materials/Day-4-Devotional.pdf") }}" download>
+                                            <a href="{{ asset("daily-devotions/Day-4-Shield-of-Faith.pdf") }}" target="_blank">
                                                 <div class="dd-item text-uppercase"> Day 4: Faith </div>
                                             </a>
                                         @else
@@ -55,7 +55,7 @@
                                         @endif
 
                                         @if(now()->greaterThanOrEqualTo('2025-06-14'))
-                                            <a href="{{ asset("materials/Day-5-Devotional.pdf") }}" download>
+                                            <a href="{{ asset("daily-devotions/Day-5-Helmet-of-Salvation.pdf") }}" target="_blank">
                                                 <div class="dd-item text-uppercase"> Day 5: Salvation </div>
                                             </a>
                                         @else
@@ -63,7 +63,7 @@
                                         @endif
 
                                         @if(now()->greaterThanOrEqualTo('2025-06-15'))
-                                            <a href="{{ asset("materials/Day-6-Devotional.pdf") }}" download>
+                                            <a href="{{ asset("daily-devotions/Day-6-Sword-of-the-Spirit.pdf") }}" target="_blank">
                                                 <div class="dd-item text-uppercase"> Day 6: The Word Of God </div>
                                             </a>
                                         @else
