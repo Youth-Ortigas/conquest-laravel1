@@ -62,7 +62,7 @@ class PuzzleGameStateController extends Controller
                     'game_state' => json_encode($gameStateArray),
                 ]);
             }
-        } elseif(in_array($request->puzzle_num, [1,3])) {
+        } elseif(in_array($request->puzzle_num, [1,3,4])) {
             PuzzleGameState::updateOrCreate(
                 [
                     'team_id'    => $team_id,

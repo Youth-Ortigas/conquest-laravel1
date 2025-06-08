@@ -86,7 +86,7 @@
                                     class="sc_icons_icon sc_icon_type_ icon-icon-13">
                                     <span class="sc_icon_type_ icon-icon-13"></span>
                                 </div>
-                                <h4 class="sc_icons_item_title"><span>Puzzle IV</span>
+                                <h4 class="sc_icons_item_title"><span>Puzzle IV {{ $isPuzzleComplete['4th'] ? '✔️' : '' }}</span>
                                 </h4>
                                 <div class="sc_icons_item_description">
                                     <span>Calling to the Mission Field</span>

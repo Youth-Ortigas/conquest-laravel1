@@ -76,10 +76,12 @@ class PuzzleController extends BaseController
         $checkPuzzleState['2nd'] = $assignPuzzlesRound[1] ?? [];
         $checkPuzzleState['3rd'] = $assignPuzzlesRound[2] ?? [];
         $checkPuzzleState['4th'] = $assignPuzzlesRound[3] ?? [];
+        $checkPuzzleState['5th'] = $assignPuzzlesRound[4] ?? [];
 
         $isPuzzleComplete['1st'] = $isArray($checkPuzzleState['2nd']);
         $isPuzzleComplete['2nd'] = $isArray($checkPuzzleState['3rd']) && count($checkPuzzleState['3rd']) === $REQUIRED_WORDLE_WORD_COUNT;
         $isPuzzleComplete['3rd'] = $isArray($checkPuzzleState['4th']);
+        $isPuzzleComplete['4th'] = $isArray($checkPuzzleState['5th']);
 
         $puzzleAvailableIn['1st'] = max(round(now()->diffInSeconds(Carbon::parse($modelPuzzlesDateUnlocked[0]))), 0);
         $puzzleAvailableIn['2nd'] = max(round(now()->diffInSeconds(Carbon::parse($modelPuzzlesDateUnlocked[1]))), 0);
@@ -213,7 +215,7 @@ class PuzzleController extends BaseController
         $puzzleKeys = json_decode($puzzle->puzzle_key, true);
         $isCorrect = false;
 
-        if ($puzzleNum == 1) {
+        if (in_array($puzzleNum, [1,4])) {
             $isCorrect = $enteredKey === $puzzleKeys;
         } elseif ($puzzleNum == 2) {
             $isCorrect = is_array($puzzleKeys) && in_array($enteredKey, $puzzleKeys);

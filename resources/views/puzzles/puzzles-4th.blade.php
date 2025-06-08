@@ -58,7 +58,7 @@
                                                         <label style="display: block; margin-bottom: 80px">
                                                             <input
                                                                 type="text"
-                                                                name="puzzle_code_1st"
+                                                                name="puzzle_code_4th"
                                                                 id="puzzle-code-input"
                                                                 class="text-uppercase"
                                                                 placeholder="ENTER KEY"
