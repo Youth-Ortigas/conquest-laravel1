@@ -33,7 +33,44 @@
                                             <div class="wpb_wrapper">
                                                 <div class="wpb_single_image wpb_content_element vc_align_left wpb_content_element">
                                                     <div class="container" style="margin: 25px 0 0 0; text-align: center">
-                                                        <h1>ON-SITE PUZZLE</h1>
+                                                        <p style="margin: 0">Grand are these halls of memories</p>
+                                                        <p style="margin: 0">Of cheerful young communities</p>
+                                                        <p style="margin: 0">Its doors, open to one and all</p>
+                                                        <p style="margin: 0">Sounding echoes of a call</p>
+                                                        <br>
+                                                        <p style="margin: 0">If you are to compete</p>
+                                                        <p style="margin: 0">Be wise, and swift, and complete</p>
+                                                        <p style="margin: 0">Seek the council before your quest</p>
+                                                        <p style="margin: 0">You are now put to the test</p>
+                                                        <br>
+                                                        <p style="margin: 0">The Counsellors, you know their names</p>
+                                                        <p style="margin: 0">Approach them, and you'll finish the games</p>
+                                                        <p style="margin: 0">They have set you all on the right track</p>
+
+                                                        <p style="margin: 0">Counsellors Faith, Enzo, and Jack</p>
+
+                                                        <h6 style="margin-top: 20px"> What Be Thy Answer? </h6>
+                                                        <p style="font-size: smaller; margin: 0">(All team members must be present before submitting the answer;</p>
+                                                        <p style="font-size: smaller; margin: 0 0 15px 0"> otherwise, it will be considered invalid.)</p>
+                                                        <div id="puzzle-4-available-in" data-seconds="{{ $allowFourthPuzzle }}" class="puzzle-available-in" style="font-size: smaller">
+                                                            To be answered on <span class="puzzle-timer"></span>
+                                                        </div>
+                                                        <label style="display: block; margin-bottom: 80px">
+                                                            <input
+                                                                type="text"
+                                                                name="puzzle_code_1st"
+                                                                id="puzzle-code-input"
+                                                                class="text-uppercase"
+                                                                placeholder="ENTER KEY"
+                                                                value="{{ $correctAttempt[0] ?? '' }}"
+                                                                {{ isset($correctAttempt[0]) ? 'disabled' : '' }}
+                                                            />
+
+                                                            @unless(isset($correctAttempt[0]))
+                                                                <br>
+                                                                <button type="submit" style="margin-top: 15px;" id="btn-puzzle-send"> Deliver Thy Reply </button>
+                                                            @endif
+                                                        </label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -54,7 +91,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="{{ asset("custom/js/puzzles-4th.js") }}"></script>
     @if(!$dateTimeCompleted)
-        {!! asset_versioned('/custom/js/disable-buttons.js', 'js', 'type="text/javascript"') !!}
+        {{-- {!! asset_versioned('/custom/js/disable-buttons.js', 'js', 'type="text/javascript"') !!} --}}
     @else
         {!! asset_versioned('/custom/js/puzzle-proof.js', 'js', 'type="text/javascript"') !!}
     @endif
