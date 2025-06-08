@@ -53,7 +53,7 @@
                                                         <p style="font-size: smaller; margin: 0">(All team members must be present before submitting the answer;</p>
                                                         <p style="font-size: smaller; margin: 0 0 15px 0"> otherwise, it will be considered invalid.)</p>
                                                         <div id="puzzle-4-available-in" data-seconds="{{ $allowFourthPuzzle }}" class="puzzle-available-in" style="font-size: smaller">
-                                                            To be answered on To be answered on May 12 at 7:00 AM
+                                                            To be answered in <span class="puzzle-timer"></span>
                                                         </div>
                                                         <label style="display: block; margin-bottom: 80px">
                                                             <input
