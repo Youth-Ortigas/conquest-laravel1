@@ -170,8 +170,15 @@ class PuzzleController extends BaseController
             $proof->team_name = Teams::where('id', $proof->team_id)->value('team_name');
         }
 
+        $now = now();
+        $target = Carbon::createFromFormat('Y-m-d H:i:s', now()->format('Y') . '-06-12  07:00:00');
+
+        $secondsRemaining = $now->diffInSeconds($target, false);
+
+        $allowFourthPuzzle = $secondsRemaining;
+
         if (view()->exists("puzzles/puzzles-$reference")) {
-            return view("puzzles/puzzles-$reference", compact('remainingWordsToGuess', 'correctAttempt', 'dateTimeCompleted', 'numberOfAttempt', 'hasGroupPhoto', 'teamProofs', 'puzzleNum'));
+            return view("puzzles/puzzles-$reference", compact('remainingWordsToGuess', 'correctAttempt', 'dateTimeCompleted', 'numberOfAttempt', 'hasGroupPhoto', 'teamProofs', 'puzzleNum', 'allowFourthPuzzle'));
         }
 
         abort(404);
