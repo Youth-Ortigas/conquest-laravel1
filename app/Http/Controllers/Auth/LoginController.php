@@ -63,7 +63,7 @@ class LoginController extends BaseController
     {
         $assignUserID = -1;
     	$registrationCode =  $request->input('sacred_code');
-        $checkUser = User::where('reg_code', $registrationCode)->first();
+        $checkUser = User::where('reg_code', $registrationCode)->where('is_active', 1)->first();
     	if ($checkUser) {
             Auth::login($checkUser);
             $assignUserID = Auth::user()->id;
